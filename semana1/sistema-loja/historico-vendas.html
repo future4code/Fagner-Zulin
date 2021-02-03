@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="style.css" />
-    <title>Adicionar Produto</title>
+    <title>Histórico de Vendas</title>
   </head>
   <body>
     <div class="container">
@@ -16,7 +15,7 @@
           </a>
         </div>
         <div>
-          <h1>Tech Store</h1>
+          <h1>Bem-vind@ ao <em>Tech Store</em>!</h1>
           <p>Tecnologia para o seu dia a dia!</p>
         </div>
       </div>
@@ -34,38 +33,58 @@
         </div>
       </div>
 
-      <h2>Adicionar Produto</h2>
+      <h2>Histórico de Vendas</h2>
 
-      <div class="box">
-        <form action="">
-          <div>
-            <label for="link-foto">Link para foto: </label>
-            <input type="url" id="link-foto" name="link-foto" />
-          </div>
+      <div class="box-container">
+        <div class="box box-historico">
+          <table>
+            <tr class="tab-head">
+              <th>Número do pedido</th>
+              <th>Vendedor</th>
+              <th>Valor Total</th>
+              <th>Forma de Pagamento</th>
+              <th>Data - Hora</th>
+            </tr>
 
-          <div>
-            <label for="descricao">Descrição do produto: </label>
-            <!-- Adicione o id apropriado para o input abaixo -->
-            <input type="text" id="descricao" name="descrição" />
-          </div>
+            <tr>
+              <td>001</td>
+              <td>Maria</td>
+              <td>R$ 2.244,00</td>
+              <td>Cartão</td>
+              <td>21/12/2020 - 13:45</td>
+            </tr>
 
-          <div>
-            <label for="preco">Preço (em R$): </label>
-            <!-- Adicione o id apropriado e o type para receber números abaixo -->
-            <input type="number" id="preco" name="preço" />
-          </div>
+            <tr>
+              <td>002</td>
+              <td>Pedro</td>
+              <td>R$ 1.000,00</td>
+              <td>Dinheiro</td>
+              <td>24/12/2020 - 09:22</td>
+            </tr>
 
-          <div>
-            <!-- Preencha as propriedades necessárias para os elementos abaixo -->
-            <label for="qtd">Quantidade disponível: </label>
-            <input type="number" id="qtd" name="quantidade" />
-          </div>
+            <tr>
+              <td>003</td>
+              <td>Alex</td>
+              <td>R$ 500,00</td>
+              <td>Dinheiro</td>
+              <td>30/12/2020 - 16:00</td>
+            </tr>
 
-          <div class="form-add">
-            <!-- Adicione ao type do botão abaixo o valor para que ele submeta o formulário -->
-            <button type="submit">Adicionar</button>
+            <tr>
+              <td>004</td>
+              <td>José</td>
+              <td>R$ 3.249,65</td>
+              <td>Cartão</td>
+              <td>03/01/2021 - 17:28</td>
+            </tr>
+          </table>
+
+          <div class="filtro">
+            <label for="filtro">Digite a data escolhida:</label>
+            <input type="text" name="filtro" id="filtro" />
+            <button>Buscar</button>
           </div>
-        </form>
+        </div>
       </div>
 
       <div class="box box-footer footer footer-absolute">
@@ -85,7 +104,6 @@
             src="https://img.icons8.com/ios-filled/100/ffffff/twitter.png"
           />
         </div>
-      </div>
     </div>
   </body>
 </html>

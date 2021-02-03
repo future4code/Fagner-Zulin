@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Página de Vendas</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div>
+          <a href="./index.html">
+            <img class="logo" src="./img/laptop.svg" alt="Logo da Tech Store" />
+          </a>
+        </div>
+        <div>
+          <h1>Bem-vind@ ao <em>Tech Store</em>!</h1>
+          <p>Tecnologia para o seu dia a dia!</p>
+        </div>
+      </div>
+
+      <div class="menu box-flex">
+        <div>
+          <a href="./index.html">Página Inicial</a>
+          <a href="./ctrl-estoque.html">Controle de Estoque</a>
+          <a href="./add-produto.html">Adicionar Produto</a>
+          <a href="./funcionarios.html">Funcionários</a>
+        </div>
+        <div>
+          <a href="./page-venda.html">Fazer uma Venda</a>
+          <a href="./historico-vendas.html">Histórico de Vendas</a>
+        </div>
+      </div>
+
+      <h2>Fazer uma Venda</h2>
+
+      <div class="box-container">
+        <div class="box box-venda">
+          <form action="#">
+            <div>
+              <label for="descricao">Nome do Produto: </label>
+              <input type="text" id="descricao" name="descrição" />
+            </div>
+
+            <div>
+              <label for="qtd">Quantidade: </label>
+              <input type="number" id="qtd" name="quantidade" />
+            </div>
+
+            <div>
+              <label for="desconto">Desconto: </label>
+              <input type="number" id="desconto" name="desconto" />
+            </div>
+
+            <div class="box">
+              <button type="submit">Adicionar</button>
+            </div>
+          </form>
+
+          <form action="#">
+            <div>
+              <label for="valor-total">Valor total: </label>
+              <input
+                readonly
+                type="number"
+                id="valor-total"
+                name="valor-total"
+              />
+            </div>
+
+            <div>
+              <label for="pagamento">Escolha a forma de pagamento:</label>
+              <select name="pagamentos" id="pagamento">
+                <option value="dinheiro">Dinheiro</option>
+                <option value="cartão">Cartão</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="vendedores">Escolha o vendendor:</label>
+              <select name="vendedor" id="vendedores">
+                <option value="maria">Maria</option>
+                <option value="joao">João</option>
+                <option value="pedro">Pedro</option>
+                <option value="Alex">Alex</option>
+              </select>
+            </div>
+
+            <div class="box">
+              <button type="submit">Finalizar Pedido</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="box box-finaliza">
+          <table class="table-finaliza">
+            <tr class="tab-head">
+              <th>Descrição</th>
+              <th>Preço (R$)</th>
+              <th>Quantidade</th>
+            </tr>
+
+            <tr>
+              <td>Câmera</td>
+              <td>R$ 1.000,00</td>
+              <td>1</td>
+            </tr>
+
+            <tr>
+              <td>Celular</td>
+              <td>R$ 1.200,00</td>
+              <td>2</td>
+            </tr>
+
+            <tr>
+              <td>Notebook</td>
+              <td>R$ 2.000,00</td>
+              <td>1</td>
+            </tr>
+
+            <tr>
+              <td>Fones de Ouvido</td>
+              <td>R$ 200,00</td>
+              <td>1</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="box box-footer footer">
+        <p>Siga-nos nas redes sociais!</p>
+
+        <div>
+          <img
+            class="social-icon"
+            src="https://img.icons8.com/android/100/ffffff/facebook.png"
+          />
+          <img
+            class="social-icon"
+            src="https://img.icons8.com/ios-filled/100/ffffff/instagram-new.png"
+          />
+          <img
+            class="social-icon"
+            src="https://img.icons8.com/ios-filled/100/ffffff/twitter.png"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
