@@ -46,7 +46,9 @@ body {
 }
 
 .menu a:visited,
-.menu a:link {
+.menu a:link,
+.link-vendas:visited,
+.link-vendas:link {
   text-decoration: none;
   color: white;
 }
@@ -68,12 +70,71 @@ h2 {
   padding: 8px 16px;
 }
 
-.box {
-  margin-top: 10px;
+.box,
+.box-flex {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.box {
+  margin-top: 10px;
+}
+
+.box-footer,
+.box-icon-index,
+.box-historico {
+  flex-direction: column;
+}
+
+.box-icon-index img {
+  margin-bottom: 28px;
+}
+
+.box-index,
+.box-flex {
+  justify-content: space-between;
+}
+
+.box-venda {
+  justify-content: space-evenly;
+}
+
+.box-venda {
+  border: 2px solid black;
+  padding: 8px;
+}
+
+.box-container {
+  max-width: 50%;
+  margin: 28px auto;
+  margin-bottom: 0px;
+  padding: 40px;
+  background-color: #b1b1b1;
+  border-radius: 8px;
+}
+
+.box-container-index,
+.box-funcionarios {
+  max-width: 28%;
+  margin: auto;
+  margin-top: 100px;
+}
+
+.box-funcionarios {
+  margin-top: 80px;
+}
+
+.box-finaliza {
+  margin-top: 0px;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.box-historico table {
+  border-collapse: collapse;
 }
 
 .img-table {
@@ -100,22 +161,47 @@ form {
   font-weight: 450;
 }
 
+.table-finaliza {
+  margin: 28px 0px;
+}
+
 form div {
   padding: 4px;
 }
 
-button {
+button,
+.link-vendas {
   background-color: #34495e;
   border: none;
   padding: 8px;
   color: white;
   font-weight: bold;
-  margin-top: 8px;
+  margin: 8px 0px 16px 0px;
 }
 
-.lista {
-  margin: 16px;
-  padding: 16px;
+.box ul {
+  list-style: none;
+  font-weight: bold;
+}
+.lista-flex {
+  display: flex;
+  align-items: center;
+}
+
+.link-vendas {
+  border-radius: 5px;
+}
+
+.link-vendas:hover {
+  background-color: #4e6d8b;
+}
+
+.filtro {
+  margin-top: 28px;
+}
+
+.filtro input {
+  width: 200px;
 }
 
 .footer {
