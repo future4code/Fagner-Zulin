@@ -102,6 +102,15 @@ div img {
   *  ESTILOS COMPRAR 
   *
   **/
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main > div {
+  margin-top: 80px;
+}
 
 input {
   border: none;
