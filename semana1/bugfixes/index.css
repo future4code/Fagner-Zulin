@@ -110,6 +110,11 @@ table {
   text-align: center;
 }
 
+td img {
+  max-width: 30%;
+  background-color: white;
+}
+
 td button {
   background-color: #fadf63;
   width: 150px;
