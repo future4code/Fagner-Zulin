@@ -63,6 +63,14 @@ div img {
   height: 15px;
 }
 
+.icone:hover {
+  opacity: 0.5;
+}
+
+.icone:active {
+  opacity: 1;
+}
+
 /** 
   *
   *  ESTILOS HOME 
@@ -103,6 +111,7 @@ div img {
   *  ESTILOS COMPRAR 
   *
   **/
+
 main {
   display: flex;
   flex-direction: column;
