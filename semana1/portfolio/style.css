@@ -8,6 +8,10 @@ body {
   background-color: #ebf4f5;
 }
 
+a {
+  text-decoration: none;
+}
+
 .container-esq {
   position: fixed;
   left: 0;
@@ -32,6 +36,32 @@ body {
 .container-esq > header > h1 {
   font-weight: 900;
   font-size: 2.5em;
+}
+
+.container-esq > nav > ul li a,
+.container-esq > header > h1 {
   color: white;
   text-shadow: 2px 2px 10px #b5c6e0;
+}
+
+.container-esq > nav {
+  margin-top: 200px;
+}
+.container-esq > nav > ul li a {
+  margin-bottom: 16px;
+  padding-left: 80px;
+  margin-right: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.container-esq > nav > ul li a:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 4px 4px 10px #b5c6e0;
 }
