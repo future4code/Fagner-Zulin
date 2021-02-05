@@ -93,6 +93,7 @@ a {
 }
 
 body#home > div.container-esq > nav > ul li a.home,
+body#sobre-mim > div.container-esq > nav > ul li a.sobre-mim,
 .container-esq > nav > ul li a:hover {
   background-color: white;
   color: black;
@@ -131,6 +132,10 @@ body#home > div.container-esq > nav > ul li a.home,
   align-items: center;
 }
 
+body#sobre-mim > div.container-dir > section {
+  padding-top: 150px;
+}
+
 .container-dir > section > div {
   margin-top: 50px;
 }
@@ -138,8 +143,25 @@ body#home > div.container-esq > nav > ul li a.home,
 .container-dir > section > div > h1 {
   font-size: 5em;
 }
+.container-dir > section > div > h1.title-sobre {
+  font-size: 3em;
+}
 
-.container-dir > section > div > img {
+.laptop {
   max-width: 300px;
   margin-top: 40px;
+}
+
+.img-perfil {
+  max-width: 200px;
+  border-radius: 50%;
+}
+
+.texto-sobre {
+  text-align: center;
+  width: 500px;
+}
+
+div.texto-sobre p {
+  padding: 5px 0px;
 }
