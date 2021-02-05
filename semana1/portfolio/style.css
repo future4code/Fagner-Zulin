@@ -1,6 +1,7 @@
 * {
   padding: 0px;
   margin: 0px;
+  font-family: "Mulish", sans-serif;
 }
 
 body {
@@ -10,7 +11,6 @@ body {
 .container-esq {
   position: fixed;
   left: 0;
-
   width: 400px;
   height: 100vh;
   background: hsla(186, 33%, 94%, 1);
@@ -19,8 +19,19 @@ body {
     hsla(186, 33%, 94%, 1) 0%,
     hsla(216, 41%, 79%, 1) 100%
   );
-  border: 2px solid #b7b7a4;
+  border: 2px solid #b5c6e0;
   border-top-right-radius: 24px;
   border-bottom-right-radius: 24px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.87);
+  box-shadow: 4px 4px 10px #b5c6e0;
+}
+
+.container-esq > header {
+  text-align: center;
+  margin-top: 60px;
+}
+.container-esq > header > h1 {
+  font-weight: 900;
+  font-size: 2.5em;
+  color: white;
+  text-shadow: 2px 2px 10px #b5c6e0;
 }
