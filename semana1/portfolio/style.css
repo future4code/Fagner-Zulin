@@ -12,6 +12,38 @@ a {
   text-decoration: none;
 }
 
+/*Animação - Cusor*/
+.h1-animacao {
+  border-right: 2px solid black;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.escrecevendo-animacao {
+  animation: pisca-cursor 500ms steps(30) infinite normal,
+  escrevendo 3s steps(30) 1s normal both;
+}
+
+@keyframes escrevendo {
+  from {
+    width: 0;
+  }
+  to {
+    width: 6em;
+  }
+}
+
+@keyframes pisca-cursor {
+  from {
+    border-right-color: rgba(0, 0, 0, 0.75);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+
+/* //////////////////////////// */
+
 .container-esq {
   position: fixed;
   left: 0;
@@ -73,7 +105,7 @@ body#home > div.container-esq > nav > ul li a.home {
 }
 
 .container-esq > footer {
-  margin-top: 50%;
+  margin-top: 40%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -89,4 +121,29 @@ body#home > div.container-esq > nav > ul li a.home {
   background-color: #a2afc4;
   border-radius: 40px;
   box-shadow: 4px 4px 10px #b5c6e0;
+}
+
+.container-dir {
+  margin-left: 410px;
+}
+
+.container-dir > section {
+  padding-top: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-dir > section > div {
+  margin-top: 50px;
+}
+
+.container-dir > section > div > h1 {
+  font-size: 5em;
+}
+
+.container-dir > section > div > img {
+  max-width: 300px;
+  margin-top: 40px;
 }
