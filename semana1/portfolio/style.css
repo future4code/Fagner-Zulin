@@ -188,11 +188,22 @@ div.texto-info-acad > ul li {
 }
 
 .texto-info-acad > ul {
-  width: 500px;
+  width: 600px;
+}
+
+.texto-info-acad > ul div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 8px;
 }
 
 div.texto-info-acad > ul li {
-  list-style-type: "\1f393";
-  padding-left: 8px;
+  list-style: none;
   font-size: 1.2em;
+}
+
+div.texto-info-acad > ul span {
+  font-size: 2em;
+  padding-right: 12px;
 }
