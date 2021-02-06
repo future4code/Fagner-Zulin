@@ -152,7 +152,7 @@ body#info-acad > div.container-esq > nav > ul li a.info-acad,
 }
 
 body#sobre-mim > div.container-dir > section {
-  padding-top: 150px;
+  padding-top: 60px;
 }
 
 .container-dir > section > div {
@@ -179,6 +179,7 @@ body#sobre-mim > div.container-dir > section {
 .texto-sobre {
   text-align: center;
   width: 500px;
+  font-size: 1.2em;
 }
 
 div.texto-sobre p,
