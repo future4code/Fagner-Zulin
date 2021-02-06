@@ -29,7 +29,7 @@ a {
     width: 0;
   }
   to {
-    width: 6em;
+    width: 8em;
   }
 }
 
@@ -122,6 +122,10 @@ body#sobre-mim > div.container-esq > nav > ul li a.sobre-mim,
 
 .container-dir {
   margin-left: 410px;
+}
+
+.container-dir h1 {
+  font-family: "Fira Code", monospace;
 }
 
 .container-dir > section {
