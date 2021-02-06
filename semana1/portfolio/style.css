@@ -179,12 +179,12 @@ body#sobre-mim > div.container-dir > section {
 
 .texto-sobre {
   text-align: center;
-  width: 500px;
-  font-size: 1.2em;
+  width: 700px;
+  font-size: 1.4em;
 }
 
 div.texto-sobre p {
-  padding: 5px 0px;
+  margin: 12px 0px;
 }
 
 .lista > ul {
