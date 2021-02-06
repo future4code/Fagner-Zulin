@@ -1,3 +1,8 @@
+:root {
+  --cor-escura: #6d90b9;
+  --cor-clara: #bbc7dc;
+}
+
 * {
   padding: 0px;
   margin: 0px;
@@ -5,7 +10,7 @@
 }
 
 body {
-  background-color: #bbc7dc;
+  background-color: var(--cor-clara);
 }
 
 a {
@@ -47,6 +52,20 @@ a {
   }
 }
 
+.escrecevendo-animacao-pequena {
+  animation: pisca-cursor 500ms steps(30) infinite normal,
+    escrevendo-pequena 3s steps(30) 1s normal both;
+}
+
+@keyframes escrevendo-pequena {
+  from {
+    width: 0;
+  }
+  to {
+    width: 6.3em;
+  }
+}
+
 .escrecevendo-animacao {
   animation: pisca-cursor 500ms steps(30) infinite normal,
     escrevendo 3s steps(30) 1s normal both;
@@ -83,10 +102,10 @@ a {
     hsla(212, 35%, 58%, 1) 0%,
     hsla(218, 32%, 80%, 1) 100%
   );
-  border: 2px solid #6d90b9;
+  border: 2px solid var(--cor-escura);
   border-top-right-radius: 24px;
   border-bottom-right-radius: 24px;
-  box-shadow: 4px 4px 10px #6d90b9;
+  box-shadow: 4px 4px 10px var(--cor-escura);
 }
 
 .container-esq > header {
@@ -101,7 +120,7 @@ a {
 .container-esq > nav > ul li a,
 .container-esq > header > h1 {
   color: white;
-  text-shadow: 2px 2px 10px #6d90b9;
+  text-shadow: 2px 2px 10px var(--cor-escura);
 }
 
 .container-esq > nav {
@@ -125,10 +144,11 @@ body#sobre-mim > div.container-esq > nav > ul li a.sobre-mim,
 body#info-acad > div.container-esq > nav > ul li a.info-acad,
 body#exp-anteriores > div.container-esq > nav > ul li a.exp-anteriores,
 body#hard-soft-skill > div.container-esq > nav > ul li a.hard-soft-skill,
+body#contato > div.container-esq > nav > ul li a.contato,
 .container-esq > nav > ul li a:hover {
   background-color: white;
   color: black;
-  box-shadow: 4px 4px 10px #6d90b9;
+  box-shadow: 4px 4px 10px var(--cor-escura);
   text-shadow: none;
 }
 
@@ -146,9 +166,9 @@ body#hard-soft-skill > div.container-esq > nav > ul li a.hard-soft-skill,
 }
 
 .container-esq > footer a:hover {
-  background-color: #6d90b9;
+  background-color: var(--cor-escura);
   border-radius: 40px;
-  box-shadow: 4px 4px 10px #6d90b9;
+  box-shadow: 4px 4px 10px var(--cor-escura);
 }
 
 .container-dir {
@@ -161,7 +181,8 @@ body#hard-soft-skill > div.container-dir {
   font-family: "Fira Code", monospace;
 }
 
-.container-dir > section {
+.container-dir > section,
+.container-dir form {
   padding-top: 200px;
   display: flex;
   flex-direction: column;
@@ -250,4 +271,64 @@ div.lista > ul span {
 
 div.lista > ul span > img {
   max-width: 40px;
+}
+
+.container-dir form {
+  padding-top: 0px;
+  align-items: baseline;
+  border: 2px solid var(--cor-escura);
+  box-shadow: 4px 4px 10px var(--cor-escura);
+  border-radius: 5px;
+  width: 500px;
+  padding: 24px;
+}
+.container-dir form div {
+  padding: 12px 0px;
+}
+
+.container-dir form div label {
+  padding-right: 4px;
+}
+
+.container-dir form div input,
+.container-dir form div textarea {
+  border-radius: 5px;
+  border: 0.5px solid var(--cor-escura);
+  padding: 4px;
+}
+
+.container-dir form div input:focus,
+.container-dir form div textarea:focus {
+  outline: none;
+}
+
+.container-dir form div input#name,
+.container-dir form div input#email {
+  width: 400px;
+}
+.textarea {
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea label {
+  padding-bottom: 8px;
+}
+
+.textarea > textarea {
+  resize: none;
+}
+
+.container-dir form div input#button {
+  font-size: 1em;
+  padding: 8px;
+}
+
+.container-dir form div input#button:hover {
+  cursor: pointer;
+}
+
+.container-dir form div input#button:active {
+  background-color: var(--cor-escura);
+  color: white;
 }
