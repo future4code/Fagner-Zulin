@@ -19,6 +19,20 @@ a {
   overflow: hidden;
 }
 
+.escrecevendo-animacao-grande {
+  animation: pisca-cursor 500ms steps(30) infinite normal,
+    escrevendo-grade 3s steps(30) 1s normal both;
+}
+
+@keyframes escrevendo-grade {
+  from {
+    width: 0;
+  }
+  to {
+    width: 15em;
+  }
+}
+
 .escrecevendo-animacao {
   animation: pisca-cursor 500ms steps(30) infinite normal,
     escrevendo 3s steps(30) 1s normal both;
@@ -94,6 +108,7 @@ a {
 
 body#home > div.container-esq > nav > ul li a.home,
 body#sobre-mim > div.container-esq > nav > ul li a.sobre-mim,
+body#info-acad > div.container-esq > nav > ul li a.info-acad,
 .container-esq > nav > ul li a:hover {
   background-color: white;
   color: black;
@@ -166,6 +181,17 @@ body#sobre-mim > div.container-dir > section {
   width: 500px;
 }
 
-div.texto-sobre p {
+div.texto-sobre p,
+div.texto-info-acad > ul li {
   padding: 5px 0px;
+}
+
+.texto-info-acad > ul {
+  width: 500px;
+}
+
+div.texto-info-acad > ul li {
+  list-style-type: "\1f393";
+  padding-left: 8px;
+  font-size: 1.2em;
 }
