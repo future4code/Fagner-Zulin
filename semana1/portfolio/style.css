@@ -29,7 +29,7 @@ a {
     width: 0;
   }
   to {
-    width: 15em;
+    width: 16em;
   }
 }
 
@@ -109,6 +109,7 @@ a {
 body#home > div.container-esq > nav > ul li a.home,
 body#sobre-mim > div.container-esq > nav > ul li a.sobre-mim,
 body#info-acad > div.container-esq > nav > ul li a.info-acad,
+body#exp-anteriores > div.container-esq > nav > ul li a.exp-anteriores,
 .container-esq > nav > ul li a:hover {
   background-color: white;
   color: black;
@@ -182,28 +183,27 @@ body#sobre-mim > div.container-dir > section {
   font-size: 1.2em;
 }
 
-div.texto-sobre p,
-div.texto-info-acad > ul li {
+div.texto-sobre p {
   padding: 5px 0px;
 }
 
-.texto-info-acad > ul {
+.lista > ul {
   width: 600px;
 }
 
-.texto-info-acad > ul div {
+.lista > ul div {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 8px;
+  padding: 12px 0px;
 }
 
-div.texto-info-acad > ul li {
+div.lista > ul li {
   list-style: none;
   font-size: 1.2em;
 }
 
-div.texto-info-acad > ul span {
+div.lista > ul span {
   font-size: 2em;
   padding-right: 12px;
 }
