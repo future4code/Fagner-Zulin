@@ -33,6 +33,20 @@ a {
   }
 }
 
+.escrecevendo-animacao-media {
+  animation: pisca-cursor 500ms steps(30) infinite normal,
+    escrevendo-media 3s steps(30) 1s normal both;
+}
+
+@keyframes escrevendo-media {
+  from {
+    width: 0;
+  }
+  to {
+    width: 9em;
+  }
+}
+
 .escrecevendo-animacao {
   animation: pisca-cursor 500ms steps(30) infinite normal,
     escrevendo 3s steps(30) 1s normal both;
@@ -110,6 +124,7 @@ body#home > div.container-esq > nav > ul li a.home,
 body#sobre-mim > div.container-esq > nav > ul li a.sobre-mim,
 body#info-acad > div.container-esq > nav > ul li a.info-acad,
 body#exp-anteriores > div.container-esq > nav > ul li a.exp-anteriores,
+body#hard-soft-skill > div.container-esq > nav > ul li a.hard-soft-skill,
 .container-esq > nav > ul li a:hover {
   background-color: white;
   color: black;
@@ -139,7 +154,9 @@ body#exp-anteriores > div.container-esq > nav > ul li a.exp-anteriores,
 .container-dir {
   margin-left: 410px;
 }
-
+body#hard-soft-skill > div.container-dir {
+  margin-left: 300px;
+}
 .container-dir h1 {
   font-family: "Fira Code", monospace;
 }
@@ -152,6 +169,16 @@ body#exp-anteriores > div.container-esq > nav > ul li a.exp-anteriores,
   align-items: center;
 }
 
+.container-dir > section.flex-rows {
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: baseline;
+  padding-top: 100px;
+}
+
+.container-dir > section.section-listas {
+  padding-top: 20px;
+}
 body#sobre-mim > div.container-dir > section {
   padding-top: 60px;
 }
@@ -160,11 +187,15 @@ body#sobre-mim > div.container-dir > section {
   margin-top: 50px;
 }
 
+.container-dir > section.section-listas > div {
+  margin-top: 12px;
+}
+
 .container-dir > section > div > h1 {
   font-size: 5em;
 }
-.container-dir > section > div > h1.title-sobre {
-  font-size: 3em;
+.container-dir > section > div > h1.title {
+  font-size: 2.5em;
 }
 
 .laptop {
@@ -191,6 +222,15 @@ div.texto-sobre p {
   width: 600px;
 }
 
+.lista-softskill > ul {
+  width: 550px;
+}
+
+.lista-hardskill > ul {
+  width: 400px;
+  margin-left: 100px;
+}
+
 .lista > ul div {
   display: flex;
   flex-direction: row;
@@ -206,4 +246,8 @@ div.lista > ul li {
 div.lista > ul span {
   font-size: 2em;
   padding-right: 12px;
+}
+
+div.lista > ul span > img {
+  max-width: 40px;
 }
