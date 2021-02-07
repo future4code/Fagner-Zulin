@@ -405,6 +405,11 @@ div.glass-card > img {
   box-shadow: 2px 2px 5px var(--cor-escura);
 }
 
+div.glass-card > p {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
 section.section-projeto {
   display: flex;
   flex-direction: column;
