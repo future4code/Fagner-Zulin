@@ -436,6 +436,8 @@ div.texto-projeto a:hover {
 
 div.img-projeto > img {
   max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px var(--cor-escura);
 }
 
 div.botao-voltar > a > button {
