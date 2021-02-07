@@ -27,7 +27,8 @@ a {
 }
 
 p,
-li {
+li,
+h2 {
   color: white;
 }
 
@@ -62,7 +63,7 @@ li {
     width: 0;
   }
   to {
-    width: 9em;
+    width: 9.5em;
   }
 }
 
@@ -362,16 +363,16 @@ div.lista > ul span > img {
   color: white;
 }
 
-.section-projetos {
+section#section-projetos {
   flex-wrap: wrap;
   padding-top: 10px;
 }
 
-section.section-projetos > a {
+section#section-projetos > a {
   margin: 50px 30px 20px 30px;
 }
 
-section.section-projetos > a:hover {
+section#section-projetos > a:hover {
   background-color: rgb(255 255 255 / 20%);
   border-radius: 10px;
 }
@@ -403,4 +404,60 @@ div.glass-card > img {
   max-height: 90%;
   border-radius: 8px;
   box-shadow: 2px 2px 5px var(--cor-escura);
+}
+
+section.section-projeto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+div.texto-projeto {
+  max-width: 600px;
+}
+
+div.texto-projeto > p {
+  margin-top: 8px;
+  text-align: justify;
+  line-height: 1.5em;
+}
+
+div.texto-projeto a {
+  color: white;
+}
+
+div.texto-projeto a:hover {
+  background-color: var(--cinza-claro);
+  border-radius: 10px;
+  color: black;
+  padding: 2px;
+  margin: 2px;
+}
+
+div.img-projeto > img {
+  max-width: 600px;
+}
+
+div.botao-voltar > a > button {
+  background-color: var(--cor-clara);
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 5px;
+  border: 2px solid var(--cor-escura);
+  margin-bottom: 40px;
+  box-shadow: 2px 2px 5px var(--cor-escura);
+}
+
+div.botao-voltar > a > button:hover {
+  background-color: var(--cinza-claro);
+  color: black;
+  cursor: pointer;
+  outline: none;
+}
+div.botao-voltar > a > button:active,
+div.botao-voltar > a > button:link {
+  outline: none;
 }
