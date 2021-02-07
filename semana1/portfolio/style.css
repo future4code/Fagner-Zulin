@@ -76,7 +76,7 @@ li {
     width: 0;
   }
   to {
-    width: 6.3em;
+    width: 6.6em;
   }
 }
 
@@ -163,6 +163,7 @@ body#sobre-mim > div.container-esq > nav > ul li a.sobre-mim,
 body#info-acad > div.container-esq > nav > ul li a.info-acad,
 body#exp-anteriores > div.container-esq > nav > ul li a.exp-anteriores,
 body#hard-soft-skill > div.container-esq > nav > ul li a.hard-soft-skill,
+body#projetos > div.container-esq > nav > ul li a.projetos,
 body#contato > div.container-esq > nav > ul li a.contato,
 .container-esq > nav > ul li a:hover {
   background-color: var(--cinza-claro);
@@ -221,6 +222,10 @@ body#hard-soft-skill > div.container-dir {
 }
 body#sobre-mim > div.container-dir > section {
   padding-top: 60px;
+}
+
+body#projetos > div.container-dir > section {
+  padding-top: 40px;
 }
 
 .container-dir > section > div {
@@ -292,6 +297,8 @@ div.lista > ul span > img {
   max-width: 40px;
 }
 
+/* Form */
+
 .container-dir form {
   padding-top: 0px;
   align-items: baseline;
@@ -353,4 +360,47 @@ div.lista > ul span > img {
 .container-dir form div input#button:active {
   background-color: var(--cor-escura);
   color: white;
+}
+
+.section-projetos {
+  flex-wrap: wrap;
+  padding-top: 10px;
+}
+
+section.section-projetos > a {
+  margin: 50px 30px 20px 30px;
+}
+
+section.section-projetos > a:hover {
+  background-color: rgb(255 255 255 / 20%);
+  border-radius: 10px;
+}
+
+.glass-card {
+  height: 230px;
+  width: 500px;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  box-sizing: content-box;
+  align-items: center;
+  text-shadow: 2px 2px 5px var(--cor-escura);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    rgb(255 255 255 / 10%) 0%,
+    transparent 100%
+  );
+  backdrop-filter: blur(10px);
+  box-shadow: 2px 2px 0px 0px rgb(255 255 255 / 20%);
+  transform-style: preserve-3d;
+}
+
+div.glass-card > img {
+  max-width: 70%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px var(--cor-escura);
 }
