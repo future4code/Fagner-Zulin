@@ -269,6 +269,7 @@ div.texto-sobre p {
 
 .lista-softskill > ul {
   width: 550px;
+  text-align: justify;
 }
 
 .lista-hardskill > ul {
