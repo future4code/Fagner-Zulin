@@ -1,0 +1,137 @@
+:root {
+  --cor-header-footer: rgb(33, 33, 33);
+  --cor-background: rgb(33, 33, 33, 0.8);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+body {
+  height: 100vh;
+}
+
+a {
+  list-style: none;
+  text-decoration: none;
+  color: white;
+}
+
+.main-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 70px 1fr 100px;
+  background-color: var(--cor-background);
+  row-gap: 8px;
+}
+
+.card {
+  background-color: gray;
+}
+
+header {
+  background-color: var(--cor-header-footer);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 32px;
+}
+
+h1 > span {
+  color: #c4302b;
+}
+
+div.search input {
+  outline: none;
+  width: 300px;
+  border-radius: 10px;
+  padding: 4px;
+  margin-right: 4px;
+}
+
+div.search a {
+  color: white;
+}
+
+div.search a:active {
+  color: lightgrey;
+}
+
+main.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  margin: 0px 16px;
+  column-gap: 40px;
+  row-gap: 8px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.card:hover {
+  background-color: gray;
+  border: 1px solid var(--cor-background);
+  box-shadow: 2px 2px 5px var(--cor-header-footer);
+}
+
+.card h3 {
+  color: white;
+  margin-top: 8px;
+  font-weight: 400;
+}
+
+footer {
+  color: white;
+  background-color: var(--cor-header-footer);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex h1 {
+  color: white;
+  margin-bottom: 40px;
+}
+
+.flex > video {
+  max-width: 900px;
+}
+
+main.flex > a {
+  margin-top: 60px;
+  color: white;
+  background-color: var(--cor-header-footer);
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1.2em;
+}
+
+main.flex > a:hover {
+  border: 2px solid black;
+}
+
+main.flex > a:active {
+  background-color: white;
+  color: black;
+}
