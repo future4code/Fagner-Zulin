@@ -6,13 +6,11 @@ body {
   box-sizing: border-box;
 }
 
-div {
-  border: 1px solid black;
-}
 .centraliza {
   display: grid;
   justify-content: center;
   align-items: center;
+  border: 1px solid black;
 }
 
 #main-container {
@@ -27,6 +25,7 @@ div {
 #first-block {
   background-color: red;
   grid-column: 1 /-1;
+  border: 1px solid black;
 }
 
 .child-container {
