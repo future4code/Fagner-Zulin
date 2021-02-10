@@ -9,10 +9,14 @@ body {
 div {
   border: 1px solid black;
 }
+.centraliza {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
 
 #main-container {
   height: 100%;
-
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(6, 1fr);
