@@ -1,0 +1,148 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+div {
+}
+
+#main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#first-block {
+  background-color: red;
+  flex-grow: 1;
+  border: 1px solid black;
+}
+
+.child-container {
+  flex-grow: 6;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.first-container {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.blocks-first {
+  flex-grow: 1;
+  padding-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.second-container {
+  flex-grow: 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.third-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.blue-block {
+  background-color: blue;
+  flex-grow: 1;
+}
+
+.yellow-block {
+  background-color: yellow;
+  flex-grow: 1;
+  margin-left: 8px;
+}
+
+.green-block {
+  background-color: green;
+  flex-grow: 1;
+  margin-left: 8px;
+}
+
+.black-block {
+  background-color: black;
+  color: white;
+  flex-grow: 1;
+  margin-bottom: 8px;
+}
+div.second-container > div:nth-of-type(2) {
+  margin-left: 8px;
+}
+
+.white-block {
+  background-color: white;
+  flex-grow: 1;
+}
+div.third-container > div:nth-of-type(2),
+div.third-container > div:nth-of-type(3) {
+  margin-left: 8px;
+}
+
+.centraliza {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+@media screen and (min-device-width: 421px) and (max-device-width: 800px) {
+  .blocks-first {
+    flex-wrap: wrap;
+  }
+
+  .yellow-block,
+  .blue-block {
+    flex-grow: 0;
+    width: 48%;
+  }
+  .green-block {
+    flex-grow: 0;
+    width: 100%;
+    margin: 8px 0 0 0;
+  }
+
+  .third-container {
+    flex-wrap: wrap;
+  }
+
+  .white-block {
+    flex-grow: 0;
+    width: 48%;
+  }
+
+  div.third-container > div:nth-of-type(3) {
+    width: 100%;
+    margin: 8px 0 0 0;
+  }
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 420px) {
+  .blocks-first,
+  .second-container,
+  .third-container {
+    flex-direction: column;
+  }
+
+  .yellow-block,
+  .blue-block,
+  .green-block,
+  .black-block,
+  .white-block,
+  div.second-container > div:nth-of-type(2),
+  div.third-container > div:nth-of-type(3),
+  div.third-container > div:nth-of-type(2) {
+    width: 100%;
+    margin: 8px 0 0 0;
+  }
+}
