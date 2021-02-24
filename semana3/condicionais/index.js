@@ -34,75 +34,75 @@
 
 //Exercícios de escrita de código
 
-// //Exercício 4
-// const idadeUsuario = Number(prompt("Digite sua idade: "));
+//Exercício 4
+const idadeUsuario = Number(prompt("Digite sua idade: "));
 
-// if (idadeUsuario >= 18) {
-//   console.log("Você pode dirigir");
-// } else {
-//   console.log("Você não pode dirigir.");
-// }
+if (idadeUsuario >= 18) {
+  console.log("Você pode dirigir");
+} else {
+  console.log("Você não pode dirigir.");
+}
 
-// //Exercício 5
-// const turnoAluno = prompt(
-//   "Digite o turno em que você estuda (M (matutino), V (Vespertino) ou N (Noturno)):"
-// );
+//Exercício 5
+const turnoAluno = prompt(
+  "Digite o turno em que você estuda (M (matutino), V (Vespertino) ou N (Noturno)):"
+);
 
-// if (turnoAluno === "M") {
-//   console.log("Bom dia");
-// } else if (turnoAluno === "V") {
-//   console.log("Boa tarde");
-// } else if (turnoAluno === "N") {
-//   console.log("Boa noite");
-// } else {
-//   console.log("Digite um periodo válido.");
-// }
+if (turnoAluno === "M") {
+  console.log("Bom dia");
+} else if (turnoAluno === "V") {
+  console.log("Boa tarde");
+} else if (turnoAluno === "N") {
+  console.log("Boa noite");
+} else {
+  console.log("Digite um periodo válido.");
+}
 
-// //Exercício 6
-// const turnoAluno = prompt(
-//   "Digite o turno em que você estuda (M (matutino), V (Vespertino) ou N (Noturno)):"
-// );
+//Exercício 6
+const turnoAluno = prompt(
+  "Digite o turno em que você estuda (M (matutino), V (Vespertino) ou N (Noturno)):"
+);
 
-// switch (turnoAluno) {
-//   case "M":
-//     console.log("Bom dia");
-//     break;
-//   case "V":
-//     console.log("Boa Tarde");
-//     break;
-//   case "N":
-//     console.log("Boa Noite");
-//     break;
-//   default:
-//     console.log("Digite um periodo válido.");
-//     break;
-// }
+switch (turnoAluno) {
+  case "M":
+    console.log("Bom dia");
+    break;
+  case "V":
+    console.log("Boa Tarde");
+    break;
+  case "N":
+    console.log("Boa Noite");
+    break;
+  default:
+    console.log("Digite um periodo válido.");
+    break;
+}
 
-// //Exercício 7
-// const generoFilme = prompt("Digite o gênero do filme:");
-// const precoIngresso = Number(prompt("Digite o preço do ingresso"));
+//Exercício 7
+const generoFilme = prompt("Digite o gênero do filme:");
+const precoIngresso = Number(prompt("Digite o preço do ingresso"));
 
-// if (generoFilme === "fantasia" && precoIngresso < 15) {
-//   console.log("Bom filme!");
-// } else {
-//   console.log("Escolha outro filme :(");
-// }
+if (generoFilme === "fantasia" && precoIngresso < 15) {
+  console.log("Bom filme!");
+} else {
+  console.log("Escolha outro filme :(");
+}
 
-// //Desafio
+//Desafio
 
-// //Desafio 1
-// const generoFilme = prompt("Digite o gênero do filme:");
-// const precoIngresso = Number(prompt("Digite o preço do ingresso"));
+//Desafio 1
+const generoFilme = prompt("Digite o gênero do filme:");
+const precoIngresso = Number(prompt("Digite o preço do ingresso"));
 
-// if (generoFilme === "fantasia" && precoIngresso < 15) {
-//   const snack = prompt(
-//     "Qual snack (pipoca, chocolate, doces, etc) você irá comprar? "
-//   );
-//   console.log("Bom filme!");
-//   console.log("... com " + snack);
-// } else {
-//   console.log("Escolha outro filme :(");
-// }
+if (generoFilme === "fantasia" && precoIngresso < 15) {
+  const snack = prompt(
+    "Qual snack (pipoca, chocolate, doces, etc) você irá comprar? "
+  );
+  console.log("Bom filme!");
+  console.log("... com " + snack);
+} else {
+  console.log("Escolha outro filme :(");
+}
 
 //Desafio 2
 const nomeCompleto = prompt("Informe seu nome Completo:");
