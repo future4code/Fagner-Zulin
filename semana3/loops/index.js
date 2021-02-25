@@ -24,49 +24,76 @@
  * 0000
  */
 
-//Exercícios de escrita de código
+// //Exercícios de escrita de código
 
-//Exercício 3:
-const array = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55];
-//a
-for (const item of array) {
-  console.log(item);
-}
+// //Exercício 3:
+// const array = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55];
+// //a
+// for (const item of array) {
+//   console.log(item);
+// }
 
-console.log("---");
-//b
-for (const item of array) {
-  console.log(item / 10);
-}
+// console.log("---");
+// //b
+// for (const item of array) {
+//   console.log(item / 10);
+// }
 
-console.log("---");
-//c
-const arrayPar = [];
-for (const item of array) {
-  if (item % 2 === 0) {
-    arrayPar.push(item);
+// console.log("---");
+// //c
+// const arrayPar = [];
+// for (const item of array) {
+//   if (item % 2 === 0) {
+//     arrayPar.push(item);
+//   }
+// }
+// console.log(arrayPar);
+
+// console.log("---");
+// //d
+// const arrayFrase = [];
+// for (let index = 0; index < array.length; index++) {
+//   arrayFrase.push("O elemento do índex " + index + " é " + array[index]);
+// }
+// console.log(arrayFrase);
+
+// console.log("---");
+// //e
+// let valorMaximo = 0;
+// let valorMinimo = 1000;
+// for (const item of array) {
+//   if (item > valorMaximo) {
+//     valorMaximo = item;
+//   }
+//   if (item < valorMinimo) {
+//     valorMinimo = item;
+//   }
+// }
+// console.log("O maior número é " + valorMaximo + " e o menor é " + valorMinimo);
+
+//Desafios
+
+//Desafio 1
+const numeroParaAdvinhar = Number(prompt("Digite o número que está pensando:"));
+
+console.log("Vamos Jogar 😎");
+
+let naoAcertou = true;
+let tentativas = 0;
+while (naoAcertou) {
+  const numeroChute = Number(prompt("Digite um número:"));
+  console.log("O número chutado foi: " + numeroChute);
+
+  if (numeroChute === numeroParaAdvinhar) {
+    console.log("Acertou!! 🎉🎊");
+    naoAcertou = false;
+  } else if (numeroChute > numeroParaAdvinhar) {
+    console.log("Errrrrrrrou, é menor ⬇");
+  } else if (numeroChute < numeroParaAdvinhar) {
+    console.log("Errrrrrrrou, é maior ⬆");
   }
-}
-console.log(arrayPar);
 
-console.log("---");
-//d
-const arrayFrase = [];
-for (let index = 0; index < array.length; index++) {
-  arrayFrase.push("O elemento do índex " + index + " é " + array[index]);
+  tentativas++;
 }
-console.log(arrayFrase);
 
-console.log("---");
-//e
-let valorMaximo = 0;
-let valorMinimo = 1000;
-for (const item of array) {
-  if (item > valorMaximo) {
-    valorMaximo = item;
-  }
-  if (item < valorMinimo) {
-    valorMinimo = item;
-  }
-}
-console.log("O maior número é " + valorMaximo + " e o menor é " + valorMinimo);
+console.log("O número de tentativas foi: " + tentativas + " 🏁");
