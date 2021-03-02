@@ -1,68 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles.css" />
     <script defer src="index.js"></script>
     <title>Planner</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <form action="">
-            <label for="tarefa">Nova tarefa:</label>
-            <input type="text" id="tarefa">
-            <select name="dias-semana" id="dias-semana">
-                <option value="domingo">Domingo</option>
-                <option value="segunda">Segunda-feira</option>
-                <option value="terca">Terça-feira</option>
-                <option value="quarta">Quarta-feira</option>
-                <option value="quinta">Quinta-feira</option>
-                <option value="sexta">Sexta-feira</option>
-                <option value="sabado">Sábado</option>
-            </select>
-        </form>
+      <form action="">
+        <label for="tarefa">Nova tarefa:</label>
+        <input type="text" id="tarefa" />
+        <select name="dias-semana" id="dias-semana">
+          <option value="domingo">Domingo</option>
+          <option value="segunda">Segunda-feira</option>
+          <option value="terca">Terça-feira</option>
+          <option value="quarta">Quarta-feira</option>
+          <option value="quinta">Quinta-feira</option>
+          <option value="sexta">Sexta-feira</option>
+          <option value="sabado">Sábado</option>
+        </select>
 
-        <button>Criar tarefa</button>
-        
+        <select name="horas-dia" id="horas-dia">
+          <option value="hora0">0:00</option>
+          <option value="hora1">1:00</option>
+          <option value="hora2">2:00</option>
+          <option value="hora3">3:00</option>
+          <option value="hora4">4:00</option>
+          <option value="hora5">5:00</option>
+          <option value="hora6">6:00</option>
+          <option value="hora7">7:00</option>
+          <option value="hora8">8:00</option>
+          <option value="hora9">9:00</option>
+          <option value="hora10">10:00</option>
+          <option value="hora11">11:00</option>
+          <option value="hora12">12:00</option>
+          <option value="hora13">13:00</option>
+          <option value="hora14">14:00</option>
+          <option value="hora15">15:00</option>
+          <option value="hora16">16:00</option>
+          <option value="hora17">17:00</option>
+          <option value="hora18">18:00</option>
+          <option value="hora19">19:00</option>
+          <option value="hora20">20:00</option>
+          <option value="hora21">21:00</option>
+          <option value="hora22">22:00</option>
+          <option value="hora23">23:00</option>
+        </select>
+      </form>
+
+      <button onclick="criarTarefa()">Criar tarefa</button>
+      <button onclick="limpaPlanner()">Limpar o Planner</button>
     </header>
     <section>
-        <div class="semana">
-            <h3>Domingo</h3>
-            <div id="domingo"></div>
+      <div class="semana">
+        <h3>Domingo</h3>
+        <div id="domingo">
+          <h4>0:00</h4>
+          <div id="hora0"></div>
+          <h4>1:00</h4>
+          <div id="hora1"></div>
+          <h4>2:00</h4>
+          <div id="hora2"></div>
+          <h4>3:00</h4>
+          <div id="hora3"></div>
+          <h4>4:00</h4>
+          <div id="hora4"></div>
+          <h4>5:00</h4>
+          <div id="hora5"></div>
+          <h4>6:00</h4>
+          <div id="hora6"></div>
+          <h4>7:00</h4>
+          <div id="hora7"></div>
+          <h4>8:00</h4>
+          <div id="hora8"></div>
+          <h4>9:00</h4>
+          <div id="hora9"></div>
+          <h4>10:00</h4>
+          <div id="hora10"></div>
+          <h4>11:00</h4>
+          <div id="hora11"></div>
+          <h4>12:00</h4>
+          <div id="hora12"></div>
+          <h4>13:00</h4>
+          <div id="hora13"></div>
+          <h4>14:00</h4>
+          <div id="hora14"></div>
+          <h4>15:00</h4>
+          <div id="hora15"></div>
+          <h4>16:00</h4>
+          <div id="hora16"></div>
+          <h4>17:00</h4>
+          <div id="hora17"></div>
+          <h4>18:00</h4>
+          <div id="hora18"></div>
+          <h4>19:00</h4>
+          <div id="hora19"></div>
+          <h4>20:00</h4>
+          <div id="hora20"></div>
+          <h4>21:00</h4>
+          <div id="hora21"></div>
+          <h4>22:00</h4>
+          <div id="hora22"></div>
+          <h4>23:00</h4>
+          <div id="hora23"></div>
         </div>
+      </div>
 
-        <div class="semana">
-            <h3>Segunda-feira</h3>
-            <div id="segunda"></div>
+      <div class="semana">
+        <h3>Segunda-feira</h3>
+        <div id="segunda">
+          <h4>0:00</h4>
+          <div id="hora0"></div>
+          <h4>1:00</h4>
+          <div id="hora1"></div>
+          <h4>2:00</h4>
+          <div id="hora2"></div>
+          <h4>3:00</h4>
+          <div id="hora3"></div>
+          <h4>4:00</h4>
+          <div id="hora4"></div>
+          <h4>5:00</h4>
+          <div id="hora5"></div>
+          <h4>6:00</h4>
+          <div id="hora6"></div>
+          <h4>7:00</h4>
+          <div id="hora7"></div>
+          <h4>8:00</h4>
+          <div id="hora8"></div>
+          <h4>9:00</h4>
+          <div id="hora9"></div>
+          <h4>10:00</h4>
+          <div id="hora10"></div>
+          <h4>11:00</h4>
+          <div id="hora11"></div>
+          <h4>12:00</h4>
+          <div id="hora12"></div>
+          <h4>13:00</h4>
+          <div id="hora13"></div>
+          <h4>14:00</h4>
+          <div id="hora14"></div>
+          <h4>15:00</h4>
+          <div id="hora15"></div>
+          <h4>16:00</h4>
+          <div id="hora16"></div>
+          <h4>17:00</h4>
+          <div id="hora17"></div>
+          <h4>18:00</h4>
+          <div id="hora18"></div>
+          <h4>19:00</h4>
+          <div id="hora19"></div>
+          <h4>20:00</h4>
+          <div id="hora20"></div>
+          <h4>21:00</h4>
+          <div id="hora21"></div>
+          <h4>22:00</h4>
+          <div id="hora22"></div>
+          <h4>23:00</h4>
+          <div id="hora23"></div>
         </div>
+      </div>
 
-        <div class="semana">
-            <h3>Terça-feira</h3>
-            <div id="terca"></div>
+      <div class="semana">
+        <h3>Terça-feira</h3>
+        <div id="terca">
+          <h4>0:00</h4>
+          <div id="hora0"></div>
+          <h4>1:00</h4>
+          <div id="hora1"></div>
+          <h4>2:00</h4>
+          <div id="hora2"></div>
+          <h4>3:00</h4>
+          <div id="hora3"></div>
+          <h4>4:00</h4>
+          <div id="hora4"></div>
+          <h4>5:00</h4>
+          <div id="hora5"></div>
+          <h4>6:00</h4>
+          <div id="hora6"></div>
+          <h4>7:00</h4>
+          <div id="hora7"></div>
+          <h4>8:00</h4>
+          <div id="hora8"></div>
+          <h4>9:00</h4>
+          <div id="hora9"></div>
+          <h4>10:00</h4>
+          <div id="hora10"></div>
+          <h4>11:00</h4>
+          <div id="hora11"></div>
+          <h4>12:00</h4>
+          <div id="hora12"></div>
+          <h4>13:00</h4>
+          <div id="hora13"></div>
+          <h4>14:00</h4>
+          <div id="hora14"></div>
+          <h4>15:00</h4>
+          <div id="hora15"></div>
+          <h4>16:00</h4>
+          <div id="hora16"></div>
+          <h4>17:00</h4>
+          <div id="hora17"></div>
+          <h4>18:00</h4>
+          <div id="hora18"></div>
+          <h4>19:00</h4>
+          <div id="hora19"></div>
+          <h4>20:00</h4>
+          <div id="hora20"></div>
+          <h4>21:00</h4>
+          <div id="hora21"></div>
+          <h4>22:00</h4>
+          <div id="hora22"></div>
+          <h4>23:00</h4>
+          <div id="hora23"></div>
         </div>
-    
-        <div class="semana">
-            <h3>Quarta-feira</h3>
-            <div id="quarta"></div>
-        </div>
-    
-        <div class="semana">
-            <h3>Quinta-feira</h3>
-            <div id="quinta"></div>
-        </div>
+      </div>
 
-        <div class="semana">                    
-            <h3>Sexta-feira</h3>               
-            <div id="sexta"></div>
+      <div class="semana">
+        <h3>Quarta-feira</h3>
+        <div id="quarta">
+          <h4>0:00</h4>
+          <div id="hora0"></div>
+          <h4>1:00</h4>
+          <div id="hora1"></div>
+          <h4>2:00</h4>
+          <div id="hora2"></div>
+          <h4>3:00</h4>
+          <div id="hora3"></div>
+          <h4>4:00</h4>
+          <div id="hora4"></div>
+          <h4>5:00</h4>
+          <div id="hora5"></div>
+          <h4>6:00</h4>
+          <div id="hora6"></div>
+          <h4>7:00</h4>
+          <div id="hora7"></div>
+          <h4>8:00</h4>
+          <div id="hora8"></div>
+          <h4>9:00</h4>
+          <div id="hora9"></div>
+          <h4>10:00</h4>
+          <div id="hora10"></div>
+          <h4>11:00</h4>
+          <div id="hora11"></div>
+          <h4>12:00</h4>
+          <div id="hora12"></div>
+          <h4>13:00</h4>
+          <div id="hora13"></div>
+          <h4>14:00</h4>
+          <div id="hora14"></div>
+          <h4>15:00</h4>
+          <div id="hora15"></div>
+          <h4>16:00</h4>
+          <div id="hora16"></div>
+          <h4>17:00</h4>
+          <div id="hora17"></div>
+          <h4>18:00</h4>
+          <div id="hora18"></div>
+          <h4>19:00</h4>
+          <div id="hora19"></div>
+          <h4>20:00</h4>
+          <div id="hora20"></div>
+          <h4>21:00</h4>
+          <div id="hora21"></div>
+          <h4>22:00</h4>
+          <div id="hora22"></div>
+          <h4>23:00</h4>
+          <div id="hora23"></div>
         </div>
+      </div>
 
-        <div class="semana">
-            <h3>Sábado</h3>
-            <div id="sabado"></div>
+      <div class="semana">
+        <h3>Quinta-feira</h3>
+        <div id="quinta">
+          <h4>0:00</h4>
+          <div id="hora0"></div>
+          <h4>1:00</h4>
+          <div id="hora1"></div>
+          <h4>2:00</h4>
+          <div id="hora2"></div>
+          <h4>3:00</h4>
+          <div id="hora3"></div>
+          <h4>4:00</h4>
+          <div id="hora4"></div>
+          <h4>5:00</h4>
+          <div id="hora5"></div>
+          <h4>6:00</h4>
+          <div id="hora6"></div>
+          <h4>7:00</h4>
+          <div id="hora7"></div>
+          <h4>8:00</h4>
+          <div id="hora8"></div>
+          <h4>9:00</h4>
+          <div id="hora9"></div>
+          <h4>10:00</h4>
+          <div id="hora10"></div>
+          <h4>11:00</h4>
+          <div id="hora11"></div>
+          <h4>12:00</h4>
+          <div id="hora12"></div>
+          <h4>13:00</h4>
+          <div id="hora13"></div>
+          <h4>14:00</h4>
+          <div id="hora14"></div>
+          <h4>15:00</h4>
+          <div id="hora15"></div>
+          <h4>16:00</h4>
+          <div id="hora16"></div>
+          <h4>17:00</h4>
+          <div id="hora17"></div>
+          <h4>18:00</h4>
+          <div id="hora18"></div>
+          <h4>19:00</h4>
+          <div id="hora19"></div>
+          <h4>20:00</h4>
+          <div id="hora20"></div>
+          <h4>21:00</h4>
+          <div id="hora21"></div>
+          <h4>22:00</h4>
+          <div id="hora22"></div>
+          <h4>23:00</h4>
+          <div id="hora23"></div>
         </div>
+      </div>
+
+      <div class="semana">
+        <h3>Sexta-feira</h3>
+        <div id="sexta">
+          <h4>0:00</h4>
+          <div id="hora0"></div>
+          <h4>1:00</h4>
+          <div id="hora1"></div>
+          <h4>2:00</h4>
+          <div id="hora2"></div>
+          <h4>3:00</h4>
+          <div id="hora3"></div>
+          <h4>4:00</h4>
+          <div id="hora4"></div>
+          <h4>5:00</h4>
+          <div id="hora5"></div>
+          <h4>6:00</h4>
+          <div id="hora6"></div>
+          <h4>7:00</h4>
+          <div id="hora7"></div>
+          <h4>8:00</h4>
+          <div id="hora8"></div>
+          <h4>9:00</h4>
+          <div id="hora9"></div>
+          <h4>10:00</h4>
+          <div id="hora10"></div>
+          <h4>11:00</h4>
+          <div id="hora11"></div>
+          <h4>12:00</h4>
+          <div id="hora12"></div>
+          <h4>13:00</h4>
+          <div id="hora13"></div>
+          <h4>14:00</h4>
+          <div id="hora14"></div>
+          <h4>15:00</h4>
+          <div id="hora15"></div>
+          <h4>16:00</h4>
+          <div id="hora16"></div>
+          <h4>17:00</h4>
+          <div id="hora17"></div>
+          <h4>18:00</h4>
+          <div id="hora18"></div>
+          <h4>19:00</h4>
+          <div id="hora19"></div>
+          <h4>20:00</h4>
+          <div id="hora20"></div>
+          <h4>21:00</h4>
+          <div id="hora21"></div>
+          <h4>22:00</h4>
+          <div id="hora22"></div>
+          <h4>23:00</h4>
+          <div id="hora23"></div>
+        </div>
+      </div>
+
+      <div class="semana">
+        <h3>Sábado</h3>
+        <div id="sabado">
+          <h4>0:00</h4>
+          <div id="hora0"></div>
+          <h4>1:00</h4>
+          <div id="hora1"></div>
+          <h4>2:00</h4>
+          <div id="hora2"></div>
+          <h4>3:00</h4>
+          <div id="hora3"></div>
+          <h4>4:00</h4>
+          <div id="hora4"></div>
+          <h4>5:00</h4>
+          <div id="hora5"></div>
+          <h4>6:00</h4>
+          <div id="hora6"></div>
+          <h4>7:00</h4>
+          <div id="hora7"></div>
+          <h4>8:00</h4>
+          <div id="hora8"></div>
+          <h4>9:00</h4>
+          <div id="hora9"></div>
+          <h4>10:00</h4>
+          <div id="hora10"></div>
+          <h4>11:00</h4>
+          <div id="hora11"></div>
+          <h4>12:00</h4>
+          <div id="hora12"></div>
+          <h4>13:00</h4>
+          <div id="hora13"></div>
+          <h4>14:00</h4>
+          <div id="hora14"></div>
+          <h4>15:00</h4>
+          <div id="hora15"></div>
+          <h4>16:00</h4>
+          <div id="hora16"></div>
+          <h4>17:00</h4>
+          <div id="hora17"></div>
+          <h4>18:00</h4>
+          <div id="hora18"></div>
+          <h4>19:00</h4>
+          <div id="hora19"></div>
+          <h4>20:00</h4>
+          <div id="hora20"></div>
+          <h4>21:00</h4>
+          <div id="hora21"></div>
+          <h4>22:00</h4>
+          <div id="hora22"></div>
+          <h4>23:00</h4>
+          <div id="hora23"></div>
+        </div>
+      </div>
     </section>
-    
-</body>
+  </body>
 </html>
