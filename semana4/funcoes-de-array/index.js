@@ -102,10 +102,9 @@ function filtrarDespesas() {
   ) {
     let despesasFiltradas = arrDespesas.filter((despesa) => {
       return (
-        (despesa.tipo === valorTipoFiltro &&
-          despesa.valor >= valorMin &&
-          despesa.valor <= valorMax) ||
-        valorTipoFiltro === "todos"
+        (despesa.tipo === valorTipoFiltro || valorTipoFiltro === "todos") &&
+        despesa.valor >= valorMin &&
+        despesa.valor <= valorMax
       );
     });
 
