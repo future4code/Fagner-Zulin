@@ -24,18 +24,25 @@ function imprimirExtrato() {
     switch (despesa.tipo) {
       case "alimentação":
         gastoAlimentacao += despesa.valor;
-        gastoTotal += despesa.valor;
         break;
       case "utilidades":
         gastoUtilidades += despesa.valor;
-        gastoTotal += despesa.valor;
         break;
       case "viagem":
         gastoViagem += despesa.valor;
-        gastoTotal += despesa.valor;
         break;
     }
   });
+
+  if (arrDespesas.length !== 0) {
+    gastoTotal = arrDespesas
+      .map((despesa) => {
+        return despesa.valor;
+      })
+      .reduce((acc, curr) => {
+        return acc + curr;
+      }, 0);
+  }
 
   divExtrato.innerHTML = `<p>Extrato: Gasto Total: R$${gastoTotal} | Alimentação: R$${gastoAlimentacao} | 
                                         Utilidades: R$${gastoUtilidades} | Viagem: R$${gastoViagem}</p>`;
@@ -79,20 +86,40 @@ function adicionarDespesa() {
 
 // TERCEIRO
 function filtrarDespesas() {
-  let tipoFiltro = document.getElementById("tipoFiltro").value;
-  let valorMin = Number(document.getElementById("valorFiltroMin").value);
-  let valorMax = Number(document.getElementById("valorFiltroMax").value);
+  const tipoFiltro = document.getElementById("tipoFiltro");
+  const valorFiltroMin = document.getElementById("valorFiltroMin");
+  const valorFiltroMax = document.getElementById("valorFiltroMax");
 
-  let despesasFiltradas = arrDespesas.filter((despesa) => {
-    return (
-      (despesa.tipo === tipoFiltro &&
-        despesa.valor >= valorMin &&
-        despesa.valor <= valorMax) ||
-      tipoFiltro === "todos"
-    );
+  let valorTipoFiltro = tipoFiltro.value;
+  let valorMin = Number(valorFiltroMin.value);
+  let valorMax = Number(valorFiltroMax.value);
+
+  if (
+    validarTipo(tipoFiltro) &&
+    validarValor(valorFiltroMin) &&
+    validarValor(valorFiltroMax) &&
+    !(valorMin > valorMax)
+  ) {
+    let despesasFiltradas = arrDespesas.filter((despesa) => {
+      return (
+        (despesa.tipo === valorTipoFiltro &&
+          despesa.valor >= valorMin &&
+          despesa.valor <= valorMax) ||
+        valorTipoFiltro === "todos"
+      );
+    });
+
+    imprimirDespesas(despesasFiltradas);
+  } else {
+    alert("Preencha os campos com valores válidos");
+  }
+}
+
+function ordenaValores() {
+  const valoresOrdenados = arrDespesas.sort((despesaA, despesaB) => {
+    return despesaB.valor - despesaA.valor;
   });
-
-  imprimirDespesas(despesasFiltradas);
+  imprimirDespesas(valoresOrdenados);
 }
 
 // FunÇoes que fazem validaÇoes dos inputs de criaÇao de despesas
