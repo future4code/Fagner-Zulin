@@ -11,7 +11,13 @@ function inverteArray(array) {
 //Exercício 2
 
 function retornaNumerosParesElevadosADois(array) {
-  // implemente sua lógica aqui
+  return array
+    .filter((item) => {
+      return item % 2 === 0;
+    })
+    .map((item) => {
+      return item * item;
+    });
 }
 
 //Exercício 3
