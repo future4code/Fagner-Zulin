@@ -214,7 +214,9 @@ function multiplicaArrayPor2S(array) {
 // Exercício 17, letra C
 
 function verificaParidade(array) {
-  // implemente sua lógica aqui
+  return array.map((item) => {
+    return item % 2 === 0 ? `${item} é par` : `${item} é ímpar`;
+  });
 }
 
 // Exercício 18
