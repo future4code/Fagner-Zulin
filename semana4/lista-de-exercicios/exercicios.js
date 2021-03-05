@@ -155,7 +155,12 @@ function imprimeChamada() {
 // Exercício 14
 
 function criaRetangulo(lado1, lado2) {
-  // implemente sua lógica aqui
+  return {
+    largura: lado1,
+    altura: lado2,
+    perimetro: 2 * (lado1 + lado2),
+    area: lado1 * lado2,
+  };
 }
 
 // Exercício 15
