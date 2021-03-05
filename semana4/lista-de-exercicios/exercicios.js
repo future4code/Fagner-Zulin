@@ -254,25 +254,25 @@ const consultas = [
   {
     nome: "João",
     genero: "masculino",
-    cancelada: true,
+    cancelada: false,
     dataDaConsulta: "01/10/2019",
   },
   {
     nome: "Pedro",
     genero: "masculino",
-    cancelada: false,
+    cancelada: true,
     dataDaConsulta: "02/10/2019",
   },
   {
     nome: "Paula",
     genero: "feminino",
-    cancelada: true,
+    cancelada: false,
     dataDaConsulta: "03/11/2019",
   },
   {
     nome: "Márcia",
     genero: "feminino",
-    cancelada: false,
+    cancelada: true,
     dataDaConsulta: "04/11/2019",
   },
 ];
