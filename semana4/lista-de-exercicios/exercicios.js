@@ -206,7 +206,9 @@ function multiplicaArrayPor2(array) {
 // Exercício 17, letra B
 
 function multiplicaArrayPor2S(array) {
-  // implemente sua lógica aqui
+  return array.map((item) => {
+    return String(item * 2);
+  });
 }
 
 // Exercício 17, letra C
