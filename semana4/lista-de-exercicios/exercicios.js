@@ -277,8 +277,19 @@ const consultas = [
   },
 ];
 
-function retornaEmailConsulta(consultas) {
-  // implemente sua lógica aqui
+function retornaEmailConsulta() {
+  return consultas.map((consulta) => {
+    const { nome, genero, cancelada, dataDaConsulta } = consulta;
+
+    const pronomeTratamento = genero === "feminino" ? "Sra." : "Sr.";
+    const generoLembrar = genero === "masculino" ? "lembrá-lo" : "lembrá-la";
+
+    if (cancelada) {
+      return `Olá, ${pronomeTratamento} ${nome}. Infelizmente sua consulta marcada para o dia ${dataDaConsulta} foi cancelada. Se quiser, pode entrar em contato conosco para remarcá-la.`;
+    } else {
+      return `Olá, ${pronomeTratamento} ${nome}. Estamos enviando esta mensagem para ${generoLembrar} da sua consulta no dia ${dataDaConsulta}. Por favor, acuse o recebimento deste-email.`;
+    }
+  });
 }
 
 //Exercício 20
