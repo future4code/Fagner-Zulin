@@ -107,7 +107,11 @@ function comparaDoisNumeros(num1, num2) {
 // Exercício 10
 
 function segundoMaiorEMenor(array) {
-  // implemente sua lógica aqui
+  const arrayOrdenado = array.sort((a, b) => {
+    return b - a;
+  });
+
+  return [arrayOrdenado[1], arrayOrdenado[arrayOrdenado.length - 2]];
 }
 
 //Exercício 11
