@@ -117,7 +117,9 @@ function segundoMaiorEMenor(array) {
 //Exercício 11
 
 function ordenaArray(array) {
-  // implemente sua lógica aqui
+  return array.sort((a, b) => {
+    return a - b;
+  });
 }
 
 // Exercício 12
