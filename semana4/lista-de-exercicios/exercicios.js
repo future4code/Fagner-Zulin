@@ -36,7 +36,11 @@ function retornaNumerosPares(array) {
 //Exercício 4
 
 function retornaMaiorNumero(array) {
-  // implemente sua lógica aqui
+  const arrayOrdenado = array.sort((a, b) => {
+    return b - a;
+  });
+
+  return arrayOrdenado[0];
 }
 
 //Exercício 5
