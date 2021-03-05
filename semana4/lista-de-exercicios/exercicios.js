@@ -232,13 +232,16 @@ const pessoas = [
 
 //Exercício 18, letra A
 
-function retornaPessoasAutorizadas(pessoas) {
-  // implemente sua lógica aqui
+function retornaPessoasAutorizadas() {
+  return pessoas.filter((pessoa) => {
+    const { idade, altura } = pessoa;
+    return idade >= 14 && idade < 60 && altura >= 1.5;
+  });
 }
 
 // Exercício 18, letra B
 
-function retornaPessoasNaoAutorizadas(pessoas) {
+function retornaPessoasNaoAutorizadas() {
   // implemente sua lógica aqui
 }
 
