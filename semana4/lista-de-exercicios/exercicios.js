@@ -125,7 +125,22 @@ function ordenaArray(array) {
 // Exercício 12
 
 function filmeFavorito() {
-  // implemente sua lógica aqui
+  const nome = "O Diabo Veste Prada";
+  const ano = 2006;
+  const diretor = "David Frankel";
+  const atores = [
+    "Meryl Streep",
+    "Anne Hathaway",
+    "Emily Blunt",
+    "Stanley Tucci",
+  ];
+
+  return {
+    nome,
+    ano,
+    diretor,
+    atores,
+  };
 }
 
 // Exercício 13
