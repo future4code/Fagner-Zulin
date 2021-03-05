@@ -198,7 +198,9 @@ function menoresDe18(arrayDePessoas) {
 // Exercício 17, letra A
 
 function multiplicaArrayPor2(array) {
-  // implemente sua lógica aqui
+  return array.map((item) => {
+    return item * 2;
+  });
 }
 
 // Exercício 17, letra B
