@@ -146,7 +146,10 @@ function filmeFavorito() {
 // Exercício 13
 
 function imprimeChamada() {
-  // implemente sua lógica aqui
+  const { nome, ano, diretor, atores } = filmeFavorito();
+  return `Venha assistir ao filme ${nome}, de ${ano}, dirigido por ${diretor} e estrelado por ${atores.join(
+    ", "
+  )}.`;
 }
 
 // Exercício 14
