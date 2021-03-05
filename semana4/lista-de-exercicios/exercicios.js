@@ -242,7 +242,10 @@ function retornaPessoasAutorizadas() {
 // Exercício 18, letra B
 
 function retornaPessoasNaoAutorizadas() {
-  // implemente sua lógica aqui
+  return pessoas.filter((pessoa) => {
+    const { idade, altura } = pessoa;
+    return idade < 14 || idade > 60 || altura < 1.5;
+  });
 }
 
 //Exercício 19
