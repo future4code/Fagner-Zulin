@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#formulario {
+  border: 1px dotted black;
+  padding: 10px;
+  width: 50%;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+label {
+  width: 10%;
+  text-align: right;
+  padding-right: 10px;
+  margin-bottom: 10px;
+}
+
+input,
+textarea {
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100px;
+  margin: 0 auto;
+  padding: 2px;
+  border-radius: 5px;
+  border: 1px solid rgb(77, 77, 77);
+}
+
+div.container {
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+div.container > button {
+  margin-bottom: 20px;
+}
+
+#container-de-posts {
+  min-height: 80vh;
+}
+
+.post {
+  min-height: 80vh;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.post img {
+  max-width: 40vw;
+  margin: 20px 0;
+}
+
+.titulo {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.conteudo {
+  text-align: justify;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.autor {
+  font-size: 1.1em;
+  font-style: oblique;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 420px) {
+  #formulario {
+    height: 80vh;
+    width: 90vw;
+    justify-content: center;
+  }
+
+  div.container {
+    padding: 20px;
+  }
+
+  .post img {
+    max-width: 80vw;
+  }
+}
