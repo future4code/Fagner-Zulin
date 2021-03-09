@@ -39,6 +39,27 @@ function App() {
       </div>
 
       <div className="page-section-container">
+        <h2>Formação Acadêmica</h2>
+        <CardPequeno
+          img="https://media-exp1.licdn.com/dms/image/C560BAQGXX-pQE9ZghQ/company-logo_100_100/0/1588617268603?e=1623283200&v=beta&t=a_-u85Ke3ljpbvf69JiEmM7lFcPeGcgKmroGp-3Wq9Q"
+          tipoInfo="Labenu"
+          info="Curso de Desenvolvimento Web Full Stack"
+        />
+
+        <CardPequeno
+          img="https://media-exp1.licdn.com/dms/image/C4D0BAQEDMN81BPvUWA/company-logo_100_100/0/1543596443041?e=1623283200&v=beta&t=KbTPuB9tl56spML-tPNqJ1uuYRpaEsyLYQ8sANLfC7Q"
+          tipoInfo="Uninter"
+          info="Tecnologia em Análise e Desenvolvimento de Sistemas"
+        />
+
+        <CardPequeno
+          img="https://unifil.br/assets/uploads/2019/10/logo.svg"
+          tipoInfo="UniFil"
+          info="Bacharelado em Direito"
+        />
+      </div>
+
+      <div className="page-section-container">
         <h2>Experiências profissionais</h2>
         <CardGrande
           imagem="https://unifil.br/assets/uploads/2019/10/logo.svg"

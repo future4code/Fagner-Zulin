@@ -14,6 +14,9 @@
 .page-section-container {
   width: 40vw;
   margin: 10px 0;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .page-section-container > h3 {
