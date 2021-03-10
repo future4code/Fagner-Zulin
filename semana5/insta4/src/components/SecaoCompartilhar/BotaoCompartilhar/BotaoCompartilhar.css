@@ -3,6 +3,7 @@
   align-items: center;
   width: 98%;
   margin: 3px 0 3px 0;
+  cursor: pointer;
 }
 
 .botao-compatilhar > img {

@@ -3,3 +3,7 @@
   flex-direction: column;
   align-items: center;
 }
+
+.secao-compartilhar > input {
+  width: 96%;
+}

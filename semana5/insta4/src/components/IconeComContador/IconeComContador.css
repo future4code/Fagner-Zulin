@@ -1,7 +1,8 @@
 .icon-container {
-    display: flex;
+  display: flex;
+  cursor: pointer;
 }
 
 .icon-container img {
-    margin-right: 5px;
+  margin-right: 5px;
 }

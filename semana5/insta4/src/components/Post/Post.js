@@ -15,6 +15,7 @@ import SecaoCompartilhar from "../SecaoCompartilhar/SecaoCompartilhar";
 
 class Post extends React.Component {
   state = {
+    compartilhar: false,
     salvo: false,
     curtido: false,
     numeroCurtidas: 0,
@@ -22,7 +23,17 @@ class Post extends React.Component {
     numeroComentarios: 0,
   };
 
-  onClickCompartilhar = () => {};
+  aoCompatilharPost = () => {
+    this.setState({
+      compartilhar: false,
+    });
+  };
+
+  onClickCompartilhar = () => {
+    this.setState({
+      compartilhar: !this.state.compartilhar ? true : false,
+    });
+  };
 
   onClickSalvo = () => {
     this.setState({
@@ -110,7 +121,9 @@ class Post extends React.Component {
           </div>
         </div>
         {componenteComentario}
-        <SecaoCompartilhar />
+        {this.state.compartilhar && (
+          <SecaoCompartilhar aoCompartilhar={this.aoCompatilharPost} />
+        )}
       </div>
     );
   }
