@@ -6,14 +6,28 @@ import { IconeComContador } from "../IconeComContador/IconeComContador";
 import iconeCoracaoBranco from "../../img/favorite-white.svg";
 import iconeCoracaoPreto from "../../img/favorite.svg";
 import iconeComentario from "../../img/comment_icon.svg";
+import iconeSalvoPreto from "../../img/bookmark_black.svg";
+import iconeSalvoBranco from "../../img/bookmark_border_black.svg";
+import iconeCompartilhar from "../../img/share_black.svg";
 import { SecaoComentario } from "../SecaoComentario/SecaoComentario";
+import Icone from "../Icone/Icone";
+import SecaoCompartilhar from "../SecaoCompartilhar/SecaoCompartilhar";
 
 class Post extends React.Component {
   state = {
+    salvo: false,
     curtido: false,
     numeroCurtidas: 0,
     comentando: false,
     numeroComentarios: 0,
+  };
+
+  onClickCompartilhar = () => {};
+
+  onClickSalvo = () => {
+    this.setState({
+      salvo: this.state.salvo === false ? true : false,
+    });
   };
 
   onClickCurtida = () => {
@@ -40,6 +54,8 @@ class Post extends React.Component {
   };
 
   render() {
+    const iconeSalvo = this.state.salvo ? iconeSalvoPreto : iconeSalvoBranco;
+
     let iconeCurtida;
 
     if (this.state.curtido) {
@@ -80,13 +96,21 @@ class Post extends React.Component {
             valorContador={this.state.numeroCurtidas}
           />
 
-          <IconeComContador
-            icone={iconeComentario}
-            onClickIcone={this.onClickComentario}
-            valorContador={this.state.numeroComentarios}
-          />
+          <div className="post-footer-right">
+            <IconeComContador
+              icone={iconeComentario}
+              onClickIcone={this.onClickComentario}
+              valorContador={this.state.numeroComentarios}
+            />
+            <Icone icone={iconeSalvo} onClickIcone={this.onClickSalvo} />
+            <Icone
+              icone={iconeCompartilhar}
+              onClickIcone={this.onClickCompartilhar}
+            />
+          </div>
         </div>
         {componenteComentario}
+        <SecaoCompartilhar />
       </div>
     );
   }

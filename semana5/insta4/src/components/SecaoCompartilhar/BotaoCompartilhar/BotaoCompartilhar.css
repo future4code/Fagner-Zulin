@@ -1,0 +1,13 @@
+.botao-compatilhar {
+  display: flex;
+  align-items: center;
+  width: 98%;
+  margin: 3px 0 3px 0;
+}
+
+.botao-compatilhar > img {
+  width: 30px;
+}
+.botao-compatilhar > p {
+  margin-left: 5px;
+}
