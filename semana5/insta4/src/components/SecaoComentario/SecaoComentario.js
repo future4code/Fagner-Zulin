@@ -1,24 +1,29 @@
-import React, {Component} from 'react'
-import './SecaoComentario.css'
+import React, { Component } from "react";
+import "./SecaoComentario.css";
 
 export class SecaoComentario extends Component {
-	state = {
+  state = {
+    comentario: "",
+  };
 
-	}
+  onChangeComentario = (event) => {
+    this.setState({
+      comentario: event.target.value,
+    });
+  };
 
-	onChangeComentario() {
-
-	}
-
-	render() {
-		return <div className={'comment-container'}>
-			<input
-				className={'input-comentario'}
-				placeholder={'Comentário'}
-				value={''}
-				onChange={this.onChangeComentario}
-			/>
-			<button onClick={this.props.aoEnviar}>Enviar</button>
-		</div>
-	}
+  render() {
+    console.log(this.state.comentario);
+    return (
+      <div className={"comment-container"}>
+        <input
+          className={"input-comentario"}
+          placeholder={"Comentário"}
+          value={this.state.comentario}
+          onChange={this.onChangeComentario}
+        />
+        <button onClick={this.props.aoEnviar}>Enviar</button>
+      </div>
+    );
+  }
 }
