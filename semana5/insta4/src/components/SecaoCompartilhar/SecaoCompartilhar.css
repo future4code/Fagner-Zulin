@@ -1,0 +1,9 @@
+.secao-compartilhar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.secao-compartilhar > input {
+  width: 96%;
+}
