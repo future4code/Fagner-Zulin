@@ -1,7 +1,14 @@
 import React from "react";
-import "./App.css";
 import FormNovoPost from "./components/FormNovoPost/FormNovoPost";
 import Post from "./components/Post/Post";
+import styled from "styled-components";
+
+const AppContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+`;
 
 class App extends React.Component {
   state = {
@@ -55,11 +62,12 @@ class App extends React.Component {
         />
       );
     });
+
     return (
-      <div className={"app-container"}>
+      <AppContainer>
         <FormNovoPost aoAdicionarNovoPost={this.adicionaNovoPost} />
         {listaDePosts}
-      </div>
+      </AppContainer>
     );
   }
 }

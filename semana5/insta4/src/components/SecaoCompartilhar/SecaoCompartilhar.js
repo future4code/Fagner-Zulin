@@ -3,7 +3,17 @@ import iconeFacebook from "../../img/facebook.png";
 import iconeTwitter from "../../img/twitter.png";
 import iconeInstagram from "../../img/instagram.png";
 import BotaoCompartilhar from "./BotaoCompartilhar/BotaoCompartilhar";
-import "./SecaoCompartilhar.css";
+import styled from "styled-components";
+
+const CompartilharContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input {
+    width: 96%;
+  }
+`;
 
 export default class SecaoCompartilhar extends Component {
   state = {
@@ -23,7 +33,7 @@ export default class SecaoCompartilhar extends Component {
 
   render() {
     return (
-      <div className="secao-compartilhar">
+      <CompartilharContainer>
         <input onChange={this.onChangeInput} value={this.state.valorInput} />
 
         <BotaoCompartilhar
@@ -46,7 +56,7 @@ export default class SecaoCompartilhar extends Component {
           texto={"Compartilhe no Instagram"}
           onClickBotao={this.onClickBotaoCompartilhar}
         />
-      </div>
+      </CompartilharContainer>
     );
   }
 }
