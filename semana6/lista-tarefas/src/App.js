@@ -216,34 +216,44 @@ class App extends React.Component {
           </select>
         </InputsContainer>
         <TarefaList>
-          {listaFiltrada.map((tarefa) => {
-            return (
-              <LinhaTarefa key={tarefa.id}>
-                <SpanIcons>
-                  <FontAwesomeIcon
-                    icon={faEdit}
-                    size="lg"
-                    color="#e67e22"
-                    onClick={() => this.onClickEditaTarefa(tarefa)}
-                  />
-                </SpanIcons>
-                <SpanIcons>
-                  <FontAwesomeIcon
-                    icon={faWindowClose}
-                    size="lg"
-                    color="#e74c3c"
-                    onClick={() => this.onClickRemoveTarefa(tarefa.id)}
-                  />
-                </SpanIcons>
-                <Tarefa
-                  completa={tarefa.completa}
-                  onClick={() => this.selectTarefa(tarefa.id)}
-                >
-                  {tarefa.texto}
-                </Tarefa>
-              </LinhaTarefa>
-            );
-          })}
+          {listaFiltrada
+            .sort((tarefaA, tarefaB) => {
+              if (tarefaA.completa === tarefaB.completa) {
+                return 0;
+              } else if (tarefaA.completa) {
+                return 1;
+              } else {
+                return -1;
+              }
+            })
+            .map((tarefa) => {
+              return (
+                <LinhaTarefa key={tarefa.id}>
+                  <SpanIcons>
+                    <FontAwesomeIcon
+                      icon={faEdit}
+                      size="lg"
+                      color="#e67e22"
+                      onClick={() => this.onClickEditaTarefa(tarefa)}
+                    />
+                  </SpanIcons>
+                  <SpanIcons>
+                    <FontAwesomeIcon
+                      icon={faWindowClose}
+                      size="lg"
+                      color="#e74c3c"
+                      onClick={() => this.onClickRemoveTarefa(tarefa.id)}
+                    />
+                  </SpanIcons>
+                  <Tarefa
+                    completa={tarefa.completa}
+                    onClick={() => this.selectTarefa(tarefa.id)}
+                  >
+                    {tarefa.texto}
+                  </Tarefa>
+                </LinhaTarefa>
+              );
+            })}
         </TarefaList>
 
         {this.state.aoEditar && this.renderizaSecaoEdicao()}
