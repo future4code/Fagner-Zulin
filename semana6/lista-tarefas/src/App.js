@@ -186,6 +186,12 @@ class App extends React.Component {
     );
   };
 
+  onClickApagaTarefas = () => {
+    this.setState({
+      tarefas: [],
+    });
+  };
+
   render() {
     const listaFiltrada = this.state.tarefas.filter((tarefa) => {
       switch (this.state.filtro) {
@@ -208,6 +214,7 @@ class App extends React.Component {
         <br />
 
         <InputsContainer>
+          <button onClick={this.onClickApagaTarefas}>Apagar Tarefas</button>
           <label>Filtro</label>
           <select value={this.state.filter} onChange={this.onChangeFilter}>
             <option value="">Nenhum</option>
