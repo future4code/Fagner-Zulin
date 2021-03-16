@@ -3,7 +3,16 @@ import styled from "styled-components";
 import "./styles.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+import {
+  faWindowClose,
+  faEdit,
+  faCheckCircle,
+} from "@fortawesome/free-solid-svg-icons";
+
+const SpanIcons = styled.span`
+  margin-right: 10px;
+  cursor: pointer;
+`;
 
 const LinhaTarefa = styled.div`
   display: flex;
@@ -16,7 +25,6 @@ const TarefaList = styled.ul`
 `;
 
 const Tarefa = styled.span`
-  margin-left: 10px;
   font-size: 1.2em;
   text-align: left;
   cursor: pointer;
@@ -34,6 +42,10 @@ class App extends React.Component {
     tarefas: [],
     inputValue: "",
     filtro: "",
+    aoEditar: false,
+    tarefaIdEditar: 0,
+    inputEdicao: "",
+    estadoEdicao: "",
   };
 
   componentDidUpdate() {
@@ -71,7 +83,7 @@ class App extends React.Component {
       }
       return tarefa;
     });
-    console.log(tarefasModificadas);
+
     this.setState({
       tarefas: tarefasModificadas,
     });
@@ -92,6 +104,86 @@ class App extends React.Component {
     this.setState({
       tarefas: novaLista,
     });
+  };
+
+  onClickEditaTarefa = (tarefa) => {
+    this.setState({
+      aoEditar: true,
+      tarefaIdEditar: tarefa.id,
+      inputEdicao: tarefa.texto,
+      estadoEdicao: tarefa.completa ? "completa" : "pendente",
+    });
+  };
+
+  onChangeInputEdicao = (event) => {
+    this.setState({
+      inputEdicao: event.target.value,
+    });
+  };
+
+  onChangeEstadoEdicao = (event) => {
+    this.setState({
+      estadoEdicao: event.target.value,
+    });
+  };
+
+  onClickSalvaEdicao = () => {
+    const tarefasEditadas = this.state.tarefas.map((tarefa) => {
+      if (tarefa.id === this.state.tarefaIdEditar) {
+        return {
+          ...tarefa,
+          texto: this.state.inputEdicao,
+          completa: this.state.estadoEdicao === "completa" ? true : false,
+        };
+      }
+      return tarefa;
+    });
+
+    this.setState({
+      tarefas: tarefasEditadas,
+      aoEditar: false,
+      tarefaIdEditar: 0,
+      inputEdicao: "",
+      estadoEdicao: "",
+    });
+  };
+
+  renderizaSecaoEdicao = () => {
+    return (
+      <InputsContainer>
+        <input
+          onChange={this.onChangeInputEdicao}
+          value={this.state.inputEdicao}
+        />
+
+        <label>
+          <input
+            type="radio"
+            value="pendente"
+            checked={this.state.estadoEdicao === "pendente"}
+            onChange={this.onChangeEstadoEdicao}
+          />
+          Pendente
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            value="completa"
+            checked={this.state.estadoEdicao === "completa"}
+            onChange={this.onChangeEstadoEdicao}
+          />
+          Completa
+        </label>
+        <FontAwesomeIcon
+          icon={faCheckCircle}
+          size="lg"
+          color="#2ecc71"
+          cursor="pointer"
+          onClick={this.onClickSalvaEdicao}
+        />
+      </InputsContainer>
+    );
   };
 
   render() {
@@ -127,13 +219,22 @@ class App extends React.Component {
           {listaFiltrada.map((tarefa) => {
             return (
               <LinhaTarefa key={tarefa.id}>
-                <FontAwesomeIcon
-                  icon={faWindowClose}
-                  size="lg"
-                  color="#e74c3c"
-                  cursor="pointer"
-                  onClick={() => this.onClickRemoveTarefa(tarefa.id)}
-                />
+                <SpanIcons>
+                  <FontAwesomeIcon
+                    icon={faEdit}
+                    size="lg"
+                    color="#e67e22"
+                    onClick={() => this.onClickEditaTarefa(tarefa)}
+                  />
+                </SpanIcons>
+                <SpanIcons>
+                  <FontAwesomeIcon
+                    icon={faWindowClose}
+                    size="lg"
+                    color="#e74c3c"
+                    onClick={() => this.onClickRemoveTarefa(tarefa.id)}
+                  />
+                </SpanIcons>
                 <Tarefa
                   completa={tarefa.completa}
                   onClick={() => this.selectTarefa(tarefa.id)}
@@ -144,6 +245,8 @@ class App extends React.Component {
             );
           })}
         </TarefaList>
+
+        {this.state.aoEditar && this.renderizaSecaoEdicao()}
       </div>
     );
   }
