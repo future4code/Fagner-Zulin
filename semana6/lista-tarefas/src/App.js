@@ -40,12 +40,14 @@ const InputsContainer = styled.div`
 class App extends React.Component {
   state = {
     tarefas: [],
+    tarefasParaFiltrar: [],
     inputValue: "",
     filtro: "",
     aoEditar: false,
     tarefaIdEditar: 0,
     inputEdicao: "",
     estadoEdicao: "",
+    inputFiltro: "",
   };
 
   componentDidUpdate() {
@@ -55,6 +57,7 @@ class App extends React.Component {
   componentDidMount() {
     this.setState({
       tarefas: JSON.parse(localStorage.getItem("listaTarefas")),
+      tarefasParaFiltrar: JSON.parse(localStorage.getItem("listaTarefas")),
     });
   }
 
@@ -73,6 +76,7 @@ class App extends React.Component {
 
     this.setState({
       tarefas: [...this.state.tarefas, novaTarefa],
+      tarefasParaFiltrar: [...this.state.tarefas, novaTarefa],
     });
   };
 
@@ -103,6 +107,7 @@ class App extends React.Component {
 
     this.setState({
       tarefas: novaLista,
+      tarefasParaFiltrar: novaLista,
     });
   };
 
@@ -141,6 +146,7 @@ class App extends React.Component {
 
     this.setState({
       tarefas: tarefasEditadas,
+      tarefasParaFiltrar: tarefasEditadas,
       aoEditar: false,
       tarefaIdEditar: 0,
       inputEdicao: "",
@@ -189,11 +195,26 @@ class App extends React.Component {
   onClickApagaTarefas = () => {
     this.setState({
       tarefas: [],
+      tarefasParaFiltrar: [],
+    });
+  };
+
+  onChangeInputFiltro = (event) => {
+    const listAtualizada = this.state.tarefas.filter((tarefa) => {
+      return (
+        tarefa.texto.toLowerCase().search(event.target.value.toLowerCase()) !==
+        -1
+      );
+    });
+
+    this.setState({
+      inputFiltro: event.target.value,
+      tarefasParaFiltrar: listAtualizada,
     });
   };
 
   render() {
-    const listaFiltrada = this.state.tarefas.filter((tarefa) => {
+    const listaFiltrada = this.state.tarefasParaFiltrar.filter((tarefa) => {
       switch (this.state.filtro) {
         case "pendentes":
           return !tarefa.completa;
@@ -210,6 +231,15 @@ class App extends React.Component {
         <InputsContainer>
           <input value={this.state.inputValue} onChange={this.onChangeInput} />
           <button onClick={this.criaTarefa}>Adicionar</button>
+        </InputsContainer>
+        <br />
+
+        <InputsContainer>
+          <input
+            placeholder="Filtre pelo nome"
+            value={this.state.inputFiltro}
+            onChange={this.onChangeInputFiltro}
+          />
         </InputsContainer>
         <br />
 
