@@ -213,6 +213,24 @@ class App extends React.Component {
     });
   };
 
+  onClickOrdena = (tipo) => {
+    let listaOrdenada;
+    if (tipo === "cres") {
+      listaOrdenada = this.state.tarefas.sort((tarefaA, tarefaB) => {
+        return tarefaA.texto.localeCompare(tarefaB.texto);
+      });
+    } else {
+      listaOrdenada = this.state.tarefas.sort((tarefaA, tarefaB) => {
+        return tarefaB.texto.localeCompare(tarefaA.texto);
+      });
+    }
+    console.log(listaOrdenada);
+    this.setState({
+      tarefas: listaOrdenada,
+      tarefasParaFiltrar: listaOrdenada,
+    });
+  };
+
   render() {
     const listaFiltrada = this.state.tarefasParaFiltrar.filter((tarefa) => {
       switch (this.state.filtro) {
@@ -251,6 +269,17 @@ class App extends React.Component {
             <option value="pendentes">Pendentes</option>
             <option value="completas">Completas</option>
           </select>
+        </InputsContainer>
+
+        <br />
+
+        <InputsContainer>
+          <button onClick={() => this.onClickOrdena("cres")}>
+            Alfabética crescente
+          </button>
+          <button onClick={() => this.onClickOrdena("decre")}>
+            Alfabética decrescente
+          </button>
         </InputsContainer>
         <TarefaList>
           {listaFiltrada
