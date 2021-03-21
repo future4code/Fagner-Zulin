@@ -55,10 +55,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      tarefas: JSON.parse(localStorage.getItem("listaTarefas")),
-      tarefasParaFiltrar: JSON.parse(localStorage.getItem("listaTarefas")),
-    });
+    const tarefasSalvas = JSON.parse(localStorage.getItem("listaTarefas"));
+
+    tarefasSalvas &&
+      this.setState({
+        tarefas: tarefasSalvas,
+        tarefasParaFiltrar: tarefasSalvas,
+      });
   }
 
   onChangeInput = (event) => {
@@ -90,6 +93,7 @@ class App extends React.Component {
 
     this.setState({
       tarefas: tarefasModificadas,
+      tarefasParaFiltrar: tarefasModificadas,
     });
   };
 
