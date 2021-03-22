@@ -10,9 +10,9 @@ const ContainerPrincipal = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 70vh;
+  height: 80vh;
   width: 600px;
-  margin: 100px auto;
+  margin: 80px auto;
   border: 2px solid black;
   border-radius: 10px;
   background-color: #cad3c8;

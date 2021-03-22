@@ -5,6 +5,7 @@ const ContainerSelect = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 30px;
 `;
 
 const CampoLabel = styled.label`

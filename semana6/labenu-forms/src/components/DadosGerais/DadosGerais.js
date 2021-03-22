@@ -11,11 +11,17 @@ const ContainerDadosGerais = styled.div`
   justify-content: space-around;
 `;
 
+const Erro = styled.p`
+  color: #e74c3c;
+  text-align: center;
+`;
+
 export default class DadosGerais extends Component {
   state = {
     nome: "",
     idade: "",
     email: "",
+    naoPreenchido: false,
   };
 
   onChangeNome = (event) => {
@@ -43,7 +49,14 @@ export default class DadosGerais extends Component {
       this.state.email === ""
     ) {
       alert("Preencha todas as perguntas da ETAPA 1 antes de prosseguir!");
+
+      this.setState({
+        naoPreenchido: true,
+      });
     } else {
+      this.setState({
+        naoPreenchido: false,
+      });
       this.props.funcaoBotao();
     }
   };
@@ -65,16 +78,25 @@ export default class DadosGerais extends Component {
             onChangeDado={this.onChangeNome}
             pergunta={"1. Qual é o seu nome?"}
           />
+          {this.state.naoPreenchido && this.state.nome === "" && (
+            <Erro>Preencha seu nome</Erro>
+          )}
           <InputPergunta
             valor={this.state.idade}
             onChangeDado={this.onChangeIdade}
             pergunta={"2. Qual é a sua idade?"}
           />
+          {this.state.naoPreenchido && this.state.idade === "" && (
+            <Erro>Preencha sua idade</Erro>
+          )}
           <InputPergunta
             valor={this.state.email}
             onChangeDado={this.onChangeEmail}
             pergunta={"3. Qual é o seu email?"}
           />
+          {this.state.naoPreenchido && this.state.email === "" && (
+            <Erro>Preencha seu e-mail</Erro>
+          )}
           <SelectPergunta
             onChangeEtapa={this.props.onChangeEtapa}
             pergunta={"4. Qual a sua escolaridade?"}

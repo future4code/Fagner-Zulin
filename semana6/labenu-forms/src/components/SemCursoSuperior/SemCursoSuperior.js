@@ -15,9 +15,15 @@ const ContainerSemCursoSuperior = styled.div`
   }
 `;
 
+const Erro = styled.p`
+  color: #e74c3c;
+  text-align: center;
+`;
+
 export default class SemCursoSuperior extends Component {
   state = {
     motivoNaoTerminar: "",
+    naoPreenchido: false,
   };
 
   onChangeMotivoNaoTerminar = (event) => {
@@ -29,7 +35,13 @@ export default class SemCursoSuperior extends Component {
   onClickBotao = () => {
     if (this.state.motivoNaoTerminar === "") {
       alert("Preencha todas as perguntas da ETAPA 3 antes de prosseguir!");
+      this.setState({
+        naoPreenchido: true,
+      });
     } else {
+      this.setState({
+        naoPreenchido: false,
+      });
       this.props.funcaoBotao();
     }
   };
@@ -50,7 +62,11 @@ export default class SemCursoSuperior extends Component {
             onChangeDado={this.onChangeMotivoNaoTerminar}
             pergunta={"1. Por que você não terminou um curso de graduação?"}
           />
-
+          {this.state.naoPreenchido && this.state.motivoNaoTerminar === "" && (
+            <Erro>
+              Preencha o motivo de não ter terminado o ensino superior
+            </Erro>
+          )}
           <SelectPergunta
             pergunta={"2. Você fez algum curso complementar?"}
             opcoes={valorSelecao}

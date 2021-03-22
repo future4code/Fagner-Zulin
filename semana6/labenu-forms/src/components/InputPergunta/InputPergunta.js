@@ -5,6 +5,7 @@ const ContainerInput = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 30px;
 `;
 
 const CampoInput = styled.input`
@@ -12,7 +13,7 @@ const CampoInput = styled.input`
   padding: 3px;
   width: 300px;
   border-radius: 5px;
-  margin: 20px 0;
+  margin-top: 10px;
 `;
 
 const CampoLabel = styled.label`
