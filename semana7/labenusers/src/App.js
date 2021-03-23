@@ -7,10 +7,11 @@ import { getAllUsers } from "./controllers/getAllUsers";
 import { deleteUser } from "./controllers/deleteUser";
 
 const PrimaryContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: center;
+  background-color: #34495e;
 `;
 
 export default class App extends Component {
