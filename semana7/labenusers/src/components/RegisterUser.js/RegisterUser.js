@@ -4,10 +4,10 @@ export default class RegisterUser extends Component {
   render() {
     return (
       <div>
-        <label>Nome:</label>
+        <label>Name:</label>
         <input
-          value={this.props.inputNome}
-          onChange={this.props.onChangeNome}
+          value={this.props.inputName}
+          onChange={this.props.onChangeName}
         />
         <label>E-mail:</label>
         <input
@@ -15,8 +15,8 @@ export default class RegisterUser extends Component {
           onChange={this.props.onChangeEmail}
         />
         <div>
-          <button>Registrar</button>
-          <button>Lista de Usuários</button>
+          <button onClick={this.props.onClickRegister}>Register</button>
+          <button onClick={this.props.onClickChangePage}>List Users</button>
         </div>
       </div>
     );
