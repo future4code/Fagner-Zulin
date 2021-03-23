@@ -1,5 +1,21 @@
 import React, { Component } from "react";
-import "./BotaoCompartilhar.css";
+import styled from "styled-components";
+
+const BotaoCompatilhar = styled.button`
+  display: flex;
+  align-items: center;
+  width: 98%;
+  margin: 3px 0 3px 0;
+  cursor: pointer;
+
+  img {
+    width: 30px;
+  }
+
+  p {
+    margin-left: 5px;
+  }
+`;
 
 export default class BotaoCompartilhar extends Component {
   imprimeMensagem = () => {
@@ -9,10 +25,10 @@ export default class BotaoCompartilhar extends Component {
 
   render() {
     return (
-      <button onClick={this.imprimeMensagem} className="botao-compatilhar">
+      <BotaoCompatilhar onClick={this.imprimeMensagem}>
         <img src={this.props.icone} alt="Icone" />
         <p>{this.props.texto}</p>
-      </button>
+      </BotaoCompatilhar>
     );
   }
 }
