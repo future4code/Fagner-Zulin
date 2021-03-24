@@ -1,46 +1,34 @@
 import React, { Component } from "react";
 import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styled from "styled-components";
 import { searchUsers } from "../../controllers/searchUsers";
-
-const UserLine = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 30vw;
-
-  p {
-    cursor: pointer;
-  }
-`;
-
-const ButtonClose = styled.div`
-  background-color: white;
-  height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const UsersContainer = styled.div`
-  width: 80vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-wrap: wrap;
-  background-color: #7f8c8d;
-
-  button {
-    margin-bottom: 20px;
-  }
-`;
+import { UserLine, ButtonClose, UsersContainer } from "./listUsersStyled";
+import { getAllUsers } from "../../controllers/getAllUsers";
+import { deleteUser } from "../../controllers/deleteUser";
 
 export default class ListUsers extends Component {
   state = {
+    usersList: [],
     inputSearch: "",
     dataSearch: [],
   };
+
+  getAllUsersMiddleware = async () => {
+    const result = await getAllUsers();
+    if (result.length > 0) {
+      this.setState({
+        usersList: result,
+      });
+    }
+  };
+
+  componentDidMount() {
+    this.getAllUsersMiddleware();
+  }
+
+  componentDidUpdate() {
+    this.getAllUsersMiddleware();
+  }
 
   handleInputSearch = (event) => {
     this.setState({
@@ -48,22 +36,22 @@ export default class ListUsers extends Component {
     });
   };
 
-  onClickSearch = () => {
-    searchUsers(this.state.inputSearch)
-      .then((res) => {
-        if (res.data.length > 0) {
-          console.log(res.data);
-          this.setState({
-            dataSearch: res.data,
-          });
-        } else {
-          console.log("Not found");
-          alert("Not found");
-        }
-      })
-      .catch((err) => {
-        alert(err.response.data.messenge);
+  onClickDelete = (id) => {
+    if (window.confirm("Tem certeza de que deseja deletar?")) {
+      deleteUser(id);
+    }
+  };
+
+  onClickSearch = async () => {
+    const result = await searchUsers(this.state.inputSearch);
+
+    if (result.length > 0) {
+      this.setState({
+        dataSearch: result,
       });
+    } else {
+      alert("Not found");
+    }
 
     this.setState({
       inputSearch: "",
@@ -76,15 +64,15 @@ export default class ListUsers extends Component {
     });
   };
 
-  render() {
-    const usersList = this.props.usersList.map((user) => {
+  renderList = (list) => {
+    const mapList = list.map((user) => {
       return (
         <UserLine key={user.id}>
           <p onClick={() => this.props.moreDetails(user.id)}>{user.name}</p>
           <ButtonClose>
             <FontAwesomeIcon
               onClick={() => {
-                this.props.onClickDelete(user.id);
+                this.onClickDelete(user.id);
               }}
               icon={faWindowClose}
               color={"#e74c3c"}
@@ -95,25 +83,10 @@ export default class ListUsers extends Component {
         </UserLine>
       );
     });
+    return mapList;
+  };
 
-    const searchUsers = this.state.dataSearch.map((user) => {
-      return (
-        <UserLine key={user.id}>
-          <p onClick={() => this.props.moreDetails(user.id)}>{user.name}</p>
-          <ButtonClose>
-            <FontAwesomeIcon
-              onClick={() => {
-                this.props.onClickDelete(user.id);
-              }}
-              icon={faWindowClose}
-              color={"#e74c3c"}
-              size={"lg"}
-              cursor="pointer"
-            />
-          </ButtonClose>
-        </UserLine>
-      );
-    });
+  render() {
     return (
       <UsersContainer>
         <h2>Registered Users:</h2>
@@ -129,10 +102,10 @@ export default class ListUsers extends Component {
           <button onClick={this.onClickListAll}>List All</button>
         </div>
 
-        {searchUsers.length > 0 ? (
-          <div>{searchUsers}</div>
+        {this.state.dataSearch.length > 0 ? (
+          <div>{this.renderList(this.state.dataSearch)}</div>
         ) : (
-          <div>{usersList}</div>
+          <div>{this.renderList(this.state.usersList)}</div>
         )}
       </UsersContainer>
     );
