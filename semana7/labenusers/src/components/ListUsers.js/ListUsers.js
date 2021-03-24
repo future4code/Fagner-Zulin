@@ -9,13 +9,17 @@ const UserLine = styled.div`
   align-items: center;
   width: 30vw;
 
-  div {
-    background-color: white;
-    height: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  p {
+    cursor: pointer;
   }
+`;
+
+const ButtonClose = styled.div`
+  background-color: white;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const UsersContainer = styled.div`
@@ -36,8 +40,8 @@ export default class ListUsers extends Component {
     const usersList = this.props.usersList.map((user) => {
       return (
         <UserLine key={user.id}>
-          <p>{user.name}</p>
-          <div>
+          <p onClick={() => this.props.moreDetails(user.id)}>{user.name}</p>
+          <ButtonClose>
             <FontAwesomeIcon
               onClick={() => {
                 this.props.onClickDelete(user.id);
@@ -47,7 +51,7 @@ export default class ListUsers extends Component {
               size={"lg"}
               cursor="pointer"
             />
-          </div>
+          </ButtonClose>
         </UserLine>
       );
     });

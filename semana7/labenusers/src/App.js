@@ -5,6 +5,8 @@ import { createUser } from "./controllers/createUser";
 import ListUsers from "./components/ListUsers.js/ListUsers";
 import { getAllUsers } from "./controllers/getAllUsers";
 import { deleteUser } from "./controllers/deleteUser";
+import UserDetail from "./components/UserDetail/UserDetail";
+import { getUserById } from "./controllers/getUserById";
 
 const PrimaryContainer = styled.div`
   min-height: 100vh;
@@ -19,7 +21,9 @@ export default class App extends Component {
     inputName: "",
     inputEmail: "",
     usersList: [],
+    userData: {},
     listUser: false,
+    userDetail: false,
   };
 
   getAllUsersMiddleware = () => {
@@ -75,13 +79,36 @@ export default class App extends Component {
   };
 
   onClickDelete = (id) => {
-    deleteUser(id);
+    if (window.confirm("Tem certeza de que deseja deletar?")) {
+      deleteUser(id);
+    }
+  };
+
+  moreDetails = (id) => {
+    getUserById(id)
+      .then((res) => {
+        this.setState({
+          userData: res.data,
+        });
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+
+    this.changePageDetails();
+  };
+
+  changePageDetails = () => {
+    this.setState({
+      userDetail: !this.state.userDetail,
+      listUser: !this.state.listUser,
+    });
   };
 
   render() {
     return (
       <PrimaryContainer>
-        {!this.state.listUser && (
+        {!this.state.listUser && !this.state.userDetail && (
           <RegisterUser
             inputNome={this.state.inputName}
             inputEmail={this.state.inputEmail}
@@ -96,6 +123,15 @@ export default class App extends Component {
             onClickDelete={this.onClickDelete}
             onClickChangePage={this.onClickChangePage}
             usersList={this.state.usersList}
+            moreDetails={this.moreDetails}
+          />
+        )}
+
+        {this.state.userDetail && (
+          <UserDetail
+            changePageDetails={this.changePageDetails}
+            userData={this.state.userData}
+            onClickDelete={this.onClickDelete}
           />
         )}
       </PrimaryContainer>
