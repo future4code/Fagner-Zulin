@@ -4,6 +4,7 @@ import CampoBusca from "./components/CampoBusca/CampoBusca";
 import CardDiaTempo from "./components/CardDiaTempo/CardDiaTempo";
 import { getEndereco } from "./controllers/getEndereco";
 import { getPrevisaoDezDias } from "./controllers/getPrevisaoDezDias";
+import { testaInputCep } from "./utils/testaCep";
 
 const ContainerPrincipal = styled.div`
   width: 80vw;
@@ -36,23 +37,39 @@ export default class App extends Component {
   };
 
   onClickBuscar = async () => {
-    const regExNumber = /\D/g.test(this.state.inputBusca);
-
-    if (
-      regExNumber ||
-      this.state.inputBusca.length < 8 ||
-      this.state.inputBusca.length > 8
-    ) {
+    if (testaInputCep(this.state.inputBusca)) {
       alert("Digite o Cep corretamente! (Ex. 01000100)");
-    } else {
-      const result = await getEndereco(this.state.inputBusca);
 
+      this.setState({
+        inputBusca: "",
+      });
+    } else {
+      const retorno = await this.getResulApi();
+
+      if (retorno === "CEP não encontrado") {
+        alert(retorno);
+      } else {
+        this.setState({
+          cidadeUf: retorno.result,
+          previsaoDezDias: retorno.listaPrevisao,
+        });
+      }
+    }
+  };
+
+  getResulApi = async () => {
+    const result = await getEndereco(this.state.inputBusca);
+
+    if (result) {
       const { localidade, uf } = result;
       const listaPrevisao = await getPrevisaoDezDias(localidade, uf);
-      this.setState({
-        cidadeUf: result,
-        previsaoDezDias: listaPrevisao,
-      });
+
+      return {
+        result,
+        listaPrevisao,
+      };
+    } else {
+      return "CEP não encontrado";
     }
   };
 
