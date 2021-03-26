@@ -50,7 +50,13 @@ export default class ListarPlayLists extends Component {
     const listaDePlayLists = this.state.listaDePlayLists.map((playlist) => {
       return (
         <LinhaPlayList key={playlist.id}>
-          <span>{playlist.name}</span>
+          <span
+            onClick={() => {
+              this.props.onClickTocaPlayList(4, playlist.id);
+            }}
+          >
+            {playlist.name}
+          </span>
           <div>
             <FontAwesomeIcon
               cursor="pointer"

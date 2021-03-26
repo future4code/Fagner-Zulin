@@ -11,6 +11,10 @@ export const Container = styled.div`
   padding: 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 10px black;
+  margin: 50px 0;
+  @media (max-width: 400px) {
+    width: 90%;
+  }
 `;
 
 export const InputNome = styled.input`

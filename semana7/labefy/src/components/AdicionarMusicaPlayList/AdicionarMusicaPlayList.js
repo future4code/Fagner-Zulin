@@ -16,15 +16,15 @@ export default class AdicionarMusicaPlayList extends Component {
   };
 
   handleInputNome = (event) => {
-    this.setState({ inputNome: event.target.value });
+    this.setState({ inputNome: event.target.value, mensage: "" });
   };
 
   handleInputArtista = (event) => {
-    this.setState({ inputArtista: event.target.value });
+    this.setState({ inputArtista: event.target.value, mensage: "" });
   };
 
   handleInputLink = (event) => {
-    this.setState({ inputLink: event.target.value });
+    this.setState({ inputLink: event.target.value, mensage: "" });
   };
 
   onClickAdicionar = async () => {
@@ -41,6 +41,9 @@ export default class AdicionarMusicaPlayList extends Component {
 
     this.setState({
       mensage: result,
+      inputNome: "",
+      inputArtista: "",
+      inputLink: "",
     });
   };
 

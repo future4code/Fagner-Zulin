@@ -30,6 +30,7 @@ export default class CriarPlayLists extends Component {
 
       this.setState({
         mensagem: resul,
+        inputNome: "",
       });
     }
   };

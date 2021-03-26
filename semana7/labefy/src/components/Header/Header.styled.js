@@ -17,6 +17,9 @@ export const Titulo = styled.h1`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  @media (max-width: 400px) {
+    font-size: 2em;
+  }
 `;
 
 export const Botao = styled.button`
