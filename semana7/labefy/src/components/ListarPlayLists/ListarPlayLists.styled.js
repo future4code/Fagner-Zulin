@@ -21,4 +21,8 @@ export const LinhaPlayList = styled.div`
   padding: 5px;
   border-radius: 5px;
   margin: 5px 0;
+
+  .icone {
+    margin-right: 10px;
+  }
 `;

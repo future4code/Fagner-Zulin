@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimesCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTimesCircle,
+  faSpinner,
+  faPlusCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { pegarPlayLists } from "../../controllers/pegarPlayLists";
 import { Container, Mensagem } from "../CriarPlayLists/CriarPlayLists.styled";
 import { ContainerHeader, LinhaPlayList } from "./ListarPlayLists.styled";
@@ -47,12 +51,21 @@ export default class ListarPlayLists extends Component {
       return (
         <LinhaPlayList key={playlist.id}>
           <span>{playlist.name}</span>
-          <FontAwesomeIcon
-            cursor="pointer"
-            color="#CF4A30"
-            icon={faTimesCircle}
-            onClick={() => this.onClickDeletar(playlist.id)}
-          />
+          <div>
+            <FontAwesomeIcon
+              cursor="pointer"
+              color="#88A825"
+              icon={faPlusCircle}
+              onClick={() => this.props.onClickAddMusica(3, playlist)}
+              className="icone"
+            />
+            <FontAwesomeIcon
+              cursor="pointer"
+              color="#CF4A30"
+              icon={faTimesCircle}
+              onClick={() => this.onClickDeletar(playlist.id)}
+            />
+          </div>
         </LinhaPlayList>
       );
     });
