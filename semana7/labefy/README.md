@@ -6,7 +6,7 @@
 - É possível listar as playlists (botão PlayLists no Header);
 - É possível excluir uma playlist (botão de "x" vermelho na linha da playlist);
 - É possível adicionar música a playlist (botão de "+" verde na linha da playlist). Obs: pede-se o link da música no YouTube;
-- É possível ouvir as músicas que estão na playlist ao clicar em cima do nome;
+- É possível ouvir as músicas que estão na playlist (botão de ▶ laranja na linha da playlist);
 
 ### Link Surge
 

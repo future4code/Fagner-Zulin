@@ -4,6 +4,7 @@ import {
   faTimesCircle,
   faSpinner,
   faPlusCircle,
+  faPlayCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { pegarPlayLists } from "../../controllers/pegarPlayLists";
 import { Container, Mensagem } from "../CriarPlayLists/CriarPlayLists.styled";
@@ -50,14 +51,15 @@ export default class ListarPlayLists extends Component {
     const listaDePlayLists = this.state.listaDePlayLists.map((playlist) => {
       return (
         <LinhaPlayList key={playlist.id}>
-          <span
-            onClick={() => {
-              this.props.onClickTocaPlayList(4, playlist.id);
-            }}
-          >
-            {playlist.name}
-          </span>
+          <span>{playlist.name}</span>
           <div>
+            <FontAwesomeIcon
+              cursor="pointer"
+              color="#ed8c2b"
+              icon={faPlayCircle}
+              onClick={() => this.props.onClickTocaPlayList(4, playlist.id)}
+              className="icone"
+            />
             <FontAwesomeIcon
               cursor="pointer"
               color="#88A825"
