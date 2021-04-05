@@ -1,12 +1,12 @@
 import axios from "axios";
+import { axiosConfig, baseUrl } from "../config/apiConfig";
 
-export const getUserById = (id) => {
-  return axios.get(
-    `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`,
-    {
-      headers: {
-        Authorization: "fagner-zulin-cruz",
-      },
-    }
-  );
+export const getUserById = async (id) => {
+  try {
+    const response = await axios.get(`${baseUrl}/${id}`, axiosConfig);
+
+    return response.data;
+  } catch (err) {
+    alert(err.response.data.message);
+  }
 };

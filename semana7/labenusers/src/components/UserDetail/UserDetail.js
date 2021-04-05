@@ -1,29 +1,32 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import { deleteUser } from "../../controllers/deleteUser";
 import { editUser } from "../../controllers/editUser";
-
-const UserDetailsContainer = styled.div`
-  background-color: #bdc3c7;
-  width: 80vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 100px;
-`;
-
-const ButtonsContainer = styled.div`
-  margin-top: 50px;
-  width: 30%;
-  display: flex;
-  justify-content: space-between;
-`;
+import { getUserById } from "../../controllers/getUserById";
+import { ButtonsContainer, UserDetailsContainer } from "./userDetailStyled";
 
 export default class UserDetail extends Component {
   state = {
+    userData: {},
     toEdit: false,
     inputName: "",
     inputEmail: "",
   };
+
+  getUserByIdMiddleware = async () => {
+    const result = await getUserById(this.props.userId);
+
+    this.setState({
+      userData: result,
+    });
+  };
+
+  componentDidMount() {
+    this.getUserByIdMiddleware();
+  }
+
+  componentDidUpdate() {
+    this.getUserByIdMiddleware();
+  }
 
   handleInputName = (event) => {
     this.setState({
@@ -55,12 +58,14 @@ export default class UserDetail extends Component {
   };
 
   onClickDelete = (id) => {
-    this.props.onClickDelete(id);
+    if (window.confirm("Tem certeza de que deseja deletar?")) {
+      deleteUser(id);
+    }
     this.props.changePageDetails();
   };
 
   render() {
-    const { id, name, email } = this.props.userData;
+    const { id, name, email } = this.state.userData;
     return (
       <UserDetailsContainer>
         <p>Name: {name}</p>
