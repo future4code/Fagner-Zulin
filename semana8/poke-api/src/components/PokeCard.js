@@ -28,7 +28,7 @@ export default function PokeCard(props) {
         <img src={pokemon.sprites.front_default} alt={pokemon.name} />
       )}
       <p>{pokemon.name}</p>
-      <p>{pokemon.weight}</p>
+      <p>{`${pokemon.weight} Kg`}</p>
       {pokemon.types && <p>{pokemon.types[0].type.name}</p>}
     </Card>
   );
