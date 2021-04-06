@@ -1,63 +1,35 @@
 import { Button } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faHeart } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
 import CardUser from "../CardUser/CardUser";
-
-const Box = styled.section`
-  background-color: white;
-  width: 350px;
-  height: 500px;
-  border: 2px solid #5c1428;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Title = styled.h2`
-  font-family: "Love Ya Like A Sister", cursive;
-  text-align: center;
-  color: white;
-  font-size: 2em;
-`;
-
-const HeaderContainer = styled.header`
-  padding: 5px;
-  background-color: #420736;
-  width: 100.4%;
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
-`;
-
-const CardContainer = styled.div``;
-
-const FooterContainer = styled.footer`
-  background-color: #420736;
-  width: 100.4%;
-  height: 100px;
-  margin-bottom: -1px;
-  border-bottom-left-radius: 7px;
-  border-bottom-right-radius: 7px;
-  border-top: 2px solid #5c1428;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
+import {
+  Box,
+  Title,
+  HeaderContainer,
+  CardContainer,
+  FooterContainer,
+} from "./choiseContainer.styled";
+import { swipeLeft, swipeRight } from "../CardUser/cardUser.styled";
 
 export default function ChoiseContainer() {
+  const [direction, setDirection] = useState(null);
+
+  const choiseDirection = (direction) => {
+    setDirection(direction);
+  };
+
   return (
     <Box>
       <HeaderContainer>
         <Title>AstroMatch</Title>
       </HeaderContainer>
       <CardContainer>
-        <CardUser />
+        <CardUser animation={direction} />
       </CardContainer>
       <FooterContainer>
         <Button
+          onClick={() => choiseDirection(swipeRight)}
           height="60px"
           width="60px"
           borderRadius="100%"
@@ -73,6 +45,7 @@ export default function ChoiseContainer() {
           <FontAwesomeIcon icon={faTimes} size="2x" />
         </Button>
         <Button
+          onClick={() => choiseDirection(swipeLeft)}
           height="60px"
           width="60px"
           borderRadius="100%"
