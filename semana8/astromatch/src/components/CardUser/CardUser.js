@@ -1,10 +1,28 @@
 import React from "react";
-import { Card, Photo } from "./cardUser.styled";
+import {
+  Card,
+  FilterBackground,
+  InfoContainer,
+  Photo,
+  Name,
+  LineNameAge,
+  Age,
+  Bio,
+} from "./cardUser.styled";
 
 export default function CardUser(props) {
+  const { profile, animation } = props;
   return (
-    <Card animation={props.animation}>
-      <Photo src="https://vignette.wikia.nocookie.net/disney/images/0/06/Profile_-_Jack_Skellington.jpeg/revision/latest?cb=20190316145716" />
+    <Card animation={animation}>
+      <FilterBackground photo={profile.photo} />
+      <Photo src={profile.photo} />
+      <InfoContainer>
+        <LineNameAge>
+          <Name>{profile.name},</Name>
+          <Age>{profile.age}</Age>
+        </LineNameAge>
+        <Bio>{profile.bio}</Bio>
+      </InfoContainer>
     </Card>
   );
 }

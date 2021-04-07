@@ -1,7 +1,7 @@
 import { Button, Tooltip } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faHeart, faRedo } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardUser from "../CardUser/CardUser";
 import {
   Box,
@@ -12,12 +12,45 @@ import {
 } from "./chooseContainer.styled";
 import { swipeLeft, swipeRight } from "../CardUser/cardUser.styled";
 import MatchesContainer from "../MatchesContainer/MatchesContainer";
+import { getProfileToChoose } from "../../services/getProfileToChoose";
+import { postChoosePerson } from "../../services/postChoosePerson";
 
 export default function ChooseContainer() {
   const [direction, setDirection] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [isMatch, setIsMatch] = useState({});
 
-  const chooseDirection = (direction) => {
-    setDirection(direction);
+  useEffect(() => {
+    (async () => {
+      const result = await getProfileToChoose();
+      setProfile(result);
+    })();
+  }, [setProfile, direction]);
+
+  useEffect(() => {
+    setDirection(null);
+    setProfile(null);
+  }, [isMatch]);
+
+  const likeOrUnlike = async (option) => {
+    switch (option) {
+      case "like":
+        setDirection(swipeLeft);
+        const choisePositive = { id: profile.id, choice: true };
+        const resultPositive = await postChoosePerson(choisePositive);
+        setIsMatch(resultPositive);
+        console.log(resultPositive);
+        break;
+      case "unlike":
+        setDirection(swipeRight);
+        const choiseNegative = { id: profile.id, choice: false };
+        const resultNegative = await postChoosePerson(choiseNegative);
+        console.log(resultNegative);
+        setIsMatch(resultNegative);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -32,11 +65,15 @@ export default function ChooseContainer() {
         <MatchesContainer />
       </HeaderContainer>
       <CardContainer>
-        <CardUser animation={direction} />
+        {profile ? (
+          <CardUser profile={profile} animation={direction} />
+        ) : (
+          <FontAwesomeIcon icon={faHeart} color="#B23948" spin size="5x" />
+        )}
       </CardContainer>
       <FooterContainer>
         <Button
-          onClick={() => chooseDirection(swipeRight)}
+          onClick={() => likeOrUnlike("unlike")}
           height="60px"
           width="60px"
           borderRadius="100%"
@@ -52,7 +89,7 @@ export default function ChooseContainer() {
           <FontAwesomeIcon icon={faTimes} size="2x" />
         </Button>
         <Button
-          onClick={() => chooseDirection(swipeLeft)}
+          onClick={() => likeOrUnlike("like")}
           height="60px"
           width="60px"
           borderRadius="100%"
