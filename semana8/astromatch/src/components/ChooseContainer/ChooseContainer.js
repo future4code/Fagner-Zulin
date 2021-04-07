@@ -1,10 +1,10 @@
-import { Button, Tooltip } from "@chakra-ui/react";
+import { Box, Button, Tooltip, useToast } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faHeart, faRedo } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import CardUser from "../CardUser/CardUser";
 import {
-  Box,
+  BoxContainer,
   Title,
   HeaderContainer,
   CardContainer,
@@ -14,11 +14,13 @@ import { swipeLeft, swipeRight } from "../CardUser/cardUser.styled";
 import MatchesContainer from "../MatchesContainer/MatchesContainer";
 import { getProfileToChoose } from "../../services/getProfileToChoose";
 import { postChoosePerson } from "../../services/postChoosePerson";
+import { putClear } from "../../services/putClear";
 
 export default function ChooseContainer() {
   const [direction, setDirection] = useState(null);
   const [profile, setProfile] = useState(null);
   const [isMatch, setIsMatch] = useState({});
+  const toast = useToast();
 
   useEffect(() => {
     (async () => {
@@ -30,6 +32,17 @@ export default function ChooseContainer() {
   useEffect(() => {
     setDirection(null);
     setProfile(null);
+    if (isMatch.isMatch) {
+      toast({
+        render: () => (
+          <Box color="white" p={3} bg="#5C1428">
+            teste
+          </Box>
+        ),
+        duration: 5000,
+        isClosable: true,
+      });
+    }
   }, [isMatch]);
 
   const likeOrUnlike = async (option) => {
@@ -53,11 +66,15 @@ export default function ChooseContainer() {
     }
   };
 
+  const resetMatches = async () => {
+    const result = await putClear();
+  };
+
   return (
-    <Box>
+    <BoxContainer>
       <HeaderContainer>
         <Tooltip label="Resetar Matches">
-          <Button colorScheme="">
+          <Button onClick={resetMatches} colorScheme="">
             <FontAwesomeIcon icon={faRedo} size="lg" />
           </Button>
         </Tooltip>
@@ -105,6 +122,6 @@ export default function ChooseContainer() {
           <FontAwesomeIcon icon={faHeart} size="2x" />
         </Button>
       </FooterContainer>
-    </Box>
+    </BoxContainer>
   );
 }

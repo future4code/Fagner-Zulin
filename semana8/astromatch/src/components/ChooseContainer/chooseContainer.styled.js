@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Box = styled.section`
+export const BoxContainer = styled.section`
   background-color: white;
   width: 350px;
   height: 500px;

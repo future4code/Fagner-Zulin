@@ -11,12 +11,28 @@ import {
   Tooltip,
   Avatar,
 } from "@chakra-ui/react";
-import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeartBroken,
+  faUserFriends,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { getMatches } from "../../services/getMatches";
 import { Name } from "../CardUser/cardUser.styled";
 import { Title } from "../ChooseContainer/chooseContainer.styled";
+
+const MessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  h1 {
+    margin-top: 10px;
+    font-weight: bold;
+    font-family: "Kiwi Maru", serif;
+  }
+`;
 
 export default function MatchesContainer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,6 +45,21 @@ export default function MatchesContainer() {
       setMaches(result);
     })();
   }, [setMaches, isOpen]);
+
+  const matchesMap = matches.map((match) => {
+    return (
+      <Button
+        colorScheme="whiteAlpha"
+        key={match.id}
+        marginTop="10px"
+        w="100%"
+        h="80px"
+      >
+        <Avatar name={match.name} src={match.photo} marginRight="18px" />
+        <Name>{match.name}</Name>
+      </Button>
+    );
+  });
 
   return (
     <>
@@ -51,24 +82,18 @@ export default function MatchesContainer() {
             </DrawerHeader>
 
             <DrawerBody>
-              {matches.map((match) => {
-                return (
-                  <Button
-                    colorScheme="whiteAlpha"
-                    key={match.id}
-                    marginTop="10px"
-                    w="100%"
-                    h="80px"
-                  >
-                    <Avatar
-                      name={match.name}
-                      src={match.photo}
-                      marginRight="18px"
-                    />
-                    <Name>{match.name}</Name>
-                  </Button>
-                );
-              })}
+              {matches.length > 0 ? (
+                matchesMap
+              ) : (
+                <MessageContainer>
+                  <FontAwesomeIcon
+                    color="white"
+                    icon={faHeartBroken}
+                    size="4x"
+                  />
+                  <h1>Sem matches por enquanto...</h1>
+                </MessageContainer>
+              )}
             </DrawerBody>
 
             <DrawerFooter></DrawerFooter>
