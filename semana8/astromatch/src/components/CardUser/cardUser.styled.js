@@ -71,6 +71,9 @@ export const LineNameAge = styled.div`
 export const Name = styled.h1`
   font-weight: bold;
   font-size: 1.2em;
+  color: #ffff;
+  text-shadow: 1px 1px 2px black;
+  font-family: "Kiwi Maru", serif;
 `;
 
 export const Age = styled.h2`

@@ -8,17 +8,27 @@ import {
   DrawerCloseButton,
   Button,
   useDisclosure,
-  Input,
   Tooltip,
+  Avatar,
 } from "@chakra-ui/react";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getMatches } from "../../services/getMatches";
+import { Name } from "../CardUser/cardUser.styled";
+import { Title } from "../ChooseContainer/chooseContainer.styled";
 
 export default function MatchesContainer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+  const [matches, setMaches] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const result = await getMatches();
+      setMaches(result);
+    })();
+  }, [setMaches, isOpen]);
 
   return (
     <>
@@ -34,20 +44,34 @@ export default function MatchesContainer() {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay>
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Create your account</DrawerHeader>
+          <DrawerContent bg="#B23948">
+            <DrawerCloseButton color="white" />
+            <DrawerHeader>
+              <Title>Matches</Title>
+            </DrawerHeader>
 
             <DrawerBody>
-              <Input placeholder="Type here..." />
+              {matches.map((match) => {
+                return (
+                  <Button
+                    colorScheme="whiteAlpha"
+                    key={match.id}
+                    marginTop="10px"
+                    w="100%"
+                    h="80px"
+                  >
+                    <Avatar
+                      name={match.name}
+                      src={match.photo}
+                      marginRight="18px"
+                    />
+                    <Name>{match.name}</Name>
+                  </Button>
+                );
+              })}
             </DrawerBody>
 
-            <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button colorScheme="blue">Save</Button>
-            </DrawerFooter>
+            <DrawerFooter></DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
