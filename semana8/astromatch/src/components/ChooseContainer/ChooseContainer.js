@@ -9,14 +9,14 @@ import {
   HeaderContainer,
   CardContainer,
   FooterContainer,
-} from "./choiseContainer.styled";
+} from "./chooseContainer.styled";
 import { swipeLeft, swipeRight } from "../CardUser/cardUser.styled";
 import MatchesContainer from "../MatchesContainer/MatchesContainer";
 
-export default function ChoiseContainer() {
+export default function ChooseContainer() {
   const [direction, setDirection] = useState(null);
 
-  const choiseDirection = (direction) => {
+  const chooseDirection = (direction) => {
     setDirection(direction);
   };
 
@@ -36,7 +36,7 @@ export default function ChoiseContainer() {
       </CardContainer>
       <FooterContainer>
         <Button
-          onClick={() => choiseDirection(swipeRight)}
+          onClick={() => chooseDirection(swipeRight)}
           height="60px"
           width="60px"
           borderRadius="100%"
@@ -52,7 +52,7 @@ export default function ChoiseContainer() {
           <FontAwesomeIcon icon={faTimes} size="2x" />
         </Button>
         <Button
-          onClick={() => choiseDirection(swipeLeft)}
+          onClick={() => chooseDirection(swipeLeft)}
           height="60px"
           width="60px"
           borderRadius="100%"
