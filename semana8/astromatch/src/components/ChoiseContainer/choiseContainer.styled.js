@@ -25,6 +25,9 @@ export const HeaderContainer = styled.header`
   width: 100.4%;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const CardContainer = styled.div``;

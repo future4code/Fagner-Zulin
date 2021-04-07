@@ -1,6 +1,6 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Tooltip } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faHeart, faRedo } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import CardUser from "../CardUser/CardUser";
 import {
@@ -11,6 +11,7 @@ import {
   FooterContainer,
 } from "./choiseContainer.styled";
 import { swipeLeft, swipeRight } from "../CardUser/cardUser.styled";
+import MatchesContainer from "../MatchesContainer/MatchesContainer";
 
 export default function ChoiseContainer() {
   const [direction, setDirection] = useState(null);
@@ -22,7 +23,13 @@ export default function ChoiseContainer() {
   return (
     <Box>
       <HeaderContainer>
+        <Tooltip label="Resetar Matches">
+          <Button colorScheme="">
+            <FontAwesomeIcon icon={faRedo} size="lg" />
+          </Button>
+        </Tooltip>
         <Title>AstroMatch</Title>
+        <MatchesContainer />
       </HeaderContainer>
       <CardContainer>
         <CardUser animation={direction} />
