@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const BoxContainer = styled.section`
   background-color: white;
-  width: 350px;
+  width: 320px;
   height: 500px;
   border: 2px solid #5c1428;
   border-radius: 10px;

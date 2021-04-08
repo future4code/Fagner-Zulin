@@ -1,7 +1,6 @@
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
@@ -17,22 +16,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { getMatches } from "../../services/getMatches";
 import { Name } from "../CardUser/cardUser.styled";
 import { Title } from "../ChooseContainer/chooseContainer.styled";
-
-const MessageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  h1 {
-    margin-top: 10px;
-    font-weight: bold;
-    font-family: "Kiwi Maru", serif;
-  }
-`;
+import { Container, MessageContainer } from "./matchesContainer.style";
 
 export default function MatchesContainer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -81,20 +68,22 @@ export default function MatchesContainer() {
               <Title>Matches</Title>
             </DrawerHeader>
 
-            <DrawerBody>
-              {matches.length > 0 ? (
-                matchesMap
-              ) : (
-                <MessageContainer>
-                  <FontAwesomeIcon
-                    color="white"
-                    icon={faHeartBroken}
-                    size="4x"
-                  />
-                  <h1>Sem matches por enquanto...</h1>
-                </MessageContainer>
-              )}
-            </DrawerBody>
+            <Container>
+              <DrawerBody>
+                {matches.length > 0 ? (
+                  matchesMap
+                ) : (
+                  <MessageContainer>
+                    <FontAwesomeIcon
+                      color="white"
+                      icon={faHeartBroken}
+                      size="4x"
+                    />
+                    <h1>Sem matches por enquanto...</h1>
+                  </MessageContainer>
+                )}
+              </DrawerBody>
+            </Container>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>

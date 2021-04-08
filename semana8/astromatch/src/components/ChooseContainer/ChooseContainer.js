@@ -45,7 +45,9 @@ export default function ChooseContainer() {
   }, [isMatch]);
 
   useEffect(() => {
-    clear();
+    if (resultReset.message == "Success") {
+      clear();
+    }
   }, [resultReset]);
 
   const clear = () => {
