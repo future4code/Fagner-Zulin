@@ -1,6 +1,11 @@
 import { Box, Button, Tooltip, useToast } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faHeart, faRedo } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTimes,
+  faHeart,
+  faRedo,
+  faGrinHearts,
+} from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import CardUser from "../CardUser/CardUser";
 import {
@@ -15,11 +20,13 @@ import MatchesContainer from "../MatchesContainer/MatchesContainer";
 import { getProfileToChoose } from "../../services/getProfileToChoose";
 import { postChoosePerson } from "../../services/postChoosePerson";
 import { putClear } from "../../services/putClear";
+import ButtonLikeOrUnlike from "../ButtonLikeOrUnlike/ButtonLikeOrUnlike";
 
 export default function ChooseContainer() {
   const [direction, setDirection] = useState(null);
   const [profile, setProfile] = useState(null);
   const [isMatch, setIsMatch] = useState({});
+  const [resultReset, setResultReset] = useState({});
   const toast = useToast();
 
   useEffect(() => {
@@ -33,17 +40,46 @@ export default function ChooseContainer() {
     setDirection(null);
     setProfile(null);
     if (isMatch.isMatch) {
-      toast({
-        render: () => (
-          <Box color="white" p={3} bg="#5C1428">
-            teste
-          </Box>
-        ),
-        duration: 5000,
-        isClosable: true,
-      });
+      itsMatch();
     }
   }, [isMatch]);
+
+  useEffect(() => {
+    clear();
+  }, [resultReset]);
+
+  const clear = () => {
+    toast({
+      title: "Matches limpos",
+      description: "Agora você pode começar tudo de novo!",
+      status: "info",
+      duration: 3000,
+      isClosable: true,
+    });
+  };
+
+  const itsMatch = () => {
+    toast({
+      render: () => (
+        <Box
+          display="flex"
+          alignItems="center"
+          color="white"
+          p={6}
+          bg="#5C1428"
+          borderRadius="md"
+        >
+          <FontAwesomeIcon icon={faGrinHearts} size="2x" />
+          <Box fontFamily='"Kiwi Maru", serif' marginLeft="10px">
+            <h1>It's a match!</h1>
+            <p>Agora vocês podem conversar</p>
+          </Box>
+        </Box>
+      ),
+      duration: 3000,
+      isClosable: true,
+    });
+  };
 
   const likeOrUnlike = async (option) => {
     switch (option) {
@@ -52,13 +88,11 @@ export default function ChooseContainer() {
         const choisePositive = { id: profile.id, choice: true };
         const resultPositive = await postChoosePerson(choisePositive);
         setIsMatch(resultPositive);
-        console.log(resultPositive);
         break;
       case "unlike":
         setDirection(swipeRight);
         const choiseNegative = { id: profile.id, choice: false };
         const resultNegative = await postChoosePerson(choiseNegative);
-        console.log(resultNegative);
         setIsMatch(resultNegative);
         break;
       default:
@@ -68,6 +102,7 @@ export default function ChooseContainer() {
 
   const resetMatches = async () => {
     const result = await putClear();
+    setResultReset(result);
   };
 
   return (
@@ -89,38 +124,21 @@ export default function ChooseContainer() {
         )}
       </CardContainer>
       <FooterContainer>
-        <Button
-          onClick={() => likeOrUnlike("unlike")}
-          height="60px"
-          width="60px"
-          borderRadius="100%"
-          transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-          _active={{
-            transform: "scale(0.85)",
-          }}
-          _focus={{
-            boxShadow: "0 0 1px 2px #FC8181, 0 1px 1px rgba(0, 0, 0, .15)",
-          }}
-          colorScheme="red"
-        >
-          <FontAwesomeIcon icon={faTimes} size="2x" />
-        </Button>
-        <Button
-          onClick={() => likeOrUnlike("like")}
-          height="60px"
-          width="60px"
-          borderRadius="100%"
-          transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-          _active={{
-            transform: "scale(0.85)",
-          }}
-          _focus={{
-            boxShadow: "0 0 1px 2px #68D391, 0 1px 1px rgba(0, 0, 0, .15)",
-          }}
-          colorScheme="green"
-        >
-          <FontAwesomeIcon icon={faHeart} size="2x" />
-        </Button>
+        <ButtonLikeOrUnlike
+          likeOrUnlike={likeOrUnlike}
+          choice={"unlike"}
+          borderColor="#FC8181"
+          icon={faTimes}
+          buttonColor={"red"}
+        />
+
+        <ButtonLikeOrUnlike
+          likeOrUnlike={likeOrUnlike}
+          choice={"like"}
+          borderColor="#68D391"
+          icon={faHeart}
+          buttonColor={"green"}
+        />
       </FooterContainer>
     </BoxContainer>
   );

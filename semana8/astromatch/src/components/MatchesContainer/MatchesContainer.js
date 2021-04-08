@@ -95,8 +95,6 @@ export default function MatchesContainer() {
                 </MessageContainer>
               )}
             </DrawerBody>
-
-            <DrawerFooter></DrawerFooter>
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
