@@ -1,11 +1,6 @@
-import { Box, Button, Tooltip, useToast } from "@chakra-ui/react";
+import { Button, Tooltip, useToast } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTimes,
-  faHeart,
-  faRedo,
-  faGrinHearts,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faHeart, faRedo } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import CardUser from "../CardUser/CardUser";
 import {
@@ -21,6 +16,7 @@ import { getProfileToChoose } from "../../services/getProfileToChoose";
 import { postChoosePerson } from "../../services/postChoosePerson";
 import { putClear } from "../../services/putClear";
 import ButtonLikeOrUnlike from "../ButtonLikeOrUnlike/ButtonLikeOrUnlike";
+import ToastItsMatch from "../ToastItsMatch/ToastItsMatch";
 
 export default function ChooseContainer() {
   const [direction, setDirection] = useState(null);
@@ -40,66 +36,42 @@ export default function ChooseContainer() {
     setDirection(null);
     setProfile(null);
     if (isMatch.isMatch) {
-      itsMatch();
+      toast({
+        render: () => <ToastItsMatch />,
+        duration: 3000,
+        isClosable: true,
+      });
     }
-  }, [isMatch]);
+  }, [isMatch, toast]);
 
   useEffect(() => {
-    if (resultReset.message == "Success") {
-      clear();
+    if (resultReset.message === "Success") {
+      toast({
+        title: "Matches limpos",
+        description: "Agora você pode começar tudo de novo!",
+        status: "info",
+        duration: 3000,
+        isClosable: true,
+      });
     }
-  }, [resultReset]);
+  }, [resultReset, toast]);
 
-  const clear = () => {
-    toast({
-      title: "Matches limpos",
-      description: "Agora você pode começar tudo de novo!",
-      status: "info",
-      duration: 3000,
-      isClosable: true,
+  const like = async () => {
+    setDirection(swipeLeft);
+    const result = await postChoosePerson({
+      id: profile.id,
+      choice: true,
     });
+    setIsMatch(result);
   };
 
-  const itsMatch = () => {
-    toast({
-      render: () => (
-        <Box
-          display="flex"
-          alignItems="center"
-          color="white"
-          p={6}
-          bg="#5C1428"
-          borderRadius="md"
-        >
-          <FontAwesomeIcon icon={faGrinHearts} size="2x" />
-          <Box fontFamily='"Kiwi Maru", serif' marginLeft="10px">
-            <h1>It's a match!</h1>
-            <p>Agora vocês podem conversar</p>
-          </Box>
-        </Box>
-      ),
-      duration: 3000,
-      isClosable: true,
+  const unlike = async () => {
+    setDirection(swipeRight);
+    const result = await postChoosePerson({
+      id: profile.id,
+      choice: false,
     });
-  };
-
-  const likeOrUnlike = async (option) => {
-    switch (option) {
-      case "like":
-        setDirection(swipeLeft);
-        const choisePositive = { id: profile.id, choice: true };
-        const resultPositive = await postChoosePerson(choisePositive);
-        setIsMatch(resultPositive);
-        break;
-      case "unlike":
-        setDirection(swipeRight);
-        const choiseNegative = { id: profile.id, choice: false };
-        const resultNegative = await postChoosePerson(choiseNegative);
-        setIsMatch(resultNegative);
-        break;
-      default:
-        break;
-    }
+    setIsMatch(result);
   };
 
   const resetMatches = async () => {
@@ -127,16 +99,14 @@ export default function ChooseContainer() {
       </CardContainer>
       <FooterContainer>
         <ButtonLikeOrUnlike
-          likeOrUnlike={likeOrUnlike}
-          choice={"unlike"}
+          likeOrUnlike={unlike}
           borderColor="#FC8181"
           icon={faTimes}
           buttonColor={"red"}
         />
 
         <ButtonLikeOrUnlike
-          likeOrUnlike={likeOrUnlike}
-          choice={"like"}
+          likeOrUnlike={like}
           borderColor="#68D391"
           icon={faHeart}
           buttonColor={"green"}

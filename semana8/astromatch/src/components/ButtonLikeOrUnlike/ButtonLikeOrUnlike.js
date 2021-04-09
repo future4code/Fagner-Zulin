@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 export default function ButtonLikeOrUnlike(props) {
-  const { likeOrUnlike, choice, borderColor, icon, buttonColor } = props;
+  const { likeOrUnlike, borderColor, icon, buttonColor } = props;
   return (
     <>
       <Button
-        onClick={() => likeOrUnlike(choice)}
+        onClick={likeOrUnlike}
         height="60px"
         width="60px"
         borderRadius="100%"
