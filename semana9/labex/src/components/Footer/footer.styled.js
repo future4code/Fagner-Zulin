@@ -45,7 +45,7 @@ export const SocialNetworkContainer = styled.div`
     transform: scale(0.98);
   }
 `;
-export const BotaoFooter = styled.span`
+export const ButtonFooter = styled.span`
   color: black;
   font-weight: bold;
   background: #f1f2f6;

@@ -8,7 +8,7 @@ import React from 'react';
 // eslint-disable-next-line import/no-unresolved
 import labexWhite from '../../img/LabeX-white.png';
 import {
-  BotaoFooter,
+  ButtonFooter,
   FooterContainer,
   Logo,
   PlanetsContainer,
@@ -40,7 +40,7 @@ export default function Footer() {
         <FontAwesomeIcon className="icones" icon={faTwitterSquare} />
         <FontAwesomeIcon className="icones" icon={faInstagramSquare} />
       </SocialNetworkContainer>
-      <BotaoFooter>Área Administrativa</BotaoFooter>
+      <ButtonFooter>Área Administrativa</ButtonFooter>
     </FooterContainer>
   );
 }
