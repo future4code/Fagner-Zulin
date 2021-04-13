@@ -5,38 +5,15 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import styled from 'styled-components';
 // eslint-disable-next-line import/no-unresolved
 import labexWhite from '../../img/LabeX-white.png';
-
-const FooterContainer = styled.footer`
-  height: 15vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  justify-content: space-between;
-`;
-const Logo = styled.img`
-  max-height: 100px;
-`;
-
-const PlanetsContainer = styled.div``;
-
-const SocialNetworkContainer = styled.div`
-  width: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  .icones {
-    font-size: 1.5em;
-    cursor: pointer;
-  }
-  .icones:hover {
-    color: #7f8c8d;
-  }
-`;
+import {
+  BotaoFooter,
+  FooterContainer,
+  Logo,
+  PlanetsContainer,
+  SocialNetworkContainer,
+} from './footer.styled';
 
 export default function Footer() {
   return (
@@ -63,6 +40,7 @@ export default function Footer() {
         <FontAwesomeIcon className="icones" icon={faTwitterSquare} />
         <FontAwesomeIcon className="icones" icon={faInstagramSquare} />
       </SocialNetworkContainer>
+      <BotaoFooter>Área Administrativa</BotaoFooter>
     </FooterContainer>
   );
 }
