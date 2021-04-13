@@ -3,22 +3,21 @@ import styled from 'styled-components';
 // eslint-disable-next-line import/no-unresolved
 import labexWhite from '../../img/LabeX-white.png';
 
-const HeaderContainer = styled.header`
+const FooterContainer = styled.footer`
   height: 15vh;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  img {
-    max-height: 200px;
-  }
+  padding: 20px;
+`;
+const Logo = styled.img`
+  max-height: 100px;
 `;
 
-export default function Header() {
+export default function Footer() {
   return (
-    <HeaderContainer>
-      <img src={labexWhite} alt="LabeX" />
-    </HeaderContainer>
+    <FooterContainer>
+      <Logo src={labexWhite} alt="LabeX" />
+    </FooterContainer>
   );
 }

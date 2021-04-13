@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 
 const HomePageContainer = styled.main`
@@ -14,6 +15,8 @@ export default function HomePage() {
   return (
     <HomePageContainer>
       <Header />
+
+      <Footer />
     </HomePageContainer>
   );
 }
