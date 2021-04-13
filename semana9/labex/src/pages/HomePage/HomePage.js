@@ -1,19 +1,19 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { gotToListTripPage, gotToLoginPage } from '../../routers/coordinates';
+import styled from 'styled-components';
+import Header from '../../components/Header/Header';
+
+const HomePageContainer = styled.main`
+  height: 100vh;
+  width: 70vw;
+  position: relative;
+  z-index: 1;
+  background-color: #000;
+`;
 
 export default function HomePage() {
-  const history = useHistory();
-
   return (
-    <div>
-      <p>Home</p>
-      <button type="button" onClick={() => gotToListTripPage(history)}>
-        Viagens
-      </button>
-      <button type="button" onClick={() => gotToLoginPage(history)}>
-        Login
-      </button>
-    </div>
+    <HomePageContainer>
+      <Header />
+    </HomePageContainer>
   );
 }

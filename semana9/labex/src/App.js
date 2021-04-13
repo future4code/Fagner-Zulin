@@ -6,6 +6,9 @@ import Routers from './routers/Routers';
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default function App() {
@@ -13,9 +16,11 @@ export default function App() {
     <Container>
       <Routers />
       <StarfieldAnimation
+        alphaFactor="0.3"
         style={{
+          position: 'absolute',
           width: '100%',
-          height: '94%',
+          height: '100%',
         }}
       />
     </Container>
