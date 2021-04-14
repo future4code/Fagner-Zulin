@@ -7,8 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 // eslint-disable-next-line import/no-unresolved
 import labexWhite from '../../img/LabeX-white.png';
+import CustomButton from '../StyledComponentes/CustomButton';
 import {
-  ButtonFooter,
   FooterContainer,
   Logo,
   PlanetsContainer,
@@ -40,7 +40,7 @@ export default function Footer() {
         <FontAwesomeIcon className="icones" icon={faTwitterSquare} />
         <FontAwesomeIcon className="icones" icon={faInstagramSquare} />
       </SocialNetworkContainer>
-      <ButtonFooter>Área Administrativa</ButtonFooter>
+      <CustomButton>Área Administrativa</CustomButton>
     </FooterContainer>
   );
 }

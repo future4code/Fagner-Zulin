@@ -2,10 +2,10 @@ import React from 'react';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import ContentContainer from '../../components/StyledComponentes/ContentContainer.styled';
+import CustomButton from '../../components/StyledComponentes/CustomButton';
 import PageContainer from '../../components/StyledComponentes/PageContainer.styled';
 import planetsMovie from '../../video/planets.mp4';
 import {
-  ButtonHome,
   ContainerHome,
   Text,
   TextContainer,
@@ -29,7 +29,7 @@ export default function HomePage() {
 
             <Text>Clique no botão e conheça nossos planos de viagem</Text>
 
-            <ButtonHome>Bora viajar</ButtonHome>
+            <CustomButton>Bora viajar</CustomButton>
           </TextContainer>
 
           <VideoContainer>
