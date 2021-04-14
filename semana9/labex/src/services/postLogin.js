@@ -4,9 +4,11 @@ import urlBaseApi from './config/apiConfig';
 const postLogin = async (body) => {
   try {
     const response = await axios.post(`${urlBaseApi}/login`, body);
-    return response.data;
+    const { status } = response;
+    const { token } = response.data;
+    return { code: status, token };
   } catch (error) {
-    return error;
+    return { code: error.response.status };
   }
 };
 
