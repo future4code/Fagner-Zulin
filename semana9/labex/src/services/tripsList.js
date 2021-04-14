@@ -1,7 +1,7 @@
 import axios from 'axios';
 import urlBaseApi from './config/apiConfig';
 
-const getTrips = async () => {
+const tripsList = async () => {
   try {
     const response = await axios.get(`${urlBaseApi}/trips`);
     const { status } = response.status;
@@ -16,4 +16,4 @@ const getTrips = async () => {
   }
 };
 
-export default getTrips;
+export default tripsList;

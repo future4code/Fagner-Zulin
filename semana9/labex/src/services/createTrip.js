@@ -2,7 +2,7 @@ import axios from 'axios';
 import urlBaseApi from './config/apiConfig';
 import headerToReq from './config/headerToReq';
 
-const postTrip = async (body) => {
+const createTrip = async (body) => {
   const header = headerToReq();
 
   try {
@@ -18,4 +18,4 @@ const postTrip = async (body) => {
   }
 };
 
-export default postTrip;
+export default createTrip;

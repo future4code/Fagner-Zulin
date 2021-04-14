@@ -2,7 +2,7 @@ import axios from 'axios';
 import urlBaseApi from './config/apiConfig';
 import headerToReq from './config/headerToReq';
 
-const getTripDetail = async (id) => {
+const tripDetail = async (id) => {
   const header = headerToReq();
   try {
     const response = await axios.get(`${urlBaseApi}/trips/${id}`, header);
@@ -18,4 +18,4 @@ const getTripDetail = async (id) => {
   }
 };
 
-export default getTripDetail;
+export default tripDetail;

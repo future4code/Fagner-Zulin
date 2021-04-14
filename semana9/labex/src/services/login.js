@@ -1,7 +1,7 @@
 import axios from 'axios';
 import urlBaseApi from './config/apiConfig';
 
-const postLogin = async (body) => {
+const login = async (body) => {
   try {
     const response = await axios.post(`${urlBaseApi}/login`, body);
     const { status } = response;
@@ -12,4 +12,4 @@ const postLogin = async (body) => {
   }
 };
 
-export default postLogin;
+export default login;

@@ -18,7 +18,7 @@ import {
   FormLoginContainer,
   TitleLogin,
 } from './loginPage.styled';
-import postLogin from '../../services/postLogin';
+import login from '../../services/login';
 import { saveToken } from '../../utils/localStorageFunctions';
 import { gotToAdminHomePage } from '../../routers/coordinates';
 
@@ -52,7 +52,7 @@ export default function LoginPage() {
 
   const onClickLogin = async () => {
     const body = { email, password };
-    const result = await postLogin(body);
+    const result = await login(body);
 
     if (result.code === 401) {
       alertLogin();
