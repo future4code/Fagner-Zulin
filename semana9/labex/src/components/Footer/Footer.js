@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   faFacebookSquare,
   faInstagramSquare,
@@ -15,7 +16,8 @@ import {
   SocialNetworkContainer,
 } from './footer.styled';
 
-export default function Footer() {
+export default function Footer(props) {
+  const { hasButton, clickButton, history } = props;
   return (
     <FooterContainer>
       <Logo src={labexWhite} alt="LabeX" />
@@ -40,7 +42,11 @@ export default function Footer() {
         <FontAwesomeIcon className="icones" icon={faTwitterSquare} />
         <FontAwesomeIcon className="icones" icon={faInstagramSquare} />
       </SocialNetworkContainer>
-      <CustomButton>Área Administrativa</CustomButton>
+      {hasButton && (
+        <CustomButton onClick={() => clickButton(history)}>
+          Área Administrativa
+        </CustomButton>
+      )}
     </FooterContainer>
   );
 }

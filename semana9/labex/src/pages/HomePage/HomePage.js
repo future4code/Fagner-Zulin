@@ -1,9 +1,11 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import ContentContainer from '../../components/StyledComponentes/ContentContainer.styled';
 import CustomButton from '../../components/StyledComponentes/CustomButton';
 import PageContainer from '../../components/StyledComponentes/PageContainer.styled';
+import { gotToLoginPage } from '../../routers/coordinates';
 import planetsMovie from '../../video/planets.mp4';
 import {
   ContainerHome,
@@ -14,6 +16,7 @@ import {
 } from './homePage.styled';
 
 export default function HomePage() {
+  const history = useHistory();
   return (
     <PageContainer>
       <Header />
@@ -40,7 +43,7 @@ export default function HomePage() {
         </ContainerHome>
       </ContentContainer>
 
-      <Footer />
+      <Footer hasButton clickButton={gotToLoginPage} history={history} />
     </PageContainer>
   );
 }
