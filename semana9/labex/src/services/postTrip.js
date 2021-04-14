@@ -2,20 +2,20 @@ import axios from 'axios';
 import urlBaseApi from './config/apiConfig';
 import headerToReq from './config/headerToReq';
 
-const getTripDetail = async (id) => {
+const postTrip = async (body) => {
   const header = headerToReq();
+
   try {
-    const response = await axios.get(`${urlBaseApi}/trips/${id}`, header);
+    const response = await axios.post(`${urlBaseApi}/trips`, body, header);
     const { status } = response.status;
     const { trip } = response.data;
 
     return { code: status, trip };
   } catch (error) {
     const { status } = error.response;
-    const { message } = error.response.data;
 
-    return { code: status, message };
+    return { code: status };
   }
 };
 
-export default getTripDetail;
+export default postTrip;
