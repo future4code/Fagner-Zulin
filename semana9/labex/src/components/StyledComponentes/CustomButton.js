@@ -4,10 +4,11 @@ const CustomButton = styled.span`
   color: black;
   font-weight: bold;
   background: #f1f2f6;
-  padding: 8px;
+  padding: ${(props) => props.padding || '8px'};
   border-radius: 5px;
   cursor: pointer;
   user-select: none;
+  margin-right: ${(props) => props.mr || ''};
 
   :hover {
     background-color: #979797;
