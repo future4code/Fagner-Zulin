@@ -15,6 +15,10 @@ const ContainerLogin = styled.section`
 const FormLoginContainer = styled.div`
   width: 50%;
   height: 100%;
+  padding-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default function LoginPage() {
