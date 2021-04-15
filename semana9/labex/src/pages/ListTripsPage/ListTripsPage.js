@@ -5,8 +5,13 @@ import Header from '../../components/Header/Header';
 import ContentContainer from '../../components/StyledComponentes/ContentContainer.styled';
 import CustomButton from '../../components/StyledComponentes/CustomButton';
 import PageContainer from '../../components/StyledComponentes/PageContainer.styled';
+import TripsCard from '../../components/TripsCard/TripsCard';
 import { gotToHomePage, gotToLoginPage } from '../../routers/coordinates';
-import { ContainerListTrips, MenuContainer } from './listTripsPage.styled';
+import {
+  CardsContainer,
+  ContainerListTrips,
+  MenuContainer,
+} from './listTripsPage.styled';
 
 export default function ListTripsPage() {
   const history = useHistory();
@@ -20,6 +25,16 @@ export default function ListTripsPage() {
               Home
             </CustomButton>
           </MenuContainer>
+          <CardsContainer>
+            <TripsCard />
+            <TripsCard />
+            <TripsCard />
+            <TripsCard />
+            <TripsCard />
+            <TripsCard />
+            <TripsCard />
+            <TripsCard />
+          </CardsContainer>
         </ContainerListTrips>
       </ContentContainer>
       <Footer hasButton clickButton={gotToLoginPage} history={history} />
