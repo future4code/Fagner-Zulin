@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 import ContentContainer from '../../components/StyledComponentes/ContentContainer.styled';
 import CustomButton from '../../components/StyledComponentes/CustomButton';
 import PageContainer from '../../components/StyledComponentes/PageContainer.styled';
-import { gotToLoginPage } from '../../routers/coordinates';
+import { gotToListTripPage, gotToLoginPage } from '../../routers/coordinates';
 import planetsMovie from '../../video/planets.mp4';
 import {
   ContainerHome,
@@ -32,7 +32,9 @@ export default function HomePage() {
 
             <Text>Clique no botão e conheça nossos planos de viagem</Text>
 
-            <CustomButton>Bora viajar</CustomButton>
+            <CustomButton onClick={() => gotToListTripPage(history)}>
+              Bora viajar
+            </CustomButton>
           </TextContainer>
 
           <VideoContainer>
