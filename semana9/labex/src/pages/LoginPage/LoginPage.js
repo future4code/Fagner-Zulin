@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
+  Box,
+  Image,
   Input,
   InputGroup,
   InputRightElement,
@@ -16,13 +18,31 @@ import CustomButton from '../../components/StyledComponentes/CustomButton';
 import {
   ContainerLogin,
   FormLoginContainer,
+  ImageContainer,
   TitleLogin,
 } from './loginPage.styled';
 import login from '../../services/login';
 import { saveToken } from '../../utils/localStorageFunctions';
 import { gotToAdminHomePage } from '../../routers/coordinates';
+import planetsObject from '../../utils/planetsObject';
 
 export default function LoginPage() {
+  const [planetImage, setPlanetImage] = useState(planetsObject[1]);
+
+  useEffect(() => {
+    let key = 1;
+    const interval = setInterval(() => {
+      setPlanetImage(planetsObject[key]);
+
+      if (key === 7) {
+        key = 1;
+      } else {
+        key += 1;
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   const history = useHistory();
 
   const toast = useToast();
@@ -68,6 +88,11 @@ export default function LoginPage() {
       <Header />
       <ContentContainer>
         <ContainerLogin>
+          <ImageContainer>
+            <Box width="100%">
+              <Image maxWidth="100%" src={planetImage} alt="" />
+            </Box>
+          </ImageContainer>
           <FormLoginContainer>
             <TitleLogin>Login</TitleLogin>
             <Input
