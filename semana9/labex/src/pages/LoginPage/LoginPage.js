@@ -24,25 +24,19 @@ import { gotToAdminHomePage } from '../../routers/coordinates';
 import PlanetsImages from '../../components/PlanetsImages/PlanetsImages';
 import SubmitButton from '../../components/StyledComponentes/SubmitButton';
 import { emailRegex } from '../../validations/regex';
+import useForm from '../../hooks/useForm';
+
+const initialStateValue = {
+  email: '',
+  password: '',
+};
 
 export default function LoginPage() {
+  const [form, onChange, clearForm] = useForm(initialStateValue);
   const history = useHistory();
-
   const toast = useToast();
-
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-
-  const [email, setEmail] = useState('');
-  const [password, setpassword] = useState('');
-
-  const handleEmail = (event) => setEmail(event.target.value);
-  const handlePassword = (event) => setpassword(event.target.value);
-
-  const cleanAllInputs = () => {
-    setEmail('');
-    setpassword('');
-  };
 
   const alertLogin = () =>
     toast({
@@ -55,12 +49,12 @@ export default function LoginPage() {
 
   const onClickLogin = async () => {
     window.event.preventDefault();
-    const body = { email, password };
+    const body = { ...form };
     const result = await login(body);
 
     if (result.code === 401) {
       alertLogin();
-      cleanAllInputs();
+      clearForm(initialStateValue);
     } else {
       saveToken(result.token);
       gotToAdminHomePage(history);
@@ -76,20 +70,22 @@ export default function LoginPage() {
           <FormLoginContainer onSubmit={onClickLogin}>
             <TitleLogin>Login</TitleLogin>
             <Input
+              name="email"
               pattern={emailRegex}
               title="Ex: seu-email@provedor.com"
               required
               type="email"
-              onChange={handleEmail}
-              value={email}
+              onChange={onChange}
+              value={form.email}
               mb="1.5"
               placeholder="Digite seu e-mail"
             />
             <InputGroup mb="1.5" size="md">
               <Input
+                name="password"
                 required
-                onChange={handlePassword}
-                value={password}
+                onChange={onChange}
+                value={form.password}
                 pr="4.5rem"
                 type={show ? 'text' : 'password'}
                 placeholder="Digite sua senha"
