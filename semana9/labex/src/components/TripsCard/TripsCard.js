@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomButton from '../StyledComponentes/CustomButton';
+import CandidateFormModal from '../CandidateFormModal/CandidateFormModal';
 import {
   CardContainer,
   DescriptionContainer,
@@ -25,7 +25,7 @@ export default function TripsCard() {
           <DescriptionLabel>Partida em: </DescriptionLabel> 21/12/20
         </p>
       </DescriptionContainer>
-      <CustomButton>Candidatar-se</CustomButton>
+      <CandidateFormModal />
     </CardContainer>
   );
 }
