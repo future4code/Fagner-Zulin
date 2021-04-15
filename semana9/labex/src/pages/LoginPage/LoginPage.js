@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Box,
-  Image,
   Input,
   InputGroup,
   InputRightElement,
@@ -10,7 +8,6 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router-dom';
-import AliceCarousel from 'react-alice-carousel';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import ContentContainer from '../../components/StyledComponentes/ContentContainer.styled';
@@ -19,26 +16,14 @@ import CustomButton from '../../components/StyledComponentes/CustomButton';
 import {
   ContainerLogin,
   FormLoginContainer,
-  ImageContainer,
   TitleLogin,
 } from './loginPage.styled';
 import login from '../../services/login';
 import { saveToken } from '../../utils/localStorageFunctions';
 import { gotToAdminHomePage } from '../../routers/coordinates';
-import planetsObject from '../../utils/planetsObject';
-import 'react-alice-carousel/lib/alice-carousel.css';
+import PlanetsImages from '../../components/PlanetsImages/PlanetsImages';
 
 export default function LoginPage() {
-  const planetsArray = [
-    <Image maxWidth="100%" src={planetsObject[1]} alt="" />,
-    <Image maxWidth="100%" src={planetsObject[2]} alt="" />,
-    <Image maxWidth="100%" src={planetsObject[3]} alt="" />,
-    <Image maxWidth="100%" src={planetsObject[4]} alt="" />,
-    <Image maxWidth="100%" src={planetsObject[5]} alt="" />,
-    <Image maxWidth="100%" src={planetsObject[6]} alt="" />,
-    <Image maxWidth="100%" src={planetsObject[7]} alt="" />,
-  ];
-
   const history = useHistory();
 
   const toast = useToast();
@@ -84,20 +69,7 @@ export default function LoginPage() {
       <Header />
       <ContentContainer>
         <ContainerLogin>
-          <ImageContainer>
-            <Box width="100%">
-              <AliceCarousel
-                infinite
-                animationDuration={1500}
-                disableDotsControls
-                disableButtonsControls
-                autoPlayInterval={3000}
-                animationType="fadeout"
-                autoPlay
-                items={planetsArray}
-              />
-            </Box>
-          </ImageContainer>
+          <PlanetsImages />
           <FormLoginContainer>
             <TitleLogin>Login</TitleLogin>
             <Input
