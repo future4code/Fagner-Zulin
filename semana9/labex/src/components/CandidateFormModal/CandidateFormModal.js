@@ -16,6 +16,8 @@ import {
 } from '@chakra-ui/react';
 import CustomButton from '../StyledComponentes/CustomButton';
 import getCoutries from '../../services/getCoutries';
+import { SubTitle, Title, FormCandidate } from './candidateFormModal.styled';
+import SubmitButton from '../StyledComponentes/SubmitButton';
 
 export default function CandidateFormModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,31 +43,31 @@ export default function CandidateFormModal() {
         <ModalOverlay />
         <ModalContent background="rgba(189, 195, 199, 0.95)">
           <ModalHeader>
-            <h1>Netuno</h1>
+            <Title>Netuno </Title>
+            <SubTitle>Surfando em Netuno</SubTitle>
           </ModalHeader>
           <ModalCloseButton />
           <Divider />
 
           <ModalBody pb={6}>
-            <form>
-              <Input />
-              <Input />
-              <Input />
-              <Select placeholder="Selecione seu país">
+            <FormCandidate>
+              <Input bg="whiteAlpha.700" placeholder="Nome" />
+              <Input bg="whiteAlpha.700" placeholder="Profissão" />
+              <Input bg="whiteAlpha.700" placeholder="Idade" />
+              <Select bg="whiteAlpha.700" placeholder="Selecione seu País">
                 {countries.map((country) => (
                   <option value={country.name}>{country.name}</option>
                 ))}
               </Select>
-              <Textarea placeholder="Here is a sample placeholder" />
-            </form>
+              <Textarea bg="whiteAlpha.700" placeholder="Texto de Candiatura" />
+              <ModalFooter>
+                <SubmitButton mr="10px">Candidatar-se</SubmitButton>
+                <Button colorScheme="red" onClick={onClose}>
+                  Cancelar
+                </Button>
+              </ModalFooter>
+            </FormCandidate>
           </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
-              Save
-            </Button>
-            <Button onClick={onClose}>Cancel</Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
