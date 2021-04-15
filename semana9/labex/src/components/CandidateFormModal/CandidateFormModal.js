@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -15,9 +15,18 @@ import {
   Select,
 } from '@chakra-ui/react';
 import CustomButton from '../StyledComponentes/CustomButton';
+import getCoutries from '../../services/getCoutries';
 
 export default function CandidateFormModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [countries, setCountries] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const result = await getCoutries();
+      setCountries(result);
+    })();
+  }, []);
 
   return (
     <>
@@ -42,7 +51,11 @@ export default function CandidateFormModal() {
               <Input />
               <Input />
               <Input />
-              <Select />
+              <Select placeholder="Selecione seu país">
+                {countries.map((country) => (
+                  <option value={country.name}>{country.name}</option>
+                ))}
+              </Select>
               <Textarea placeholder="Here is a sample placeholder" />
             </form>
           </ModalBody>
