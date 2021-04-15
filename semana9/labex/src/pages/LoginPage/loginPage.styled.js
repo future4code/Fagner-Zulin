@@ -7,7 +7,7 @@ export const ContainerLogin = styled.section`
   align-items: center;
 `;
 
-export const FormLoginContainer = styled.div`
+export const FormLoginContainer = styled.form`
   width: 50%;
   height: 100%;
   display: flex;

@@ -22,6 +22,8 @@ import login from '../../services/login';
 import { saveToken } from '../../utils/localStorageFunctions';
 import { gotToAdminHomePage } from '../../routers/coordinates';
 import PlanetsImages from '../../components/PlanetsImages/PlanetsImages';
+import SubmitButton from '../../components/StyledComponentes/SubmitButton';
+import { emailRegex } from '../../validations/regex';
 
 export default function LoginPage() {
   const history = useHistory();
@@ -52,6 +54,7 @@ export default function LoginPage() {
     });
 
   const onClickLogin = async () => {
+    window.event.preventDefault();
     const body = { email, password };
     const result = await login(body);
 
@@ -70,9 +73,13 @@ export default function LoginPage() {
       <ContentContainer>
         <ContainerLogin>
           <PlanetsImages />
-          <FormLoginContainer>
+          <FormLoginContainer onSubmit={onClickLogin}>
             <TitleLogin>Login</TitleLogin>
             <Input
+              pattern={emailRegex}
+              title="Ex: seu-email@provedor.com"
+              required
+              type="email"
               onChange={handleEmail}
               value={email}
               mb="1.5"
@@ -80,6 +87,7 @@ export default function LoginPage() {
             />
             <InputGroup mb="1.5" size="md">
               <Input
+                required
                 onChange={handlePassword}
                 value={password}
                 pr="4.5rem"
@@ -96,7 +104,7 @@ export default function LoginPage() {
                 </CustomButton>
               </InputRightElement>
             </InputGroup>
-            <CustomButton onClick={onClickLogin}>Entrar</CustomButton>
+            <SubmitButton type="submit">Entrar</SubmitButton>
           </FormLoginContainer>
         </ContainerLogin>
       </ContentContainer>
