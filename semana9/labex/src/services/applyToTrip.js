@@ -4,7 +4,7 @@ import urlBaseApi from './config/apiConfig';
 const applyToTrip = async (id, body) => {
   try {
     const response = await axios.post(`${urlBaseApi}/trips/${id}/apply`, body);
-    const { status } = response.status;
+    const { status } = response;
 
     return { code: status };
   } catch (error) {
