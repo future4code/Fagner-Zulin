@@ -1,3 +1,4 @@
+import { Divider } from '@chakra-ui/react';
 import React from 'react';
 import CandidateFormModal from '../CandidateFormModal/CandidateFormModal';
 import {
@@ -11,6 +12,7 @@ export default function TripsCard() {
   return (
     <CardContainer>
       <NamePlanet>Netuno</NamePlanet>
+      <Divider />
       <h2>Surfando em Netuno</h2>
       <DescriptionContainer>
         <p>

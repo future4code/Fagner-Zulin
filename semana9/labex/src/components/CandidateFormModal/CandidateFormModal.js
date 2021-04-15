@@ -9,6 +9,10 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
+  Divider,
+  Input,
+  Textarea,
+  Select,
 } from '@chakra-ui/react';
 import CustomButton from '../StyledComponentes/CustomButton';
 
@@ -19,12 +23,29 @@ export default function CandidateFormModal() {
     <>
       <CustomButton onClick={onOpen}>Candidatar-se</CustomButton>
 
-      <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+      <Modal
+        size="xl"
+        closeOnOverlayClick={false}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
+        <ModalContent background="rgba(189, 195, 199, 0.95)">
+          <ModalHeader>
+            <h1>Netuno</h1>
+          </ModalHeader>
           <ModalCloseButton />
-          <ModalBody pb={6} />
+          <Divider />
+
+          <ModalBody pb={6}>
+            <form>
+              <Input />
+              <Input />
+              <Input />
+              <Select />
+              <Textarea placeholder="Here is a sample placeholder" />
+            </form>
+          </ModalBody>
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3}>
