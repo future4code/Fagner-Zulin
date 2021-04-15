@@ -7,9 +7,11 @@ export const ContainerListTrips = styled.section`
 `;
 
 export const MenuContainer = styled.nav`
-  background-color: #2d3436;
-  height: 100%;
+  background-color: rgba(45, 52, 54, 0.5);
+  height: 70vh;
   width: 20%;
-  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
 `;
-export const teste = styled.nav``;

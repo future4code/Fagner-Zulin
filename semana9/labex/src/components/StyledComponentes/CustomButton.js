@@ -9,6 +9,8 @@ const CustomButton = styled.span`
   cursor: pointer;
   user-select: none;
   margin-right: ${(props) => props.mr || ''};
+  width: ${(props) => props.wd || ''};
+  text-align: center;
 
   :hover {
     background-color: #979797;

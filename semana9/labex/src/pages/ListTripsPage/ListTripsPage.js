@@ -3,8 +3,9 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import ContentContainer from '../../components/StyledComponentes/ContentContainer.styled';
+import CustomButton from '../../components/StyledComponentes/CustomButton';
 import PageContainer from '../../components/StyledComponentes/PageContainer.styled';
-import { gotToLoginPage } from '../../routers/coordinates';
+import { gotToHomePage, gotToLoginPage } from '../../routers/coordinates';
 import { ContainerListTrips, MenuContainer } from './listTripsPage.styled';
 
 export default function ListTripsPage() {
@@ -14,7 +15,11 @@ export default function ListTripsPage() {
       <Header />
       <ContentContainer>
         <ContainerListTrips>
-          <MenuContainer />
+          <MenuContainer>
+            <CustomButton onClick={() => gotToHomePage(history)} wd="100%">
+              Home
+            </CustomButton>
+          </MenuContainer>
         </ContainerListTrips>
       </ContentContainer>
       <Footer hasButton clickButton={gotToLoginPage} history={history} />
