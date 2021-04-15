@@ -19,7 +19,8 @@ import getCoutries from '../../services/getCoutries';
 import { SubTitle, Title, FormCandidate } from './candidateFormModal.styled';
 import SubmitButton from '../StyledComponentes/SubmitButton';
 
-export default function CandidateFormModal() {
+export default function CandidateFormModal({ toApplyData }) {
+  const { name, planet } = toApplyData;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [countries, setCountries] = useState([]);
 
@@ -43,8 +44,8 @@ export default function CandidateFormModal() {
         <ModalOverlay />
         <ModalContent background="rgba(189, 195, 199, 0.95)">
           <ModalHeader>
-            <Title>Netuno </Title>
-            <SubTitle>Surfando em Netuno</SubTitle>
+            <Title>{planet}</Title>
+            <SubTitle>{name}</SubTitle>
           </ModalHeader>
           <ModalCloseButton />
           <Divider />

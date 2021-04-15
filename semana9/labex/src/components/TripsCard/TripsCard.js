@@ -8,26 +8,29 @@ import {
   NamePlanet,
 } from './tripsCard.styled';
 
-export default function TripsCard() {
+export default function TripsCard({ trip }) {
+  const { planet, name, description, durationInDays, date, id } = trip;
+
+  const toApplyData = { planet, name, id };
+
   return (
     <CardContainer>
-      <NamePlanet>Netuno</NamePlanet>
+      <NamePlanet>{planet}</NamePlanet>
       <Divider />
-      <h2>Surfando em Netuno</h2>
+      <h2>{name}</h2>
       <DescriptionContainer>
         <p>
-          <DescriptionLabel>Descrição: </DescriptionLabel>Único tour que fazemos
-          em planeta anão no sistema solar! Levem casacos que a previsão é de
-          −230 °C
+          <DescriptionLabel>Descrição: </DescriptionLabel>
+          {description}
         </p>
         <p>
-          <DescriptionLabel>Duração: </DescriptionLabel> 540 dias
+          <DescriptionLabel>Duração: </DescriptionLabel> {durationInDays} dias
         </p>
         <p>
-          <DescriptionLabel>Partida em: </DescriptionLabel> 21/12/20
+          <DescriptionLabel>Partida em: </DescriptionLabel> {date}
         </p>
       </DescriptionContainer>
-      <CandidateFormModal />
+      <CandidateFormModal toApplyData={toApplyData} />
     </CardContainer>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
@@ -7,6 +7,7 @@ import CustomButton from '../../components/StyledComponentes/CustomButton';
 import PageContainer from '../../components/StyledComponentes/PageContainer.styled';
 import TripsCard from '../../components/TripsCard/TripsCard';
 import { gotToHomePage, gotToLoginPage } from '../../routers/coordinates';
+import tripsList from '../../services/tripsList';
 import {
   CardsContainer,
   ContainerListTrips,
@@ -15,6 +16,15 @@ import {
 
 export default function ListTripsPage() {
   const history = useHistory();
+  const [listTrips, setListTrips] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const { trips } = await tripsList();
+      setListTrips(trips);
+    })();
+  }, []);
+
   return (
     <PageContainer background="#000">
       <Header />
@@ -26,14 +36,9 @@ export default function ListTripsPage() {
             </CustomButton>
           </MenuContainer>
           <CardsContainer>
-            <TripsCard />
-            <TripsCard />
-            <TripsCard />
-            <TripsCard />
-            <TripsCard />
-            <TripsCard />
-            <TripsCard />
-            <TripsCard />
+            {listTrips.map((trip) => (
+              <TripsCard trip={trip} />
+            ))}
           </CardsContainer>
         </ContainerListTrips>
       </ContentContainer>
