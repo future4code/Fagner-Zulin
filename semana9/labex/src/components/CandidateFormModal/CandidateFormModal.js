@@ -17,11 +17,12 @@ import {
 } from '@chakra-ui/react';
 import CustomButton from '../StyledComponentes/CustomButton';
 import getCoutries from '../../services/getCoutries';
-import { SubTitle, Title, FormCandidate } from './candidateFormModal.styled';
+import { SubTitle, Title } from './candidateFormModal.styled';
 import SubmitButton from '../StyledComponentes/SubmitButton';
 import useForm from '../../hooks/useForm';
 import { nameCandidateRegex, professionRegex } from '../../validations/regex';
 import applyToTrip from '../../services/applyToTrip';
+import FormContainer from '../StyledComponentes/FormContainer';
 
 const initialStateValue = {
   name: '',
@@ -86,7 +87,7 @@ export default function CandidateFormModal({ toApplyData }) {
           <Divider />
 
           <ModalBody pb={6}>
-            <FormCandidate onSubmit={onClickApply}>
+            <FormContainer onSubmit={onClickApply}>
               <Input
                 pattern={nameCandidateRegex}
                 title="O nome precisa ter 3 caracteres ou mais"
@@ -155,7 +156,7 @@ export default function CandidateFormModal({ toApplyData }) {
                   Cancelar
                 </Button>
               </ModalFooter>
-            </FormCandidate>
+            </FormContainer>
           </ModalBody>
         </ModalContent>
       </Modal>

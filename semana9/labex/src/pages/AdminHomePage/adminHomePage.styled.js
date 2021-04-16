@@ -32,3 +32,8 @@ export const ListContainer = styled.section`
     border-radius: 20px;
   }
 `;
+
+export const Title = styled.h1`
+  font-size: 1.5em;
+  font-weight: bold;
+`;

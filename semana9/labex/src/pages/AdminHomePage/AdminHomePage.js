@@ -10,22 +10,27 @@ import { gotToHomePage } from '../../routers/coordinates';
 import MenuContainer from '../../components/StyledComponentes/MenuContainer';
 import CustomButton from '../../components/StyledComponentes/CustomButton';
 import TripLine from '../../components/TripLine/TripLine';
-import { ContainerAdminPage, ListContainer } from './adminHomePage.styled';
+import {
+  ContainerAdminPage,
+  ListContainer,
+  Title,
+} from './adminHomePage.styled';
 import tripsList from '../../services/tripsList';
+import CreateTripsModal from '../../components/CreateTripsModal/CreateTripsModal';
 
 export default function AdminHomePage() {
   const history = useHistory();
   useProtectedPage(history);
   const [listTrips, setListTrips] = useState([]);
-  const [aDelete, setADelete] = useState(false);
+  const [isChange, setIsChange] = useState(false);
 
   useEffect(() => {
     (async () => {
       const { trips } = await tripsList();
       setListTrips(trips);
-      setADelete(false);
+      setIsChange(false);
     })();
-  }, [aDelete]);
+  }, [isChange]);
 
   return (
     <PageContainer background="#000">
@@ -33,7 +38,7 @@ export default function AdminHomePage() {
       <ContentContainer>
         <ContainerAdminPage>
           <MenuContainer>
-            <h1>Dashbord</h1>
+            <Title>Dashboard</Title>
             <CustomButton
               mg="10px 0"
               onClick={() => gotToHomePage(history)}
@@ -41,9 +46,7 @@ export default function AdminHomePage() {
             >
               Home
             </CustomButton>
-            <CustomButton mg="10px 0" wd="100%">
-              Nova Viagem
-            </CustomButton>
+            <CreateTripsModal whenCreate={setIsChange} />
           </MenuContainer>
           <ListContainer>
             <SimpleGrid
@@ -53,7 +56,7 @@ export default function AdminHomePage() {
               spacingY="30px"
             >
               {listTrips.map((trip) => (
-                <TripLine whenDelete={setADelete} key={trip.id} trip={trip} />
+                <TripLine whenDelete={setIsChange} key={trip.id} trip={trip} />
               ))}
             </SimpleGrid>
           </ListContainer>

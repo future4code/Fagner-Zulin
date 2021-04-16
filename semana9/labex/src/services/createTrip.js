@@ -7,7 +7,7 @@ const createTrip = async (body) => {
 
   try {
     const response = await axios.post(`${urlBaseApi}/trips`, body, header);
-    const { status } = response.status;
+    const { status } = response;
     const { trip } = response.data;
 
     return { code: status, trip };
