@@ -7,7 +7,7 @@ const deleteTrip = async (id) => {
 
   try {
     const response = await axios.delete(`${urlBaseApi}/trips/${id}`, header);
-    const { status } = response.status;
+    const { status } = response;
 
     return { code: status };
   } catch (error) {
