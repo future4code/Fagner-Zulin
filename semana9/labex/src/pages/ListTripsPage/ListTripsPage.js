@@ -2,17 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
-import ContentContainer from '../../components/StyledComponentes/ContentContainer.styled';
 import CustomButton from '../../components/StyledComponentes/CustomButton';
 import PageContainer from '../../components/StyledComponentes/PageContainer.styled';
 import TripsCard from '../../components/TripsCard/TripsCard';
 import { gotToHomePage, gotToLoginPage } from '../../routers/coordinates';
 import tripsList from '../../services/tripsList';
-import {
-  CardsContainer,
-  ContainerListTrips,
-  MenuContainer,
-} from './listTripsPage.styled';
+import { CardsContainer, ContainerListTrips } from './listTripsPage.styled';
+import MenuContainer from '../../components/StyledComponentes/MenuContainer';
+import ContentContainer from '../../components/StyledComponentes/ContentContainer.styled';
 
 export default function ListTripsPage() {
   const history = useHistory();

@@ -9,6 +9,7 @@ const CustomButton = styled.span`
   cursor: pointer;
   user-select: none;
   margin-right: ${(props) => props.mr || ''};
+  margin: ${(props) => props.mg || ''};
   width: ${(props) => props.wd || ''};
   text-align: center;
 
