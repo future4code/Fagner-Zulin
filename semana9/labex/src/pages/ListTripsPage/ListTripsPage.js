@@ -37,7 +37,7 @@ export default function ListTripsPage() {
           </MenuContainer>
           <CardsContainer>
             {listTrips.map((trip) => (
-              <TripsCard trip={trip} />
+              <TripsCard key={trip.id} trip={trip} />
             ))}
           </CardsContainer>
         </ContainerListTrips>

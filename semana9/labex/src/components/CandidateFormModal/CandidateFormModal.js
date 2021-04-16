@@ -128,7 +128,9 @@ export default function CandidateFormModal({ toApplyData }) {
                 placeholder="Selecione seu País"
               >
                 {countries.map((country) => (
-                  <option value={country.name}>{country.name}</option>
+                  <option key={country.name} value={country.name}>
+                    {country.name}
+                  </option>
                 ))}
               </Select>
               <Textarea

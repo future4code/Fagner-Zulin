@@ -38,7 +38,7 @@ export default function HomePage() {
           </TextContainer>
 
           <VideoContainer>
-            <Videos preload="auto" muted autoPlay loop>
+            <Videos preload="none" muted autoPlay loop>
               <source src={planetsMovie} type="video/mp4" />
             </Videos>
           </VideoContainer>
