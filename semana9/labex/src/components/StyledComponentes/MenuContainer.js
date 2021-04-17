@@ -8,6 +8,7 @@ const MenuContainer = styled.nav`
   align-items: center;
   flex-direction: column;
   padding: 20px;
+  justify-content: ${(props) => props.jc || ''};
 `;
 
 export default MenuContainer;
