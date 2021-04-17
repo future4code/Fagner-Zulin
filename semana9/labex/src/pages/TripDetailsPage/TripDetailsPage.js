@@ -20,6 +20,7 @@ import MenuContainer from '../../components/StyledComponentes/MenuContainer';
 import CustomButton from '../../components/StyledComponentes/CustomButton';
 import CandidateCard from '../../components/CandidateCard/CandidateCard';
 import tripDetail from '../../services/tripDetail';
+import logout from '../../utils/logout';
 
 export default function TripDetailsPage() {
   const { id } = useParams();
@@ -97,7 +98,7 @@ export default function TripDetailsPage() {
         </ContainerTripDetailsPage>
       </ContentContainer>
 
-      <Footer />
+      <Footer hasButton clickButton={logout} history={history} text="Logout" />
     </PageContainer>
   );
 }

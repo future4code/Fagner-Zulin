@@ -17,6 +17,7 @@ import {
 } from './adminHomePage.styled';
 import tripsList from '../../services/tripsList';
 import CreateTripsModal from '../../components/CreateTripsModal/CreateTripsModal';
+import logout from '../../utils/logout';
 
 export default function AdminHomePage() {
   const history = useHistory();
@@ -68,7 +69,7 @@ export default function AdminHomePage() {
         </ContainerAdminPage>
       </ContentContainer>
 
-      <Footer />
+      <Footer hasButton clickButton={logout} history={history} text="Logout" />
     </PageContainer>
   );
 }

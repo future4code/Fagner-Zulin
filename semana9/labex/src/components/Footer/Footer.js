@@ -17,7 +17,7 @@ import {
 } from './footer.styled';
 
 export default function Footer(props) {
-  const { hasButton, clickButton, history } = props;
+  const { hasButton, clickButton, history, text } = props;
   return (
     <FooterContainer>
       <Logo src={labexWhite} alt="LabeX" />
@@ -44,7 +44,7 @@ export default function Footer(props) {
       </SocialNetworkContainer>
       {hasButton && (
         <CustomButton onClick={() => clickButton(history)}>
-          Área Administrativa
+          {text || 'Área Administrativa'}
         </CustomButton>
       )}
     </FooterContainer>
