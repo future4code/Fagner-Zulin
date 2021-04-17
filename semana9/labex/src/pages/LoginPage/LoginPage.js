@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Input,
   InputGroup,
@@ -19,7 +19,7 @@ import {
   TitleLogin,
 } from './loginPage.styled';
 import login from '../../services/login';
-import { saveToken } from '../../utils/localStorageFunctions';
+import { hasToken, saveToken } from '../../utils/localStorageFunctions';
 import { gotToAdminHomePage } from '../../routers/coordinates';
 import PlanetsImages from '../../components/PlanetsImages/PlanetsImages';
 import SubmitButton from '../../components/StyledComponentes/SubmitButton';
@@ -37,6 +37,14 @@ export default function LoginPage() {
   const toast = useToast();
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+
+  useEffect(() => {
+    const result = hasToken();
+
+    if (result) {
+      gotToAdminHomePage(history);
+    }
+  }, []);
 
   const alertLogin = () =>
     toast({
