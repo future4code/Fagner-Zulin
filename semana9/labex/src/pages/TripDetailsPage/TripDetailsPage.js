@@ -17,6 +17,7 @@ import {
 import MenuContainer from '../../components/StyledComponentes/MenuContainer';
 import tripsList from '../../services/tripsList';
 import CustomButton from '../../components/StyledComponentes/CustomButton';
+import CandidateCard from '../../components/CandidateCard/CandidateCard';
 
 export default function TripDetailsPage() {
   const { id } = useParams();
@@ -59,6 +60,7 @@ export default function TripDetailsPage() {
           <ApplicationsContainer>
             <CandidatesContainer>
               <h1>Candidaturas Pendentes</h1>
+              <CandidateCard />
             </CandidatesContainer>
             <Divider orientation="vertical" />
             <CandidatesContainer>
