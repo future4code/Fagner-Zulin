@@ -56,7 +56,12 @@ export default function AdminHomePage() {
               spacingY="30px"
             >
               {listTrips.map((trip) => (
-                <TripLine whenDelete={setIsChange} key={trip.id} trip={trip} />
+                <TripLine
+                  history={history}
+                  whenDelete={setIsChange}
+                  key={trip.id}
+                  trip={trip}
+                />
               ))}
             </SimpleGrid>
           </ListContainer>

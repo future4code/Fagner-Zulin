@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import deleteTrip from '../../services/deleteTrip';
 import { NamePlanet, NameTrip } from './tripLine.styled';
+import { gotToTripDetailsPage } from '../../routers/coordinates';
 
-export default function TripLine({ trip, whenDelete }) {
+export default function TripLine({ trip, whenDelete, history }) {
   const { name, planet, id } = trip;
   const toast = useToast();
 
@@ -27,9 +28,18 @@ export default function TripLine({ trip, whenDelete }) {
     }
   };
 
+  const onClickTrip = () => {
+    gotToTripDetailsPage(history, id);
+  };
+
   return (
     <div>
-      <Button width="auto" borderRightRadius="0" colorScheme="whiteAlpha">
+      <Button
+        onClick={onClickTrip}
+        width="auto"
+        borderRightRadius="0"
+        colorScheme="whiteAlpha"
+      >
         <NamePlanet>{planet}: </NamePlanet>
         <NameTrip>{name}</NameTrip>
       </Button>

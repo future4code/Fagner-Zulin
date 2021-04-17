@@ -6,7 +6,7 @@ const tripDetail = async (id) => {
   const header = headerToReq();
   try {
     const response = await axios.get(`${urlBaseApi}/trips/${id}`, header);
-    const { status } = response.status;
+    const { status } = response;
     const { trip } = response.data;
 
     return { code: status, trip };
