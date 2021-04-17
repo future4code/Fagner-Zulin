@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { SimpleGrid } from '@chakra-ui/react';
+import { SimpleGrid, Spinner } from '@chakra-ui/react';
 import useProtectedPage from '../../hooks/useProtectedPage';
 import Header from '../../components/Header/Header';
 import PageContainer from '../../components/StyledComponentes/PageContainer.styled';
@@ -18,6 +18,7 @@ import {
 import tripsList from '../../services/tripsList';
 import CreateTripsModal from '../../components/CreateTripsModal/CreateTripsModal';
 import logout from '../../utils/logout';
+import SpinnerContainer from '../../components/StyledComponentes/SpinnerContainer';
 
 export default function AdminHomePage() {
   const history = useHistory();
@@ -50,6 +51,18 @@ export default function AdminHomePage() {
             <CreateTripsModal whenCreate={setIsChange} />
           </MenuContainer>
           <ListContainer>
+            {listTrips.length === 0 && (
+              <SpinnerContainer>
+                <Spinner
+                  alignSelf="center"
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="gray.500"
+                  size="xl"
+                />
+              </SpinnerContainer>
+            )}
             <SimpleGrid
               style={{ margin: '20px auto' }}
               columns={2}

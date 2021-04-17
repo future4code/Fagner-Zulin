@@ -20,7 +20,7 @@ import {
 } from './loginPage.styled';
 import login from '../../services/login';
 import { hasToken, saveToken } from '../../utils/localStorageFunctions';
-import { gotToAdminHomePage } from '../../routers/coordinates';
+import { gotToAdminHomePage, gotToHomePage } from '../../routers/coordinates';
 import PlanetsImages from '../../components/PlanetsImages/PlanetsImages';
 import SubmitButton from '../../components/StyledComponentes/SubmitButton';
 import { emailRegex } from '../../validations/regex';
@@ -112,7 +112,12 @@ export default function LoginPage() {
           </FormLoginContainer>
         </ContainerLogin>
       </ContentContainer>
-      <Footer />
+      <Footer
+        hasButton
+        clickButton={gotToHomePage}
+        history={history}
+        text="Voltar"
+      />
     </PageContainer>
   );
 }
