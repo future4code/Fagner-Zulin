@@ -23,6 +23,12 @@ export const TitlePlanet = styled.h1`
   font-weight: bold;
 `;
 
+export const SubTitle = styled.h1`
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+`;
+
 export const Label = styled.span`
   font-size: 1.1em;
   font-weight: bold;
@@ -56,8 +62,11 @@ export const ApplicationsContainer = styled.section`
 `;
 
 export const CandidatesContainer = styled.div`
-  width: 40%;
+  width: 50%;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-right: ${(props) => props.br || ''};
+  border-left: ${(props) => props.bl || ''};
 `;

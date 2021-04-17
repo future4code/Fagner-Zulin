@@ -6,12 +6,12 @@ const decideCandidate = async (tripId, candidateId, body) => {
   const header = headerToReq();
 
   try {
-    const response = await axios.post(
+    const response = await axios.put(
       `${urlBaseApi}/trips/${tripId}/candidates/${candidateId}/decide`,
       body,
       header,
     );
-    const { status } = response.status;
+    const { status } = response;
 
     return { code: status };
   } catch (error) {

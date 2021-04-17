@@ -1,6 +1,7 @@
-import { Button, Divider } from '@chakra-ui/react';
+import { Button, Divider, useToast } from '@chakra-ui/react';
 import React from 'react';
 import { Label } from '../../pages/TripDetailsPage/tripDetailsPage.styled';
+import decideCandidate from '../../services/decideCandidate';
 import {
   CardContainer,
   ButtonsContainer,
@@ -8,25 +9,63 @@ import {
   Age,
 } from './candidateCard.styled';
 
-export default function CandidateCard() {
+export default function CandidateCard({ candidate, tripId, whenDecide }) {
+  const { name, age, profession, country, applicationText, id } = candidate;
+  const toast = useToast();
+
+  const toApprove = () =>
+    toast({
+      title: 'Candidatura aprovada',
+      description: 'Muito bem, temos mais um astronauta a bordo',
+      status: 'success',
+      duration: 6000,
+      isClosable: true,
+    });
+
+  const toDecline = () =>
+    toast({
+      title: 'Candidatura reprovada',
+      description: 'Okay, quem sabe numa próxima',
+      status: 'success',
+      duration: 6000,
+      isClosable: true,
+    });
+
+  const onClickDecide = async (aDecision) => {
+    const body = { approve: aDecision };
+    const result = await decideCandidate(tripId, id, body);
+
+    if (result.code === 200) {
+      whenDecide(true);
+      if (aDecision) {
+        toApprove();
+      } else {
+        toDecline();
+      }
+    }
+  };
+
   return (
     <CardContainer>
-      <Name>Fagner, </Name> <Age>25 anos</Age>
+      <Name>{name}, </Name> <Age>{age} anos</Age>
       <Divider mt="3" mb="3" />
       <p>
-        <Label>Profissão: </Label> Desenvolvedor
+        <Label>Profissão: </Label> {profession}
       </p>
       <p>
-        <Label>País: </Label> Brasil
+        <Label>País: </Label> {country}
       </p>
       <p>
-        <Label>Texto de Candidatura: </Label> Agora vai... Eu quero muito ir...
-        me chama que eu vou
+        <Label>Texto de Candidatura: </Label> {applicationText}
       </p>
       <Divider mt="3" mb="3" />
       <ButtonsContainer>
-        <Button colorScheme="green">Aprovar</Button>
-        <Button colorScheme="red">Recusar</Button>
+        <Button onClick={() => onClickDecide(true)} colorScheme="green">
+          Aprovar
+        </Button>
+        <Button onClick={() => onClickDecide(false)} colorScheme="red">
+          Recusar
+        </Button>
       </ButtonsContainer>
     </CardContainer>
   );

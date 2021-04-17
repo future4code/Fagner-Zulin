@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Divider } from '@chakra-ui/react';
+import { ListItem, UnorderedList } from '@chakra-ui/react';
+
 import useProtectedPage from '../../hooks/useProtectedPage';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -11,27 +12,32 @@ import {
   CandidatesContainer,
   ContainerTripDetailsPage,
   Label,
+  SubTitle,
   TitlePlanet,
   TripDetailsContainer,
 } from './tripDetailsPage.styled';
 import MenuContainer from '../../components/StyledComponentes/MenuContainer';
-import tripsList from '../../services/tripsList';
 import CustomButton from '../../components/StyledComponentes/CustomButton';
 import CandidateCard from '../../components/CandidateCard/CandidateCard';
+import tripDetail from '../../services/tripDetail';
 
 export default function TripDetailsPage() {
   const { id } = useParams();
   const history = useHistory();
   useProtectedPage(history);
-  const [trip, setTrip] = useState({});
+  const [isChange, setIsChange] = useState(false);
+  const [details, setDetails] = useState({});
 
   useEffect(() => {
     (async () => {
-      const { trips } = await tripsList();
-      const tripData = trips.filter((item) => item.id === id);
-      setTrip(tripData[0]);
+      const result = await tripDetail(id);
+
+      if (result.code === 200) {
+        setDetails(result.trip);
+        setIsChange(false);
+      }
     })();
-  }, []);
+  }, [isChange]);
 
   return (
     <PageContainer background="#000">
@@ -39,32 +45,53 @@ export default function TripDetailsPage() {
       <ContentContainer>
         <ContainerTripDetailsPage>
           <MenuContainer jc="space-between">
-            <TitlePlanet>{trip.planet}</TitlePlanet>
+            <TitlePlanet>{details.planet}</TitlePlanet>
             <TripDetailsContainer>
               <h2>
                 <Label>Nome: </Label>
-                {trip.name}
+                {details.name}
               </h2>
               <p>
-                <Label>Descrição: </Label> {trip.description}
+                <Label>Descrição: </Label> {details.description}
               </p>
               <p>
-                <Label>Duração: </Label> {trip.durationInDays}
+                <Label>Duração: </Label> {details.durationInDays} dias
               </p>
               <p>
-                <Label>Data de Partida: </Label> {trip.date}
+                <Label>Data de Partida: </Label> {details.date}
               </p>
             </TripDetailsContainer>
             <CustomButton onClick={history.goBack}>Voltar</CustomButton>
           </MenuContainer>
           <ApplicationsContainer>
-            <CandidatesContainer>
-              <h1>Candidaturas Pendentes</h1>
-              <CandidateCard />
+            <CandidatesContainer br="1px solid white">
+              <SubTitle>Candidaturas Pendentes</SubTitle>
+              {details.candidates !== undefined &&
+                ((details.candidates.length === 0 && (
+                  <Label>Sem candidatos por enquanto</Label>
+                )) ||
+                  details.candidates.map((candidate) => (
+                    <CandidateCard
+                      tripId={details.id}
+                      key={candidate.id}
+                      whenDecide={setIsChange}
+                      candidate={candidate}
+                    />
+                  )))}
             </CandidatesContainer>
-            <Divider orientation="vertical" />
-            <CandidatesContainer>
-              <h1>Candidaturas Aprovadas</h1>
+
+            <CandidatesContainer bl="1px solid white">
+              <SubTitle>Candidaturas Aprovadas</SubTitle>
+              {details.approved !== undefined &&
+                ((details.approved.length === 0 && (
+                  <Label>Nenhum Candidato foi aprovado ainda</Label>
+                )) || (
+                  <UnorderedList spacing="3">
+                    {details.approved.map((item) => (
+                      <ListItem key={item.id}>{item.name}</ListItem>
+                    ))}
+                  </UnorderedList>
+                ))}
             </CandidatesContainer>
           </ApplicationsContainer>
         </ContainerTripDetailsPage>
