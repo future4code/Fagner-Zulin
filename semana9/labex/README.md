@@ -1,5 +1,5 @@
 <p align="center">
-   <img style="background: black; border-radius: 10px" src="./src/img/LabeX-white.png" alt="Labex Logo"/>
+   <img src="./src/img/logo-github.png" alt="Labex Logo"/>
 </p>
 
 </br>
