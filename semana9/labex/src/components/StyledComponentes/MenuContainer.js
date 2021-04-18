@@ -9,6 +9,9 @@ const MenuContainer = styled.nav`
   flex-direction: column;
   padding: 20px;
   justify-content: ${(props) => props.jc || ''};
+  @media (max-width: 992px) {
+    width: 30vw;
+  }
 `;
 
 export default MenuContainer;

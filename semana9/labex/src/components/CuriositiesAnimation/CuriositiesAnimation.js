@@ -24,6 +24,7 @@ const AnimationContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
 `;
 
 export default function CuriositiesAnimation() {
@@ -45,6 +46,7 @@ export default function CuriositiesAnimation() {
     <AnimationContainer>
       {!text && (
         <Spinner
+          alignSelf="center"
           thickness="4px"
           speed="0.65s"
           emptyColor="gray.200"

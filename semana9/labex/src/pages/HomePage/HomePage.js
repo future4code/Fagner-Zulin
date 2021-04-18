@@ -25,7 +25,7 @@ export default function HomePage() {
         <ContainerHome>
           <TextContainer>
             <Text>
-              Quer da um rolê na <strong>Lua</strong>? Quer fazer um tour em nos
+              Quer dar um rolê na <strong>Lua</strong>? Ou dar uma volta nos
               anéis de <strong>Saturno</strong>?
               <strong> Fazemos isso acontecer!</strong>
             </Text>

@@ -65,7 +65,7 @@ export default function AdminHomePage() {
             )}
             <SimpleGrid
               style={{ margin: '20px auto' }}
-              columns={2}
+              columns={[1, 1, 1, 2]}
               spacingX="90px"
               spacingY="30px"
             >
