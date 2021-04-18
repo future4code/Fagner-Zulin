@@ -12,6 +12,7 @@ import { CardsContainer, ContainerListTrips } from './listTripsPage.styled';
 import MenuContainer from '../../components/StyledComponentes/MenuContainer';
 import ContentContainer from '../../components/StyledComponentes/ContentContainer.styled';
 import SpinnerContainer from '../../components/StyledComponentes/SpinnerContainer';
+import CuriositiesAnimation from '../../components/CuriositiesAnimation/CuriositiesAnimation';
 
 export default function ListTripsPage() {
   const history = useHistory();
@@ -29,10 +30,11 @@ export default function ListTripsPage() {
       <Header />
       <ContentContainer>
         <ContainerListTrips>
-          <MenuContainer>
+          <MenuContainer jc="space-between">
             <CustomButton onClick={() => gotToHomePage(history)} wd="100%">
               Home
             </CustomButton>
+            <CuriositiesAnimation />
           </MenuContainer>
           <CardsContainer>
             {listTrips.length === 0 && (
