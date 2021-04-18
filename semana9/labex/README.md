@@ -1,5 +1,5 @@
 <p align="center">
-   <img style="background:black;" src="./src/img/LabeX-white.png" alt="Labex Logo"/>
+   <img style="background-color:black;" src="./src/img/LabeX-white.png" alt="Labex Logo"/>
 </p>
 
 </br>
