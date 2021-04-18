@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+<p align="center">
+   <img style="background: black; border-radius: 10px" src="./src/img/LabeX-white.png" alt="Labex Logo"/>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+</br>
 
-## Available Scripts
+### O que funciona
 
-In the project directory, you can run:
+- É possível ver as viagens disponíveis;
+- É possível se candidatar as viagens;
+- É possível acessar a área administrativa
+- É possível criar novas viagens;
+- É possível deletar as viagens
+- É possível aprovar ou negar a candidatura de uma candidato;
+- É possível fazer logout;
 
-### `yarn start`
+### O que não funciona
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- O projeto não tem suporte para versão mobile
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Wireframe
 
-### `yarn test`
+- Home - https://wireframe.cc/iMFmy6
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Publica
 
-### `yarn build`
+- Lista de viagens - https://wireframe.cc/o86BJi
+- Formulário de inscrição - https://wireframe.cc/XwuRLR
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Privada
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Login - https://wireframe.cc/DkzuaF
+- Painel ADM - https://wireframe.cc/zuQEQu
+- Nova viagem - https://wireframe.cc/krBQFD
+- Detalhes da viagem - https://wireframe.cc/Ke45Ak
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Link Surge
 
-### `yarn eject`
+http://spacetrips-labex.surge.sh/
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 🛠🛠 Tecnologias utilizadas
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+As seguintes ferramentas foram usadas na construção do projeto:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **[Fontawesome](https://fontawesome.com/)**
+- **[Axios](https://github.com/axios/axios)**
+- **[React](https://pt-br.reactjs.org/)**
+- **[Styled-Components](https://styled-components.com/)**
+- **[Chakra-UI](https://chakra-ui.com/)**
+- **[React-Starfield-animation](https://github.com/transitive-bullshit/react-starfield-animation#readme)**
+- **[React-Router](https://reactrouter.com/)**
+- **[React-Alice-Carousel](https://github.com/maxmarinich/react-alice-carousel#readme)**
+- **[React-Animation](https://github.com/FormidableLabs/react-animations)**
+- **[ESlint](https://eslint.org/)**
+- **[ESlint-Airbnb](https://github.com/airbnb/javascript)**
 
-## Learn More
+> Veja o arquivo [package.json]()
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Imagens
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Home:
+![image](https://user-images.githubusercontent.com/52076737/115152273-da90a700-a046-11eb-8594-f89204a94c07.png)
 
-### Code Splitting
+Lista de viagens
+![image](https://user-images.githubusercontent.com/52076737/115152298-f005d100-a046-11eb-9d01-bf9f19ce6a7d.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Formulário de Candidatura
+![image](https://user-images.githubusercontent.com/52076737/115152324-02800a80-a047-11eb-84f3-6f60b81f1154.png)
 
-### Analyzing the Bundle Size
+Login
+![image](https://user-images.githubusercontent.com/52076737/115152343-1592da80-a047-11eb-842d-217cd944c1e6.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Pagina inicial da área administrativa
+![image](https://user-images.githubusercontent.com/52076737/115152383-3ce9a780-a047-11eb-9a29-e8adf1085968.png)
 
-### Making a Progressive Web App
+Formulário para criar viagem
+![image](https://user-images.githubusercontent.com/52076737/115152409-4bd05a00-a047-11eb-8f87-7de58a6a54e5.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Pagina de detalhes da viagem
+![image](https://user-images.githubusercontent.com/52076737/115152433-6c001900-a047-11eb-894b-ce6dcfb35686.png)
