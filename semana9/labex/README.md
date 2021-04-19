@@ -56,7 +56,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **[ESlint](https://eslint.org/)**
 - **[ESlint-Airbnb](https://github.com/airbnb/javascript)**
 
-> Veja o arquivo [package.json]()
+> Veja o arquivo [package.json](https://github.com/future4code/Fagner-Zulin/blob/semana9-projeto/semana9/labex/package.json)
 
 ### Imagens
 
