@@ -1,5 +1,9 @@
-export const gotToLoginPage = (history) => {
+export const gotToHomePage = (history) => {
   history.push('/');
+};
+
+export const gotToLoginPage = (history) => {
+  history.push('/login');
 };
 
 export const gotToFeedPage = (history) => {
