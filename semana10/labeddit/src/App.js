@@ -1,5 +1,6 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import React from 'react';
+import fontsFamily from './constants/fontFamily';
 import palette from './constants/paletteColors';
 import Router from './routers/Router';
 
@@ -8,6 +9,7 @@ const theme = extendTheme({
     global: {
       body: {
         bg: palette.white,
+        fontFamily: fontsFamily.text,
       },
     },
   },

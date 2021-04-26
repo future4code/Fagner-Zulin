@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import fontsFamily from '../../constants/fontFamily';
 
 export const ContainerHome = styled.section`
   display: flex;
@@ -11,6 +10,6 @@ export const ContainerHome = styled.section`
 
 export const Text = styled.p`
   font-size: 1.5em;
-  font-family: ${fontsFamily.text};
   font-style: italic;
+  text-align: center;
 `;
