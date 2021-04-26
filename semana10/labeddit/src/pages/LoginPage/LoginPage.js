@@ -9,6 +9,7 @@ import {
   SubTitle,
   TextSignUp,
 } from './loginPage.styled';
+import SignUpModal from '../../components/SignUpModal/SignUpModal';
 
 export default function LoginPage() {
   return (
@@ -35,7 +36,7 @@ export default function LoginPage() {
         <ContainerSignUp>
           <TextSignUp>É novo aqui?</TextSignUp>
           <TextSignUp>Faça já seu cadastro</TextSignUp>
-          <Button colorScheme="cyan">Sign Up</Button>
+          <SignUpModal />
         </ContainerSignUp>
       </ContainerSection>
     </ContainerPage>
