@@ -3,7 +3,7 @@ import fontsFamily from '../../constants/fontFamily';
 import palette from '../../constants/paletteColors';
 
 const Title = styled.h1`
-  font-size: 3em;
+  font-size: ${(props) => props.fs || '3em'};
   font-family: ${fontsFamily.name};
   background-color: ${palette.orange};
   padding: 5px 10px;
