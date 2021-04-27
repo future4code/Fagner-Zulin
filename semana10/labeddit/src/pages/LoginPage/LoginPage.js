@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Button,
   FormControl,
@@ -19,8 +19,9 @@ import {
 import SignUpModal from '../../components/SignUpModal/SignUpModal';
 import useForm from '../../hooks/useForm';
 import login from '../../services/login';
-import { saveToken } from '../../utils/localStorageFunctions';
+import { hasToken, saveToken } from '../../utils/localStorageFunctions';
 import { gotToFeedPage } from '../../routers/coordinate';
+import { loginError, loginSucess } from '../../utils/toastsFunctions';
 
 const initialValue = {
   email: '',
@@ -32,25 +33,11 @@ export default function LoginPage() {
   const toast = useToast();
   const history = useHistory();
 
-  const loginSucess = (user) => {
-    toast({
-      title: 'Login feito com sucesso',
-      description: `Seja bem-vindo ${user}`,
-      status: 'success',
-      duration: 6000,
-      isClosable: true,
-    });
-  };
-
-  const loginError = (message) => {
-    toast({
-      title: 'Algo deu errado!',
-      description: message,
-      status: 'error',
-      duration: 6000,
-      isClosable: true,
-    });
-  };
+  useEffect(() => {
+    if (hasToken()) {
+      gotToFeedPage(history);
+    }
+  }, []);
 
   const onClickLogin = async () => {
     window.event.preventDefault();
@@ -61,9 +48,9 @@ export default function LoginPage() {
     if (result.status) {
       saveToken(result.token);
       gotToFeedPage(history);
-      loginSucess(result.username);
+      loginSucess(toast, result.username);
     } else {
-      loginError(result.message);
+      loginError(toast, result.message);
     }
 
     clearForm(initialValue);

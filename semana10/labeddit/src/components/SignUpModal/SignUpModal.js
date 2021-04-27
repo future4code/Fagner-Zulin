@@ -14,13 +14,45 @@ import {
   FormLabel,
   Input,
   useMediaQuery,
+  useToast,
 } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 import palette from '../../constants/paletteColors';
 import { ContainerFormSingUp, SubTitle } from './signUpModal.styled';
+import useForm from '../../hooks/useForm';
+import signUp from '../../services/signUp';
+import { loginError, signUpSucess } from '../../utils/toastsFunctions';
+import { saveToken } from '../../utils/localStorageFunctions';
+import { gotToFeedPage } from '../../routers/coordinate';
+
+const initialValue = {
+  email: '',
+  password: '',
+  username: '',
+};
 
 export default function SignUpModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isMobile] = useMediaQuery('(max-width: 575.98px)');
+  const [form, onChange] = useForm(initialValue);
+  const toast = useToast();
+  const history = useHistory();
+
+  const onClickSignUp = async () => {
+    window.event.preventDefault();
+
+    const body = { ...form };
+
+    const result = await signUp(body);
+
+    if (result.status) {
+      saveToken(result.token);
+      gotToFeedPage(history);
+      signUpSucess(toast, result.username);
+    } else {
+      loginError(toast, result.message);
+    }
+  };
 
   return (
     <>
@@ -36,24 +68,41 @@ export default function SignUpModal() {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <ContainerFormSingUp>
+            <ContainerFormSingUp onSubmit={onClickSignUp}>
               <FormControl id="name" isRequired>
                 <FormLabel>Nome de usuário</FormLabel>
-                <Input type="text" />
+                <Input
+                  value={form.username}
+                  onChange={onChange}
+                  name="username"
+                  type="text"
+                />
               </FormControl>
 
               <FormControl id="email" isRequired>
                 <FormLabel>E-mail</FormLabel>
-                <Input type="email" />
+                <Input
+                  value={form.email}
+                  onChange={onChange}
+                  name="email"
+                  type="email"
+                />
               </FormControl>
 
               <FormControl isRequired>
                 <FormLabel>Senha</FormLabel>
-                <Input type="password" />
+                <Input
+                  value={form.password}
+                  onChange={onChange}
+                  name="password"
+                  type="password"
+                />
               </FormControl>
               <Divider />
               <ModalFooter>
-                <Button colorScheme="green">Cadastrar</Button>
+                <Button type="submit" colorScheme="green">
+                  Cadastrar
+                </Button>
                 <Button colorScheme="gray" ml={3} onClick={onClose}>
                   Close
                 </Button>
