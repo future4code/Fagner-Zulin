@@ -52,4 +52,7 @@ export const FooterCard = styled.div`
 export const Count = styled.span`
   font-weight: 600;
   margin: 0 5px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: ${(props) => props.bc || ''};
 `;

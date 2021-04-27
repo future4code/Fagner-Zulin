@@ -22,6 +22,11 @@ export default function FeedPage() {
     })();
   }, []);
 
+  const postVote = (callback) => {
+    const postsAfterVote = posts.map(callback);
+    setPosts(postsAfterVote);
+  };
+
   return (
     <ContainerFeedPage>
       <Header />
@@ -37,7 +42,9 @@ export default function FeedPage() {
           />
         )}
         {posts.length >= 0 &&
-          posts.map((item) => <PostCard key={item.id} info={item} />)}
+          posts.map((item) => (
+            <PostCard postVote={postVote} key={item.id} info={item} />
+          ))}
       </ContainerFeed>
     </ContainerFeedPage>
   );
