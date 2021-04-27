@@ -15,7 +15,7 @@ export const ContainerForm = styled.form`
   align-items: center;
   justify-content: space-between;
   height: 40vh;
-  width: 20vw;
+  width: 30vw;
   border: 2px solid ${palette.lightBlue};
   padding: 10px;
   border-radius: 10px;
@@ -31,7 +31,7 @@ export const ContainerSignUp = styled.div`
   padding: 10px;
   border-radius: 10px;
   height: 15vh;
-  width: 12vw;
+  width: 15vw;
 
   display: flex;
   flex-direction: column;
