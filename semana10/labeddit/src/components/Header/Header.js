@@ -5,7 +5,6 @@ import {
   Menu,
   MenuButton,
   MenuDivider,
-  // MenuItem,
   MenuList,
   useMediaQuery,
 } from '@chakra-ui/react';
