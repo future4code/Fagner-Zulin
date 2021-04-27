@@ -18,7 +18,7 @@ export const signUpSucess = (toast, user) => {
   });
 };
 
-export const loginError = (toast, message) => {
+export const alertError = (toast, message) => {
   toast({
     title: 'Algo deu errado!',
     description: message,

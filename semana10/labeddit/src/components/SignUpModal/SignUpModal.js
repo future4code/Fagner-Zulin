@@ -21,7 +21,7 @@ import palette from '../../constants/paletteColors';
 import { ContainerFormSingUp, SubTitle } from './signUpModal.styled';
 import useForm from '../../hooks/useForm';
 import signUp from '../../services/signUp';
-import { loginError, signUpSucess } from '../../utils/toastsFunctions';
+import { alertError, signUpSucess } from '../../utils/toastsFunctions';
 import { saveToken } from '../../utils/localStorageFunctions';
 import { gotToFeedPage } from '../../routers/coordinate';
 
@@ -50,7 +50,7 @@ export default function SignUpModal() {
       gotToFeedPage(history);
       signUpSucess(toast, result.username);
     } else {
-      loginError(toast, result.message);
+      alertError(toast, result.message);
     }
   };
 

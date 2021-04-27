@@ -21,7 +21,7 @@ import useForm from '../../hooks/useForm';
 import login from '../../services/login';
 import { hasToken, saveToken } from '../../utils/localStorageFunctions';
 import { gotToFeedPage } from '../../routers/coordinate';
-import { loginError, loginSucess } from '../../utils/toastsFunctions';
+import { alertError, loginSucess } from '../../utils/toastsFunctions';
 
 const initialValue = {
   email: '',
@@ -50,7 +50,7 @@ export default function LoginPage() {
       gotToFeedPage(history);
       loginSucess(toast, result.username);
     } else {
-      loginError(toast, result.message);
+      alertError(toast, result.message);
     }
 
     clearForm(initialValue);

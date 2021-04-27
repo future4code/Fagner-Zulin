@@ -31,6 +31,12 @@ export const TextCard = styled.div`
   text-align: justify;
   border-left: 1px solid ${palette.blue};
   border-right: 1px solid ${palette.blue};
+  cursor: pointer;
+`;
+
+export const TitleCard = styled.h2`
+  font-weight: bold;
+  text-align: center;
 `;
 
 export const FooterCard = styled.div`

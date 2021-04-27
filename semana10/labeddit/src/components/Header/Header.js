@@ -37,7 +37,7 @@ export default function Header() {
             icon={<HamburgerIcon />}
           />
           <MenuList
-            bg={palette.lightBlue}
+            bg={palette.darkBlue}
             display="flex"
             flexDirection="column"
             alignItems="center"
