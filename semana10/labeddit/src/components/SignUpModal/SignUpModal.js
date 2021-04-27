@@ -104,7 +104,7 @@ export default function SignUpModal() {
                   Cadastrar
                 </Button>
                 <Button colorScheme="gray" ml={3} onClick={onClose}>
-                  Close
+                  Cancelar
                 </Button>
               </ModalFooter>
             </ContainerFormSingUp>

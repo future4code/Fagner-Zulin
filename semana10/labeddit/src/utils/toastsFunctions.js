@@ -27,3 +27,23 @@ export const alertError = (toast, message) => {
     isClosable: true,
   });
 };
+
+export const createPostError = (toast) => {
+  toast({
+    title: 'Algo deu errado!',
+    description: 'Tente novamente mais tarde',
+    status: 'error',
+    duration: 6000,
+    isClosable: true,
+  });
+};
+
+export const createPostSucess = (toast) => {
+  toast({
+    title: 'Post criado com sucesso!',
+    description: 'Agora todo mundo verá seu post.',
+    status: 'success',
+    duration: 6000,
+    isClosable: true,
+  });
+};

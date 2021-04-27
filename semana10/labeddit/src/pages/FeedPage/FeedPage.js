@@ -7,6 +7,7 @@ import { alertError } from '../../utils/toastsFunctions';
 import { ContainerFeed, ContainerFeedPage } from './feedPage.styled';
 
 export default function FeedPage() {
+  const [isUpdate, setIsUpdate] = useState(false);
   const [posts, setPosts] = useState([]);
   const toast = useToast();
 
@@ -15,12 +16,16 @@ export default function FeedPage() {
       const result = await getPosts();
 
       if (result.status) {
-        setPosts(result.posts);
+        const ordPosts = result.posts.sort(
+          (postA, postB) => postB.createdAt - postA.createdAt,
+        );
+        setPosts(ordPosts);
       } else {
         alertError(toast, result.message);
       }
+      setIsUpdate(false);
     })();
-  }, []);
+  }, [isUpdate]);
 
   const postVote = (callback) => {
     const postsAfterVote = posts.map(callback);
@@ -29,7 +34,7 @@ export default function FeedPage() {
 
   return (
     <ContainerFeedPage>
-      <Header />
+      <Header isToUpdate={setIsUpdate} />
       <ContainerFeed>
         {posts.length === 0 && (
           <Spinner
