@@ -47,3 +47,13 @@ export const createPostSucess = (toast) => {
     isClosable: true,
   });
 };
+
+export const createCommentSucess = (toast) => {
+  toast({
+    title: 'Comentário feito com sucesso!',
+    description: 'Agora todo mundo verá seu comentário.',
+    status: 'success',
+    duration: 6000,
+    isClosable: true,
+  });
+};

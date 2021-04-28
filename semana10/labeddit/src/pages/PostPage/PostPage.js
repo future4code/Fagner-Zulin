@@ -17,10 +17,16 @@ import Header from '../../components/Header/Header';
 import PostCard from '../../components/PostCard/PostCard';
 import ContainerList from '../../components/StyledComponents/ContainerList';
 import ContainerPage from '../../components/StyledComponents/PageContainer';
+import useForm from '../../hooks/useForm';
+import createComment from '../../services/createComment';
 import getPostDetails from '../../services/getPostDetails';
 import vote from '../../services/vote';
-import { genericError } from '../../utils/toastsFunctions';
+import { genericError, createCommentSucess } from '../../utils/toastsFunctions';
 import { ContainerComments } from './postPage.styled';
+
+const initialValue = {
+  text: '',
+};
 
 export default function PostPage() {
   const toast = useToast();
@@ -28,6 +34,8 @@ export default function PostPage() {
   const [comments, setComments] = useState([]);
   const [post, setPost] = useState(null);
   const [isMobile] = useMediaQuery('(max-width: 575.98px)');
+  const [form, onChange, clearForm] = useForm(initialValue);
+  const [isToUpdate, setIsToUpdate] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -39,8 +47,9 @@ export default function PostPage() {
       } else {
         genericError(toast);
       }
+      setIsToUpdate(false);
     })();
-  }, []);
+  }, [isToUpdate]);
 
   const votePositive = async () => {
     if (post.userVoteDirection === 0) {
@@ -82,6 +91,23 @@ export default function PostPage() {
     }
   };
 
+  const onClickToComment = async () => {
+    window.event.preventDefault();
+
+    const body = { ...form };
+
+    const result = await createComment(post.id, body);
+
+    if (result.status) {
+      createCommentSucess(toast);
+      setIsToUpdate(true);
+    } else {
+      genericError(toast);
+    }
+
+    clearForm(initialValue);
+  };
+
   return (
     <ContainerPage>
       <Header />
@@ -110,14 +136,24 @@ export default function PostPage() {
                     <AccordionIcon />
                   </AccordionButton>
 
-                  <AccordionPanel
-                    display="flex"
-                    flexDir="column"
-                    alignItems="center"
-                  >
-                    <Textarea placeholder="Digite aqui" />
-                    <Button mt="3">Comentar</Button>
-                  </AccordionPanel>
+                  <form onSubmit={onClickToComment}>
+                    <AccordionPanel
+                      display="flex"
+                      flexDir="column"
+                      alignItems="center"
+                    >
+                      <Textarea
+                        required
+                        name="text"
+                        value={form.text}
+                        onChange={onChange}
+                        placeholder="Digite aqui"
+                      />
+                      <Button type="submit" mt="3">
+                        Comentar
+                      </Button>
+                    </AccordionPanel>
+                  </form>
                 </AccordionItem>
               </Accordion>
             </ContainerComments>
