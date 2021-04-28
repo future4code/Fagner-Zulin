@@ -1,14 +1,7 @@
 import styled from 'styled-components';
 import palette from '../../constants/paletteColors';
 
-export const ContainerFeedPage = styled.main`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-export const ContainerFeed = styled.section`
+const ContainerList = styled.section`
   height: 90vh;
   width: 100vw;
 
@@ -35,3 +28,5 @@ export const ContainerFeed = styled.section`
     border-radius: 20px;
   }
 `;
+
+export default ContainerList;

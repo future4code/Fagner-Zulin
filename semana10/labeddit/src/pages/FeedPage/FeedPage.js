@@ -2,9 +2,10 @@ import { Spinner, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import PostCard from '../../components/PostCard/PostCard';
+import ContainerList from '../../components/StyledComponents/ContainerList';
+import ContainerPage from '../../components/StyledComponents/PageContainer';
 import getPosts from '../../services/getPosts';
 import { alertError } from '../../utils/toastsFunctions';
-import { ContainerFeed, ContainerFeedPage } from './feedPage.styled';
 
 export default function FeedPage() {
   const [isUpdate, setIsUpdate] = useState(false);
@@ -33,9 +34,9 @@ export default function FeedPage() {
   };
 
   return (
-    <ContainerFeedPage>
+    <ContainerPage>
       <Header isToUpdate={setIsUpdate} />
-      <ContainerFeed>
+      <ContainerList>
         {posts.length === 0 && (
           <Spinner
             alignSelf="center"
@@ -50,7 +51,7 @@ export default function FeedPage() {
           posts.map((item) => (
             <PostCard postVote={postVote} key={item.id} info={item} />
           ))}
-      </ContainerFeed>
-    </ContainerFeedPage>
+      </ContainerList>
+    </ContainerPage>
   );
 }

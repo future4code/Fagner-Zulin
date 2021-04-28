@@ -1,6 +1,8 @@
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 import { Button } from '@chakra-ui/react';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { gotToPostPage } from '../../routers/coordinate';
 import vote from '../../services/vote';
 import {
   ContainerCard,
@@ -22,6 +24,7 @@ export default function PostCard({ info, postVote }) {
     userVoteDirection,
     id,
   } = info;
+  const history = useHistory();
 
   const votePositive = async () => {
     if (userVoteDirection === 0) {
@@ -106,7 +109,11 @@ export default function PostCard({ info, postVote }) {
         <span>{username}</span>
       </HeaderCard>
 
-      <TextCard>
+      <TextCard
+        onClick={() => {
+          gotToPostPage(history, id);
+        }}
+      >
         <TitleCard>{title}</TitleCard>
         {text}
       </TextCard>
