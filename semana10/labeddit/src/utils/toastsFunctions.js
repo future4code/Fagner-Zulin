@@ -28,7 +28,7 @@ export const alertError = (toast, message) => {
   });
 };
 
-export const createPostError = (toast) => {
+export const genericError = (toast) => {
   toast({
     title: 'Algo deu errado!',
     description: 'Tente novamente mais tarde',

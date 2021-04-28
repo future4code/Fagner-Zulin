@@ -5,7 +5,12 @@ import PostCard from '../../components/PostCard/PostCard';
 import ContainerList from '../../components/StyledComponents/ContainerList';
 import ContainerPage from '../../components/StyledComponents/PageContainer';
 import getPosts from '../../services/getPosts';
+import vote from '../../services/vote';
 import { alertError } from '../../utils/toastsFunctions';
+import {
+  voteNegativeUpdateState,
+  votePositiveUpdateState,
+} from '../../utils/votesFunctions';
 
 export default function FeedPage() {
   const [isUpdate, setIsUpdate] = useState(false);
@@ -28,9 +33,20 @@ export default function FeedPage() {
     })();
   }, [isUpdate]);
 
-  const postVote = (callback) => {
-    const postsAfterVote = posts.map(callback);
-    setPosts(postsAfterVote);
+  const votePositive = async (userVoteDirection, votesCount, id) => {
+    votePositiveUpdateState(setPosts, posts, userVoteDirection, votesCount, id);
+
+    if (userVoteDirection === 0) await vote(id, { direction: 1 });
+
+    if (userVoteDirection === +1) await vote(id, { direction: 0 });
+  };
+
+  const voteNegative = async (userVoteDirection, votesCount, id) => {
+    voteNegativeUpdateState(setPosts, posts, userVoteDirection, votesCount, id);
+
+    if (userVoteDirection === 0) await vote(id, { direction: -1 });
+
+    if (userVoteDirection === -1) await vote(id, { direction: 0 });
   };
 
   return (
@@ -49,7 +65,12 @@ export default function FeedPage() {
         )}
         {posts.length >= 0 &&
           posts.map((item) => (
-            <PostCard postVote={postVote} key={item.id} info={item} />
+            <PostCard
+              voteNegative={voteNegative}
+              votePositive={votePositive}
+              key={item.id}
+              info={item}
+            />
           ))}
       </ContainerList>
     </ContainerPage>

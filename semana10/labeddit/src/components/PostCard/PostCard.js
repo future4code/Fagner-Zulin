@@ -3,7 +3,7 @@ import { Button } from '@chakra-ui/react';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { gotToPostPage } from '../../routers/coordinate';
-import vote from '../../services/vote';
+
 import {
   ContainerCard,
   FooterCard,
@@ -12,9 +12,9 @@ import {
   TextCard,
   Count,
   TitleCard,
-} from './postCard.styled';
+} from '../StyledComponents/Card';
 
-export default function PostCard({ info, postVote }) {
+export default function PostCard({ info, votePositive, voteNegative }) {
   const {
     username,
     text,
@@ -25,70 +25,6 @@ export default function PostCard({ info, postVote }) {
     id,
   } = info;
   const history = useHistory();
-
-  const votePositive = async () => {
-    if (userVoteDirection === 0) {
-      const currVote = votesCount + 1;
-
-      postVote((post) => {
-        if (post.id === id) {
-          return {
-            ...post,
-            votesCount: currVote,
-            userVoteDirection: 1,
-          };
-        }
-        return post;
-      });
-
-      await vote(id, { direction: 1 });
-    } else if (userVoteDirection === +1) {
-      const currVote = votesCount - 1;
-      postVote((post) => {
-        if (post.id === id) {
-          return {
-            ...post,
-            votesCount: currVote,
-            userVoteDirection: 0,
-          };
-        }
-        return post;
-      });
-      await vote(id, { direction: 0 });
-    }
-  };
-
-  const voteNegative = async () => {
-    if (userVoteDirection === 0) {
-      const currVote = votesCount - 1;
-
-      postVote((post) => {
-        if (post.id === id) {
-          return {
-            ...post,
-            votesCount: currVote,
-            userVoteDirection: -1,
-          };
-        }
-        return post;
-      });
-
-      await vote(id, { direction: -1 });
-    } else if (userVoteDirection === -1) {
-      const currVote = votesCount + 1;
-      postVote((post) => {
-        if (post.id === id) {
-          return {
-            ...post,
-            votesCount: currVote,
-            userVoteDirection: 0,
-          };
-        }
-        return post;
-      });
-      await vote(id, { direction: 0 });
-    }
-  };
 
   const changeColorCount = () => {
     if (userVoteDirection === 1) {
@@ -120,11 +56,19 @@ export default function PostCard({ info, postVote }) {
 
       <FooterCard>
         <div>
-          <Button onClick={votePositive} size="xs" colorScheme="green">
+          <Button
+            onClick={() => votePositive(userVoteDirection, votesCount, id)}
+            size="xs"
+            colorScheme="green"
+          >
             <TriangleUpIcon />
           </Button>
           <Count bc={changeColorCount}>{votesCount}</Count>
-          <Button onClick={voteNegative} size="xs" colorScheme="red">
+          <Button
+            onClick={() => voteNegative(userVoteDirection, votesCount, id)}
+            size="xs"
+            colorScheme="red"
+          >
             <TriangleDownIcon />
           </Button>
         </div>

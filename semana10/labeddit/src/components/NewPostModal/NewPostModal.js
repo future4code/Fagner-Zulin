@@ -20,7 +20,7 @@ import ContainerFormNewPost from './newPostModal.styled';
 import useForm from '../../hooks/useForm';
 import palette from '../../constants/paletteColors';
 import createPost from '../../services/createPost';
-import { createPostError, createPostSucess } from '../../utils/toastsFunctions';
+import { genericError, createPostSucess } from '../../utils/toastsFunctions';
 
 const initialValue = {
   title: '',
@@ -44,7 +44,7 @@ export default function NewPostModal({ isToUpdate }) {
       createPostSucess(toast);
       isToUpdate(true);
     } else {
-      createPostError(toast);
+      genericError(toast);
     }
     clearForm(initialValue);
     onClose();
