@@ -11,13 +11,13 @@ import {
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import palette from '../../constants/paletteColors';
-import { gotToLoginPage } from '../../routers/coordinate';
+import { gotToFeedPage, gotToLoginPage } from '../../routers/coordinate';
 import { deleteToken } from '../../utils/localStorageFunctions';
 import NewPostModal from '../NewPostModal/NewPostModal';
 import Title from '../StyledComponents/Title';
 import { ContainerHeader } from './header.styled';
 
-export default function Header({ isToUpdate }) {
+export default function Header({ isToUpdate, disableModal }) {
   const history = useHistory();
   const [isMobile] = useMediaQuery('(max-width: 575.98px)');
 
@@ -28,7 +28,13 @@ export default function Header({ isToUpdate }) {
 
   return (
     <ContainerHeader>
-      <Title fs="2em">LabEddit</Title>
+      <Title
+        style={{ cursor: 'pointer' }}
+        onClick={() => gotToFeedPage(history)}
+        fs="2em"
+      >
+        LabEddit
+      </Title>
 
       {isMobile && (
         <Menu>
@@ -43,7 +49,12 @@ export default function Header({ isToUpdate }) {
             flexDirection="column"
             alignItems="center"
           >
-            <NewPostModal isToUpdate={isToUpdate} />
+            {!disableModal && <NewPostModal isToUpdate={isToUpdate} />}
+            {disableModal && (
+              <Button onClick={() => gotToFeedPage(history)} colorScheme="cyan">
+                Voltar
+              </Button>
+            )}
             <MenuDivider />
             <Button colorScheme="red" onClick={logout}>
               Logout
@@ -54,7 +65,12 @@ export default function Header({ isToUpdate }) {
 
       {!isMobile && (
         <div>
-          <NewPostModal isToUpdate={isToUpdate} />
+          {!disableModal && <NewPostModal isToUpdate={isToUpdate} />}
+          {disableModal && (
+            <Button onClick={() => gotToFeedPage(history)} colorScheme="cyan">
+              Voltar
+            </Button>
+          )}
           <Button marginInline="3" colorScheme="red" onClick={logout}>
             Logout
           </Button>

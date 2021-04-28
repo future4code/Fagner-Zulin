@@ -110,7 +110,7 @@ export default function PostPage() {
 
   return (
     <ContainerPage>
-      <Header />
+      <Header disableModal />
       <ContainerList>
         {!post ? (
           <Spinner
