@@ -1,9 +1,11 @@
 import { Spinner, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import PostCard from '../../components/PostCard/PostCard';
 import ContainerList from '../../components/StyledComponents/ContainerList';
 import ContainerPage from '../../components/StyledComponents/PageContainer';
+import useProtectedPage from '../../hooks/useProtectedPage ';
 import getPosts from '../../services/getPosts';
 import vote from '../../services/vote';
 import { alertError } from '../../utils/toastsFunctions';
@@ -16,6 +18,8 @@ export default function FeedPage() {
   const [isUpdate, setIsUpdate] = useState(false);
   const [posts, setPosts] = useState([]);
   const toast = useToast();
+  const history = useHistory();
+  useProtectedPage(history);
 
   useEffect(() => {
     (async () => {

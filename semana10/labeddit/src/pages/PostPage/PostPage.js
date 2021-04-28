@@ -11,7 +11,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import CommentCard from '../../components/CommentCard/CommentCard';
 import Header from '../../components/Header/Header';
 import PostCard from '../../components/PostCard/PostCard';
@@ -19,6 +19,7 @@ import ContainerList from '../../components/StyledComponents/ContainerList';
 import ContainerPage from '../../components/StyledComponents/PageContainer';
 import palette from '../../constants/paletteColors';
 import useForm from '../../hooks/useForm';
+import useProtectedPage from '../../hooks/useProtectedPage ';
 import createComment from '../../services/createComment';
 import getPostDetails from '../../services/getPostDetails';
 import vote from '../../services/vote';
@@ -42,6 +43,8 @@ export default function PostPage() {
   const [isMobile] = useMediaQuery('(max-width: 575.98px)');
   const [form, onChange, clearForm] = useForm(initialValue);
   const [isToUpdate, setIsToUpdate] = useState(false);
+  const history = useHistory();
+  useProtectedPage(history);
 
   useEffect(() => {
     (async () => {
