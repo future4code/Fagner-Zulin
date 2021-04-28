@@ -17,11 +17,17 @@ import Header from '../../components/Header/Header';
 import PostCard from '../../components/PostCard/PostCard';
 import ContainerList from '../../components/StyledComponents/ContainerList';
 import ContainerPage from '../../components/StyledComponents/PageContainer';
+import palette from '../../constants/paletteColors';
 import useForm from '../../hooks/useForm';
 import createComment from '../../services/createComment';
 import getPostDetails from '../../services/getPostDetails';
 import vote from '../../services/vote';
+import voteComment from '../../services/voteComment';
 import { genericError, createCommentSucess } from '../../utils/toastsFunctions';
+import {
+  voteNegativeUpdateState,
+  votePositiveUpdateState,
+} from '../../utils/votesFunctions';
 import { ContainerComments } from './postPage.styled';
 
 const initialValue = {
@@ -108,6 +114,46 @@ export default function PostPage() {
     clearForm(initialValue);
   };
 
+  const votePositiveComment = async (
+    userVoteDirection,
+    votesCount,
+    idComment,
+  ) => {
+    votePositiveUpdateState(
+      setComments,
+      comments,
+      userVoteDirection,
+      votesCount,
+      idComment,
+    );
+
+    if (userVoteDirection === 0)
+      await voteComment(post.id, idComment, { direction: 1 });
+
+    if (userVoteDirection === +1)
+      await voteComment(post.id, idComment, { direction: 0 });
+  };
+
+  const voteNegativeComment = async (
+    userVoteDirection,
+    votesCount,
+    idComment,
+  ) => {
+    voteNegativeUpdateState(
+      setComments,
+      comments,
+      userVoteDirection,
+      votesCount,
+      idComment,
+    );
+
+    if (userVoteDirection === 0)
+      await voteComment(post.id, idComment, { direction: -1 });
+
+    if (userVoteDirection === -1)
+      await voteComment(post.id, idComment, { direction: 0 });
+  };
+
   return (
     <ContainerPage>
       <Header disableModal />
@@ -143,6 +189,7 @@ export default function PostPage() {
                       alignItems="center"
                     >
                       <Textarea
+                        bg={palette.white}
                         required
                         name="text"
                         value={form.text}
@@ -159,7 +206,12 @@ export default function PostPage() {
             </ContainerComments>
             {comments.length > 0 &&
               comments.map((comment) => (
-                <CommentCard key={comment.id} info={comment} />
+                <CommentCard
+                  voteNegativeComment={voteNegativeComment}
+                  votePositiveComment={votePositiveComment}
+                  key={comment.id}
+                  info={comment}
+                />
               ))}
           </>
         )}
