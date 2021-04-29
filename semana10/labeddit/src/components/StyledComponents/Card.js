@@ -9,7 +9,7 @@ export const ContainerCard = styled.article`
   margin-bottom: 10px;
 
   @media (max-width: 575.98px) {
-    width: 90vw;
+    width: 93vw;
   }
 `;
 
@@ -54,8 +54,8 @@ export const FooterCard = styled.div`
 
 export const Count = styled.span`
   font-weight: 600;
-  margin: 0 5px;
-  padding: 5px;
+  margin: 0 3px;
+  padding: 3px;
   border-radius: 10px;
   background-color: ${(props) => props.bc || ''};
 `;
