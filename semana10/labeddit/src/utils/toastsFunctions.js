@@ -57,3 +57,14 @@ export const createCommentSucess = (toast) => {
     isClosable: true,
   });
 };
+
+export const protectedWarning = (toast) => {
+  toast({
+    title: 'Conteúdo requerer autênticação',
+    description:
+      'Para acessar os posts, você precisa estar logado. Se não tem conta, aproveite e cadastre-se',
+    status: 'warning',
+    duration: 6000,
+    isClosable: true,
+  });
+};

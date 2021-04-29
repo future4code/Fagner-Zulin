@@ -44,7 +44,7 @@ export default function PostPage() {
   const [form, onChange, clearForm] = useForm(initialValue);
   const [isToUpdate, setIsToUpdate] = useState(false);
   const history = useHistory();
-  useProtectedPage(history);
+  useProtectedPage(history, toast);
 
   useEffect(() => {
     (async () => {

@@ -19,7 +19,7 @@ export default function HomePage() {
     <ContainerPage>
       <ContainerHome>
         <Title>LabEddit</Title>
-        <Text>Fale sobre o que você quiser com o mundo!</Text>
+        <Text>Fale sobre o que quiser com o mundo!</Text>
         <Button
           onClick={() =>
             hasTokenValue ? gotToFeedPage(history) : gotToLoginPage(history)

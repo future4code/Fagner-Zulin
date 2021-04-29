@@ -27,7 +27,7 @@ export default function FeedPage() {
   const [posts, setPosts] = useState([]);
   const toast = useToast();
   const history = useHistory();
-  useProtectedPage(history);
+  useProtectedPage(history, toast);
   const [searchUser, setSearchUser] = useState('');
 
   useEffect(() => {
