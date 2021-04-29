@@ -8,7 +8,7 @@ const ContainerList = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 10px;
 
   overflow-y: auto;
   ::-webkit-scrollbar {
