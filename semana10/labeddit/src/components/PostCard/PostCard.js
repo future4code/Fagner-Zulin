@@ -79,7 +79,7 @@ export default function PostCard({ info, votePositive, voteNegative }) {
           <Button
             size={isMobile ? 'xs' : 'sm'}
             leftIcon={<FaTwitter />}
-            onClick={() => tweet(title)}
+            onClick={() => tweet(title, id)}
             colorScheme="twitter"
           >
             Tweetar

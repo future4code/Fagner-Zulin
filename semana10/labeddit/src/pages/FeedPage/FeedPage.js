@@ -97,7 +97,6 @@ export default function FeedPage() {
               if (searchUser !== '') {
                 return item.username.includes(searchUser);
               }
-
               return true;
             })
             .map((item) => (
