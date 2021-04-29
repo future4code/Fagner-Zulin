@@ -19,6 +19,10 @@ export const ContainerForm = styled.form`
   border: 2px solid ${palette.lightBlue};
   padding: 10px;
   border-radius: 10px;
+
+  @media (max-width: 575.98px) {
+    width: 90vw;
+  }
 `;
 
 export const SubTitle = styled.h2`
@@ -36,6 +40,10 @@ export const ContainerSignUp = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: 575.98px) {
+    width: 60vw;
+  }
 `;
 
 export const TextSignUp = styled.p`
