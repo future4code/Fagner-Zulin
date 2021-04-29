@@ -49,9 +49,12 @@ export default function PostPage() {
   useEffect(() => {
     (async () => {
       const result = await getPostDetails(id);
+      const ordComments = result.comments.sort(
+        (commentA, commentB) => commentB.createdAt - commentA.createdAt,
+      );
 
       if (result.status) {
-        setComments(result.comments);
+        setComments(ordComments);
         setPost(result.post);
       } else {
         genericError(toast);
