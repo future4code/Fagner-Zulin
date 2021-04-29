@@ -2,8 +2,8 @@ import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 import { Button } from '@chakra-ui/react';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { FaTwitter } from 'react-icons/fa';
 import { gotToPostPage } from '../../routers/coordinate';
-
 import {
   ContainerCard,
   FooterCard,
@@ -13,6 +13,7 @@ import {
   Count,
   TitleCard,
 } from '../StyledComponents/Card';
+import tweet from '../../utils/tweetFunction';
 
 export default function PostCard({ info, votePositive, voteNegative }) {
   const {
@@ -74,6 +75,14 @@ export default function PostCard({ info, votePositive, voteNegative }) {
         </div>
 
         <div>
+          <Button
+            leftIcon={<FaTwitter />}
+            onClick={() => tweet(title)}
+            colorScheme="twitter"
+          >
+            Tweetar
+          </Button>
+
           <Count>{commentsCount}</Count>
           <span>Comentários</span>
         </div>
