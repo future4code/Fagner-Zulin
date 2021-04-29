@@ -7,6 +7,10 @@ export const ContainerSection = styled.section`
   align-items: center;
   height: 75vh;
   justify-content: space-evenly;
+  @media (max-width: 575.98px) {
+    width: 90vw;
+    min-height: 100vh;
+  }
 `;
 
 export const ContainerForm = styled.form`
@@ -22,6 +26,7 @@ export const ContainerForm = styled.form`
 
   @media (max-width: 575.98px) {
     width: 90vw;
+    min-height: 300px;
   }
 `;
 
@@ -43,6 +48,7 @@ export const ContainerSignUp = styled.div`
 
   @media (max-width: 575.98px) {
     width: 60vw;
+    min-height: 120px;
   }
 `;
 
