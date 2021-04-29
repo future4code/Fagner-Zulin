@@ -11,7 +11,11 @@ import {
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import palette from '../../constants/paletteColors';
-import { gotToFeedPage, gotToLoginPage } from '../../routers/coordinate';
+import {
+  gotToFeedPage,
+  gotToHomePage,
+  gotToLoginPage,
+} from '../../routers/coordinate';
 import { deleteToken } from '../../utils/localStorageFunctions';
 import NewPostModal from '../NewPostModal/NewPostModal';
 import Title from '../StyledComponents/Title';
@@ -49,6 +53,11 @@ export default function Header({ isToUpdate, disableModal }) {
             flexDirection="column"
             alignItems="center"
           >
+            <Button onClick={() => gotToHomePage(history)} colorScheme="cyan">
+              Home
+            </Button>
+            <MenuDivider />
+
             {!disableModal && <NewPostModal isToUpdate={isToUpdate} />}
             {disableModal && (
               <Button onClick={() => gotToFeedPage(history)} colorScheme="cyan">
@@ -65,6 +74,13 @@ export default function Header({ isToUpdate, disableModal }) {
 
       {!isMobile && (
         <div>
+          <Button
+            mr="3"
+            onClick={() => gotToHomePage(history)}
+            colorScheme="cyan"
+          >
+            Home
+          </Button>
           {!disableModal && <NewPostModal isToUpdate={isToUpdate} />}
           {disableModal && (
             <Button onClick={() => gotToFeedPage(history)} colorScheme="cyan">
