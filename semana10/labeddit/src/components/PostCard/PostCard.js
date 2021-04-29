@@ -1,5 +1,5 @@
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
-import { Button } from '@chakra-ui/react';
+import { Button, useMediaQuery } from '@chakra-ui/react';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaTwitter } from 'react-icons/fa';
@@ -26,6 +26,7 @@ export default function PostCard({ info, votePositive, voteNegative }) {
     id,
   } = info;
   const history = useHistory();
+  const [isMobile] = useMediaQuery('(max-width: 575.98px)');
 
   const changeColorCount = () => {
     if (userVoteDirection === 1) {
@@ -76,6 +77,7 @@ export default function PostCard({ info, votePositive, voteNegative }) {
 
         <div>
           <Button
+            size={isMobile ? 'xs' : 'sm'}
             leftIcon={<FaTwitter />}
             onClick={() => tweet(title)}
             colorScheme="twitter"

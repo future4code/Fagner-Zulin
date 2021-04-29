@@ -47,6 +47,9 @@ export const FooterCard = styled.div`
   border-bottom-right-radius: 10px;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 575.98px) {
+    padding: 10 0;
+  }
 `;
 
 export const Count = styled.span`
