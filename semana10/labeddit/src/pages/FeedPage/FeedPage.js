@@ -15,6 +15,7 @@ import palette from '../../constants/paletteColors';
 import useProtectedPage from '../../hooks/useProtectedPage ';
 import getPosts from '../../services/getPosts';
 import vote from '../../services/vote';
+import orderByCreatedAt from '../../utils/orderByCreatedAt';
 import { alertError } from '../../utils/toastsFunctions';
 import {
   voteNegativeUpdateState,
@@ -35,9 +36,7 @@ export default function FeedPage() {
       const result = await getPosts();
 
       if (result.status) {
-        const ordPosts = result.posts.sort(
-          (postA, postB) => postB.createdAt - postA.createdAt,
-        );
+        const ordPosts = orderByCreatedAt(result.posts);
         setPosts(ordPosts);
       } else {
         alertError(toast, result.message);

@@ -1,5 +1,4 @@
 const palette = {
-  red: '#e63946',
   orange: '#ff4500',
   white: '#f1faee',
   lightBlue: '#a8dadc',

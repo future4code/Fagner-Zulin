@@ -23,6 +23,7 @@ import useProtectedPage from '../../hooks/useProtectedPage ';
 import createComment from '../../services/createComment';
 import getPostDetails from '../../services/getPostDetails';
 import voteComment from '../../services/voteComment';
+import orderByCreatedAt from '../../utils/orderByCreatedAt';
 import { genericError, createCommentSucess } from '../../utils/toastsFunctions';
 import {
   voteNegativeUpdateState,
@@ -50,9 +51,7 @@ export default function PostPage() {
   useEffect(() => {
     (async () => {
       const result = await getPostDetails(id);
-      const ordComments = result.comments.sort(
-        (commentA, commentB) => commentB.createdAt - commentA.createdAt,
-      );
+      const ordComments = orderByCreatedAt(result.comments);
 
       if (result.status) {
         setComments(ordComments);
