@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+<p align="center">
+   <img src="./public/img/logo.PNG" alt="Labex Logo"/>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+</br>
 
-## Available Scripts
+### O que funciona
 
-In the project directory, you can run:
+- É possível fazer login ou criar uma conta;
+- É possível criar posts, ler os comentários e criar comentários;
+- É possível filtrar os post por usuário
+- É possível votar tantos nos post quanto nos comentários
+- É tem suporte para dispositivos mobile
+- É possível compartilhar o post no twitter.
 
-### `yarn start`
+### Link Surge
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+http://social-media-labeddit.surge.sh/
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 🛠🛠 Tecnologias utilizadas
 
-### `yarn test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+As seguintes ferramentas foram usadas na construção do projeto:
 
-### `yarn build`
+- **[Axios](https://github.com/axios/axios)**
+- **[React](https://pt-br.reactjs.org/)**
+- **[Styled-Components](https://styled-components.com/)**
+- **[Chakra-UI](https://chakra-ui.com/)**
+- **[React-Router](https://reactrouter.com/)**
+- **[React-Icons](https://react-icons.github.io/react-icons/)**
+- **[ESlint](https://eslint.org/)**
+- **[ESlint-Airbnb](https://github.com/airbnb/javascript)**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> Veja o arquivo [package.json](https://github.com/future4code/Fagner-Zulin/blob/semana10-projeto/semana10/labeddit/package.json)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Imagens
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Home:
+![image](https://user-images.githubusercontent.com/52076737/116711931-b5d2f280-a9a9-11eb-8d57-ce577f7e7799.png)
 
-### `yarn eject`
+Login
+![image](https://user-images.githubusercontent.com/52076737/116711982-c3887800-a9a9-11eb-9071-6e2c499031f2.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Cadastro de usuário:
+![image](https://user-images.githubusercontent.com/52076737/116712062-d733de80-a9a9-11eb-8340-ffd2d5e79e9b.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Feed
+![image](https://user-images.githubusercontent.com/52076737/116712172-f6cb0700-a9a9-11eb-8de0-0656efc0c7da.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Criar um novo post
+![image](https://user-images.githubusercontent.com/52076737/116712232-05b1b980-a9aa-11eb-9c4e-2dc62768643b.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Página de poosts
+![image](https://user-images.githubusercontent.com/52076737/116712314-18c48980-a9aa-11eb-8336-2721936fb39d.png)
