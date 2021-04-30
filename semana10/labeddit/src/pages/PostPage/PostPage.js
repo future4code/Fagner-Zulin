@@ -22,12 +22,13 @@ import useForm from '../../hooks/useForm';
 import useProtectedPage from '../../hooks/useProtectedPage ';
 import createComment from '../../services/createComment';
 import getPostDetails from '../../services/getPostDetails';
-import vote from '../../services/vote';
 import voteComment from '../../services/voteComment';
 import { genericError, createCommentSucess } from '../../utils/toastsFunctions';
 import {
   voteNegativeUpdateState,
+  votePositiveInPostPage,
   votePositiveUpdateState,
+  voteNegativeInPostPage,
 } from '../../utils/votesFunctions';
 import { ContainerComments } from './postPage.styled';
 
@@ -64,43 +65,11 @@ export default function PostPage() {
   }, [isToUpdate]);
 
   const votePositive = async () => {
-    if (post.userVoteDirection === 0) {
-      const currVote = post.votesCount + 1;
-      setPost({
-        ...post,
-        votesCount: currVote,
-        userVoteDirection: 1,
-      });
-      await vote(post.id, { direction: 1 });
-    } else if (post.userVoteDirection === +1) {
-      const currVote = post.votesCount - 1;
-      setPost({
-        ...post,
-        votesCount: currVote,
-        userVoteDirection: 0,
-      });
-      await vote(post.id, { direction: 0 });
-    }
+    votePositiveInPostPage(post, setPost);
   };
 
   const voteNegative = async () => {
-    if (post.userVoteDirection === 0) {
-      const currVote = post.votesCount - 1;
-      setPost({
-        ...post,
-        votesCount: currVote,
-        userVoteDirection: -1,
-      });
-      await vote(post.id, { direction: -1 });
-    } else if (post.userVoteDirection === -1) {
-      const currVote = post.votesCount + 1;
-      setPost({
-        ...post,
-        votesCount: currVote,
-        userVoteDirection: 0,
-      });
-      await vote(post.id, { direction: 0 });
-    }
+    voteNegativeInPostPage(post, setPost);
   };
 
   const onClickToComment = async () => {

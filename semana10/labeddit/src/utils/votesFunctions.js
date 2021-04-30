@@ -1,3 +1,5 @@
+import vote from '../services/vote';
+
 export const votePositiveUpdateState = (
   setFunction,
   array,
@@ -70,5 +72,45 @@ export const voteNegativeUpdateState = (
       return item;
     });
     setFunction(arrayAfterVote);
+  }
+};
+
+export const votePositiveInPostPage = async (post, setPost) => {
+  if (post.userVoteDirection === 0) {
+    const currVote = post.votesCount + 1;
+    setPost({
+      ...post,
+      votesCount: currVote,
+      userVoteDirection: 1,
+    });
+    await vote(post.id, { direction: 1 });
+  } else if (post.userVoteDirection === +1) {
+    const currVote = post.votesCount - 1;
+    setPost({
+      ...post,
+      votesCount: currVote,
+      userVoteDirection: 0,
+    });
+    await vote(post.id, { direction: 0 });
+  }
+};
+
+export const voteNegativeInPostPage = async (post, setPost) => {
+  if (post.userVoteDirection === 0) {
+    const currVote = post.votesCount - 1;
+    setPost({
+      ...post,
+      votesCount: currVote,
+      userVoteDirection: -1,
+    });
+    await vote(post.id, { direction: -1 });
+  } else if (post.userVoteDirection === -1) {
+    const currVote = post.votesCount + 1;
+    setPost({
+      ...post,
+      votesCount: currVote,
+      userVoteDirection: 0,
+    });
+    await vote(post.id, { direction: 0 });
   }
 };
