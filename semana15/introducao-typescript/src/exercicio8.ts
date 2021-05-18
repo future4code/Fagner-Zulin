@@ -32,7 +32,34 @@ function whatIsValue(name: string): number {
   return item[0].value;
 }
 
-// function profit(): number {}
+function profit(): number {
+  const items: product[] = [];
+
+  for (const product of products) {
+    for (const sale of sales) {
+      if (product.name === sale.dishName) {
+        items.push(product);
+      }
+    }
+  }
+
+  const values = items.reduce((acc, curr) => {
+    return acc + curr.value;
+  }, 0);
+
+  const costs = items.reduce((acc, curr) => {
+    return acc + curr.cost;
+  }, 0);
+
+  return values - costs;
+}
 
 newProduct("macarronada", 10, 20, ["macarrao", "molho de tomate"]);
+newProduct("lasanha", 15, 40, ["massa", "molho de tomate", "molho branco"]);
+
+newSale("macarronada", "Fagner");
+newSale("lasanha", "João");
+newSale("macarronada", "Maria");
+
 console.log(whatIsValue("macarronada"));
+console.log(profit());
