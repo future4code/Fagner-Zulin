@@ -27,6 +27,31 @@ app.post("/countries/create", (req: Request, res: Response) => {
         "Authorization is incorrect, it must be at least 10 characters"
       );
     }
+    const name = req.body.name;
+    const capital = req.body.capital;
+    const continent = req.body.continent;
+
+    if (!name || !capital || !continent) {
+      codeStatus = 404;
+      throw new Error(
+        "All fields (name, capital and continent) must be completed"
+      );
+    }
+
+    const search = countries.find((country) =>
+      country.name.toLowerCase().includes(name.toLowerCase())
+    );
+
+    if (search) throw new Error("The country has already been created");
+    const id: number = Date.now();
+    const result = {
+      id,
+      name,
+      capital,
+      continent,
+    };
+
+    res.status(201).send({ message: "Success!", country: result });
   } catch (error) {
     res.status(codeStatus).send({ message: error.message });
   }
