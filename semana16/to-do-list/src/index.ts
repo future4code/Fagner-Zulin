@@ -11,6 +11,7 @@ app.use(routes);
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
     const address = server.address() as AddressInfo;
+
     console.log(`Server is running in port ${address.port}`);
   } else {
     console.error(`Failure upon starting server.`);
