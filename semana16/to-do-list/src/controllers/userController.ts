@@ -5,7 +5,14 @@ import {
   validCreateUserFields,
   validEditUserFields,
 } from "../validations/validField";
-import { consultUser, registerUser, updateUser } from "../data/userQuerys";
+import {
+  consultAllUser,
+  consultUser,
+  registerUser,
+  updateUser,
+  searchUserBy,
+} from "../data/userQuerys";
+import { validQueryString } from "../validations/validQuerys";
 
 export default class UserController {
   createUser = async (req: Request, res: Response) => {
@@ -58,6 +65,28 @@ export default class UserController {
       await updateUser(id, data);
 
       res.send({ message: "Updated user!" });
+    } catch (error) {
+      res.status(400).send({ message: error.message });
+    }
+  };
+
+  getAllUser = async (_: Request, res: Response) => {
+    try {
+      const result = await consultAllUser();
+
+      res.send({ users: result });
+    } catch (error) {
+      res.status(400).send({ message: error.message });
+    }
+  };
+
+  searchUser = async (req: Request, res: Response) => {
+    try {
+      const query = validQueryString(req.query.query, "query");
+
+      const result = await searchUserBy(query);
+
+      res.send({ users: result });
     } catch (error) {
       res.status(400).send({ message: error.message });
     }

@@ -18,3 +18,17 @@ export const updateUser = async (
 ): Promise<any> => {
   await knexConnection("TodoListUser").update(data).where("id", id);
 };
+
+export const consultAllUser = async (): Promise<any> => {
+  const result = await knexConnection("TodoListUser");
+  return result;
+};
+
+export const searchUserBy = async (query: string): Promise<any> => {
+  const result = await knexConnection("TodoListUser")
+    .select("id", "nickname")
+    .where("email", "like", `%${query}%`)
+    .orWhere("nickname", "like", `%${query}%`);
+
+  return result;
+};
