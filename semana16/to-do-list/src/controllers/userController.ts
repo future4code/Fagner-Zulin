@@ -11,6 +11,7 @@ import {
   registerUser,
   updateUser,
   searchUserBy,
+  deleteUserBy,
 } from "../data/userQuerys";
 import { validQueryString } from "../validations/validQuerys";
 
@@ -87,6 +88,16 @@ export default class UserController {
       const result = await searchUserBy(query);
 
       res.send({ users: result });
+    } catch (error) {
+      res.status(400).send({ message: error.message });
+    }
+  };
+
+  deleteUser = async (req: Request, res: Response) => {
+    try {
+      const id = req.params.id as string;
+      await deleteUserBy(id);
+      res.send({ message: "Deleted user" });
     } catch (error) {
       res.status(400).send({ message: error.message });
     }

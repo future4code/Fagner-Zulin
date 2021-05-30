@@ -11,5 +11,10 @@ export interface task extends taskRequest {
 
 export interface responsibleUserTask {
   taskId: string;
-  responsibleUserId: string;
+  responsibleUserIds: string[];
+}
+
+export interface taskStatusRequest {
+  taskIds: string[];
+  status: string;
 }

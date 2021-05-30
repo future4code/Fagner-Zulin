@@ -3,20 +3,15 @@ export function stringFormat(aDate: string): string {
 }
 
 export function dateFormat(aDate: Date): string {
-  const day = addZeroToLeft(aDate.getDate(), 2);
-  const month = addZeroToLeft(aDate.getMonth() + 1, 2);
+  const day = addZeroToLeft(aDate.getDate());
+  const month = addZeroToLeft(aDate.getMonth() + 1);
   const year = aDate.getFullYear();
   return `${day}/${month}/${year}`;
 }
 
-function addZeroToLeft(aValue: number, lenght: number): string {
-  let numberWithZeroes = String(aValue);
-  let counter = numberWithZeroes.length;
-
-  while (counter < lenght) {
-    numberWithZeroes = "0" + numberWithZeroes;
-    counter++;
-  }
+function addZeroToLeft(aValue: number): string {
+  const numberWithZeroes =
+    String(aValue).length === 1 ? `0${aValue}` : String(aValue);
 
   return numberWithZeroes;
 }

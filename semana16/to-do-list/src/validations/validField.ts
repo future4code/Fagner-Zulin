@@ -1,5 +1,9 @@
 import { userRequest, userRequestRequired } from "../types/userTypes";
-import { responsibleUserTask, taskRequest } from "../types/taskTypes";
+import {
+  responsibleUserTask,
+  taskRequest,
+  taskStatusRequest,
+} from "../types/taskTypes";
 
 export const validCreateUserFields = ({
   name,
@@ -40,18 +44,22 @@ export const validCreateTaskFields = ({
 
 export const validPostResponsibleFields = ({
   taskId,
-  responsibleUserId,
+  responsibleUserIds,
 }: responsibleUserTask) => {
-  if (!taskId || !responsibleUserId) {
+  if (!taskId || !responsibleUserIds) {
     throw new Error(
       "Some field is missing. The taskId and responsibleUserId fields must be informed."
     );
   }
 
-  return { taskId, responsibleUserId };
+  return { taskId, responsibleUserIds };
 };
 
-export const validUpdateStatusField = (status: string): string => {
-  if (!status) throw new Error("The status field must be informed.");
-  return status;
+export const validUpdateStatusField = ({
+  status,
+  taskIds,
+}: taskStatusRequest): taskStatusRequest => {
+  if (!status || !taskIds)
+    throw new Error("The status and taskIds fields must be informed.");
+  return { status, taskIds };
 };

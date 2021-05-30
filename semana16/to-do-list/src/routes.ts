@@ -15,16 +15,24 @@ routes.get("/user", userController.searchUser);
 routes.get("/user/all", userController.getAllUser);
 routes.get("/user/:id", userController.getUser);
 routes.post("/user/:id", userController.editUser);
+routes.delete("/user/:id", userController.deleteUser);
 
 routes.put("/task", taskController.createTask);
 routes.get(
   "/task",
   taskController.getTaskByUser,
-  taskController.getTaskByStatus
+  taskController.getTaskByStatus,
+  taskController.getQueryTask
 );
+routes.get("/task/delayed", taskController.delayedTasks);
 routes.post("/task/responsible", taskController.postResponsible);
-routes.post("/task/:id/status/edit", taskController.updateStatus);
+routes.post("/task/status/edit", taskController.updateStatus);
 routes.get("/task/:id/responsible", taskController.getResponsibles);
+routes.delete(
+  "/task/:taskId/responsible/:responsibleUserId",
+  taskController.withdrawResponsible
+);
 routes.get("/task/:id", taskController.getTask);
+routes.delete("/task/:id", taskController.deleteTask);
 
 export default routes;
