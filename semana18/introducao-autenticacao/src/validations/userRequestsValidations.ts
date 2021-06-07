@@ -42,3 +42,11 @@ export const validSignupFields = (body: RequestBody): RequestBody => {
 
   return { email, password };
 };
+
+export const validLoginFields = (body: RequestBody): RequestBody => {
+  const { email, password } = hasFields(body);
+
+  const emailValidated = isValidEmail(email);
+
+  return { email: emailValidated, password };
+};

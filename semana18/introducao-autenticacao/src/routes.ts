@@ -9,5 +9,6 @@ routes.get("/ping", (_, res) => {
 });
 
 routes.post("/user/signup", userController.signup);
+routes.post("/user/login", userController.login);
 
 export default routes;
