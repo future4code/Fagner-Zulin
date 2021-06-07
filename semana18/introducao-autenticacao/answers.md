@@ -15,3 +15,7 @@ email VARCHAR(255) UNIQUE NOT NULL,
 password VARCHAR(255) NOT NULL
 );
 ```
+
+# Exercício 3
+
+a) ela força que a inferença do tipo seja de uma string. É necessario, pois o process.env pode retornar uma string ou um undefined
