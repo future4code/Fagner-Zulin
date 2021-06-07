@@ -13,6 +13,8 @@ import {
 } from "../data/userQueries";
 import { tokenGenerator } from "../services/tokenGenerator";
 import { tokenValidator } from "../services/tokenValidator";
+import { encryptPassword } from "../services/encryptPassword";
+import { decryptPassword } from "../services/decryptPassword";
 
 export default class UserController {
   signup = async (req: Request, res: Response) => {
@@ -24,7 +26,7 @@ export default class UserController {
       const newUser: User = {
         id,
         email,
-        password,
+        password: encryptPassword(password),
       };
 
       await createUser(newUser);
@@ -41,7 +43,7 @@ export default class UserController {
 
       const user = await selectUserByEmail(email);
 
-      if (user.password !== password) {
+      if (!decryptPassword(password, user.password)) {
         throw new Error("Invalid password");
       }
 
