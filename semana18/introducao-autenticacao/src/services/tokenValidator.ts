@@ -1,10 +1,10 @@
 import { TokenData } from "../types/token";
 import * as jwt from "jsonwebtoken";
 
-export const tokenGenerator = (data: TokenData): string => {
+export const tokenValidator = (token: string): TokenData => {
   if (!process.env.JWT_KEY) throw new Error("JWT_KEY is missing");
 
-  const token = jwt.sign(data, process.env.JWT_KEY, { expiresIn: "1min" });
+  const { id } = jwt.verify(token, process.env.JWT_KEY) as any;
 
-  return token;
+  return { id };
 };

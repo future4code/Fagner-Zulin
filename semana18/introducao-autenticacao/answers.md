@@ -19,3 +19,7 @@ password VARCHAR(255) NOT NULL
 # Exercício 3
 
 a) ela força que a inferença do tipo seja de uma string. É necessario, pois o process.env pode retornar uma string ou um undefined
+
+# Exercício 7
+
+a) ela força que a inferença do tipo seja any. É necessario, pois o verify pode retornar lançar um erro
