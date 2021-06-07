@@ -50,3 +50,9 @@ export const validLoginFields = (body: RequestBody): RequestBody => {
 
   return { email: emailValidated, password };
 };
+
+export const validHeaderToken = (authorization: string | undefined): string => {
+  if (!authorization) throw new Error("The headers authorization is missing");
+
+  return authorization;
+};

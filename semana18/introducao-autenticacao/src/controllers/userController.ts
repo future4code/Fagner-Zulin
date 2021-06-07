@@ -1,12 +1,18 @@
 import { Request, Response } from "express";
 import {
+  validHeaderToken,
   validLoginFields,
   validSignupFields,
 } from "../validations/userRequestsValidations";
 import { User } from "../types/user";
 import { idGenerator } from "../services/idGenerator";
-import { createUser, selectUserBy } from "../data/userQueries";
+import {
+  createUser,
+  selectUserByEmail,
+  selectUserById,
+} from "../data/userQueries";
 import { tokenGenerator } from "../services/tokenGenerator";
+import { tokenValidator } from "../services/tokenValidator";
 
 export default class UserController {
   signup = async (req: Request, res: Response) => {
@@ -33,13 +39,27 @@ export default class UserController {
     try {
       const { email, password } = validLoginFields(req.body);
 
-      const user = await selectUserBy(email);
+      const user = await selectUserByEmail(email);
 
       if (user.password !== password) {
         throw new Error("Invalid password");
       }
 
       res.status(200).send({ token: tokenGenerator({ id: user.id }) });
+    } catch (error) {
+      res.status(400).send({ message: error.message });
+    }
+  };
+
+  profile = async (req: Request, res: Response) => {
+    try {
+      const token = validHeaderToken(req.headers.authorization);
+
+      const userId = tokenValidator(token);
+
+      const { id, email } = await selectUserById(userId);
+
+      res.status(200).send({ id, email });
     } catch (error) {
       res.status(400).send({ message: error.message });
     }
