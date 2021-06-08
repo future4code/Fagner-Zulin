@@ -11,5 +11,6 @@ routes.get("/ping", (_, res) => {
 routes.post("/user/signup", userController.signup);
 routes.post("/user/login", userController.login);
 routes.get("/user/profile", userController.profile);
+routes.delete("/user/:id", userController.delete);
 
 export default routes;

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import {
   createUser,
+  deleteUser,
   selectUserByEmail,
   selectUserById,
 } from "../data/userQueries";
@@ -70,6 +71,26 @@ export default class UserController {
       const { id, email, role } = await selectUserById(data.id);
 
       res.status(200).send({ id, email, role });
+    } catch (error) {
+      res.send({ message: error.message });
+    }
+  };
+
+  delete = async (req: Request, res: Response) => {
+    req.statusCode = 400;
+    try {
+      const token = validHeaderToken(req.headers.authorization);
+      const { id } = req.params;
+      const data: TokenData = tokenValidator(token);
+
+      if (data.role !== "ADMIN") {
+        res.statusCode = 403;
+        throw new Error("Only a ADMIN user can access this funcionality");
+      }
+
+      await deleteUser(id);
+
+      res.status(200).send({ message: "User deleted successfully" });
     } catch (error) {
       res.send({ message: error.message });
     }

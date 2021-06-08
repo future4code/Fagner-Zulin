@@ -14,3 +14,7 @@ export const selectUserById = async (id: string): Promise<any> => {
   const [result] = await knexConnection("User").select().where({ id });
   return result;
 };
+
+export const deleteUser = async (id: string): Promise<void> => {
+  await knexConnection("User").delete().where({ id });
+};
