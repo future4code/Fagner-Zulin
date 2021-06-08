@@ -17,7 +17,7 @@ import {
 export default class UserController {
   signup = async (req: Request, res: Response) => {
     try {
-      const { email, password } = validSignupFields(req.body);
+      const { email, password, role } = validSignupFields(req.body);
 
       const id = idGenerator();
 
@@ -25,11 +25,12 @@ export default class UserController {
         id,
         email,
         password: generateHash(password),
+        role,
       };
 
       await createUser(newUser);
 
-      res.status(201).send({ token: tokenGenerator({ id }) });
+      res.status(201).send({ token: tokenGenerator({ id, role }) });
     } catch (error) {
       res.status(400).send({ message: error.message });
     }
@@ -45,7 +46,9 @@ export default class UserController {
         throw new Error("Invalid password");
       }
 
-      res.status(200).send({ token: tokenGenerator({ id: user.id }) });
+      res
+        .status(200)
+        .send({ token: tokenGenerator({ id: user.id, role: user.role }) });
     } catch (error) {
       res.status(400).send({ message: error.message });
     }
