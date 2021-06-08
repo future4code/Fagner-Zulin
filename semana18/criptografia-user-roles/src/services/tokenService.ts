@@ -9,10 +9,10 @@ export const tokenGenerator = (data: TokenData): string => {
   return token;
 };
 
-export const tokenValidator = (token: string): string => {
+export const tokenValidator = (token: string): TokenData => {
   if (!process.env.JWT_KEY) throw new Error("JWT_KEY is missing");
 
-  const { id } = jwt.verify(token, process.env.JWT_KEY) as any;
+  const data: TokenData = jwt.verify(token, process.env.JWT_KEY) as any;
 
-  return id;
+  return data;
 };

@@ -7,6 +7,7 @@ import {
 import { compareHash, generateHash } from "../services/hashService";
 import { idGenerator } from "../services/idService";
 import { tokenGenerator, tokenValidator } from "../services/tokenService";
+import { TokenData } from "../types/token";
 import { User } from "../types/user";
 import {
   validHeaderToken,
@@ -55,16 +56,22 @@ export default class UserController {
   };
 
   profile = async (req: Request, res: Response) => {
+    req.statusCode = 400;
     try {
       const token = validHeaderToken(req.headers.authorization);
 
-      const userId = tokenValidator(token);
+      const data: TokenData = tokenValidator(token);
 
-      const { id, email } = await selectUserById(userId);
+      if (data.role !== "NORMAL") {
+        res.statusCode = 403;
+        throw new Error("Only a NORMAL user can access this funcionality");
+      }
 
-      res.status(200).send({ id, email });
+      const { id, email, role } = await selectUserById(data.id);
+
+      res.status(200).send({ id, email, role });
     } catch (error) {
-      res.status(400).send({ message: error.message });
+      res.send({ message: error.message });
     }
   };
 }
