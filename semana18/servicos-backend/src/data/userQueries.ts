@@ -1,8 +1,12 @@
-import { User } from "../types/user";
+import { User, UserAddress } from "../types/user";
 import knexConnection from "./connection";
 
-export const createUser = async (data: User): Promise<void> => {
+export const createUser = async (
+  data: User,
+  address: UserAddress
+): Promise<void> => {
   await knexConnection("User").insert(data);
+  await knexConnection("UserAddress").insert(address);
 };
 
 export const selectUserByEmail = async (email: string): Promise<any> => {

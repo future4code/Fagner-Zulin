@@ -18,7 +18,8 @@ export interface UserAddressRequest {
 }
 
 export interface UserAddress extends UserAddressRequest {
-  numero: number;
-  complemento?: string;
-  cep: number;
+  number: number;
+  complement?: string;
+  zip_code: number;
+  user_id: string;
 }
