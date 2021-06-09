@@ -5,11 +5,12 @@ import {
   selectUserByEmail,
   selectUserById,
 } from "../data/userQueries";
+import { getAddress } from "../services/addressService";
 import { compareHash, generateHash } from "../services/hashService";
 import { idGenerator } from "../services/idService";
 import { tokenGenerator, tokenValidator } from "../services/tokenService";
 import { TokenData } from "../types/token";
-import { User } from "../types/user";
+import { User, UserAddress } from "../types/user";
 import {
   validHeaderToken,
   validLoginFields,
@@ -19,7 +20,8 @@ import {
 export default class UserController {
   signup = async (req: Request, res: Response) => {
     try {
-      const { email, password, role } = validSignupFields(req.body);
+      const { email, password, role, number, complement, zip_code } =
+        validSignupFields(req.body);
 
       const id = idGenerator();
 
@@ -30,7 +32,17 @@ export default class UserController {
         role,
       };
 
-      await createUser(newUser);
+      const address = await getAddress(String(zip_code));
+
+      const userAddress: UserAddress = {
+        user_id: id,
+        number,
+        complement,
+        zip_code,
+        ...address,
+      };
+
+      await createUser(newUser, userAddress);
 
       res.status(201).send({ token: tokenGenerator({ id, role }) });
     } catch (error) {

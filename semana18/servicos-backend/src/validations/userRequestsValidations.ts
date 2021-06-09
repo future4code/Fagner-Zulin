@@ -7,20 +7,26 @@ interface RequestBody {
 
 interface RequestBodySignup extends RequestBody {
   role: USER_ROLES;
+  number: number;
+  complement?: string;
+  zip_code: number;
 }
 
 const hasFields = ({
   email,
   password,
   role,
+  number,
+  complement,
+  zip_code,
 }: RequestBodySignup): RequestBodySignup => {
-  if (!email || !password || !role) {
+  if (!email || !password || !role || !number || !zip_code) {
     throw new Error(
-      "Some field is missing! Role, Email and password are required"
+      "Some field is missing! Role, Number, Zip Code, Email and password are required"
     );
   }
 
-  return { email, password, role };
+  return { email, password, role, complement, zip_code, number };
 };
 
 const hasFieldsLogin = ({ email, password }: RequestBody): RequestBody => {
@@ -70,8 +76,9 @@ export const validSignupFields = (
   const email = isValidEmail(fields.email);
   const password = isValidPassword(fields.password);
   const role = isValidRole(fields.role);
+  const { number, complement, zip_code } = fields;
 
-  return { email, password, role };
+  return { email, password, role, number, complement, zip_code };
 };
 
 export const validLoginFields = (body: RequestBody): RequestBody => {
