@@ -3,10 +3,11 @@ import { generateHash, compareHash } from "../services/hashService";
 import { idGenerator } from "../services/idService";
 import { validSignupData } from "../validations/validFieldsSignup";
 import { User } from "../types/user";
-import { createUser, selectUserBy } from "../data/userQueries";
+import { createUser, selectUserByEmail } from "../data/userQueries";
 import { tokenGenerator } from "../services/tokenService";
 import { hasLoginFields } from "../validations/validFieldsLogin";
 import CustomError from "../errors/customError";
+import { hasHeaderToken } from "../validations/validHeaderToken";
 
 export default class UserController {
   signup = async (req: Request, res: Response) => {
@@ -34,7 +35,7 @@ export default class UserController {
     try {
       const { email, password } = hasLoginFields(req.body);
 
-      const { id, password: hash }: User = await selectUserBy(email);
+      const { id, password: hash }: User = await selectUserByEmail(email);
 
       if (!compareHash(password, hash)) {
         throw new CustomError("Incorrect password, try again", 401);
@@ -43,6 +44,14 @@ export default class UserController {
       const token = tokenGenerator({ id });
 
       res.status(200).send({ token });
+    } catch ({ code, message }) {
+      res.status(code).send({ message });
+    }
+  };
+
+  getProfile = async (req: Request, res: Response) => {
+    try {
+      const token = hasHeaderToken(req.headers);
     } catch ({ code, message }) {
       res.status(code).send({ message });
     }
