@@ -9,7 +9,7 @@ interface signupData {
 const hasSignupFields = ({ name, email, password }: signupData): signupData => {
   if (!name || !password || !email) {
     throw new CustomError(
-      "A field is missing. Name, password, email is requied"
+      "Some field is missing. Name, password, email is requied"
     );
   }
 
