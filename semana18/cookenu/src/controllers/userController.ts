@@ -4,7 +4,7 @@ import { idGenerator } from "../services/idService";
 import { validSignupData } from "../validations/validFieldsSignup";
 import { User } from "../types/user";
 import {
-  createUser,
+  insertNewUser,
   selectUserByEmail,
   selectUserById,
 } from "../data/userQueries";
@@ -25,7 +25,7 @@ export default class UserController {
         password: generateHash(password),
       };
 
-      await createUser(user);
+      await insertNewUser(user);
 
       const token = tokenGenerator({ id: user.id });
 
