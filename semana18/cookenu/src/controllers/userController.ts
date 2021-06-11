@@ -4,6 +4,7 @@ import { idGenerator } from "../services/idService";
 import { validSignupData } from "../validations/validFieldsSignup";
 import { User, UserFollow } from "../types/user";
 import {
+  deleteFollow,
   insertFollow,
   insertNewUser,
   selectUserByEmail,
@@ -14,6 +15,7 @@ import { hasLoginFields } from "../validations/validFieldsLogin";
 import CustomError from "../errors/customError";
 import { hasHeaderToken } from "../validations/validHeaderToken";
 import { validFollowField } from "../validations/validFieldFollow";
+import { validUnfollowField } from "../validations/validFieldUnfollow";
 
 export default class UserController {
   signup = async (req: Request, res: Response) => {
@@ -101,6 +103,25 @@ export default class UserController {
       await insertFollow(data);
 
       res.send({ message: "Followed" });
+    } catch ({ code, message }) {
+      res.status(code ? code : 400).send({ message });
+    }
+  };
+
+  unfollow = async (req: Request, res: Response) => {
+    try {
+      const token = hasHeaderToken(req.headers);
+      const { id: follower } = tokenValidator(token);
+      const followed = await validUnfollowField(req.body);
+
+      const data: UserFollow = {
+        followed_id: followed,
+        follower_id: follower,
+      };
+
+      await deleteFollow(data);
+
+      res.send({ message: "Unfollowed" });
     } catch ({ code, message }) {
       res.status(code ? code : 400).send({ message });
     }

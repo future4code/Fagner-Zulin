@@ -14,6 +14,7 @@ routes.post("/signup", userController.signup);
 routes.post("/login", userController.login);
 routes.get("/user/profile", userController.getProfile);
 routes.post("/user/follow", userController.follow);
+routes.post("/user/unfollow", userController.unfollow);
 routes.get("/user/:id", userController.getProfileById);
 
 routes.post("/recipe", recipeController.createRecipe);

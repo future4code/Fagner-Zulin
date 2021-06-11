@@ -41,3 +41,17 @@ export const insertFollow = async (data: UserFollow): Promise<void> => {
     throw new CustomError(error.sqlMessage, 500);
   }
 };
+
+export const deleteFollow = async ({
+  followed_id,
+  follower_id,
+}: UserFollow): Promise<void> => {
+  try {
+    await knexConnection("cookenu_followers")
+      .delete()
+      .where({ follower_id })
+      .andWhere({ followed_id });
+  } catch (error) {
+    throw new CustomError(error.sqlMessage, 500);
+  }
+};
