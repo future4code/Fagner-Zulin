@@ -55,3 +55,21 @@ export const deleteFollow = async ({
     throw new CustomError(error.sqlMessage, 500);
   }
 };
+
+export const getFeed = async (id: string): Promise<any> => {
+  try {
+    const [result] = await knexConnection.raw(`
+    SELECT cr.id, title, description, creation_date, creator_id, cu.name
+    FROM cookenu_recipes as cr
+    JOIN cookenu_followers as cf
+    ON cf.followed_id = creator_id AND cf.follower_id = "${id}"
+    JOIN cookenu_user as cu
+    ON cu.id = cr.creator_id
+    ORDER BY creation_date desc;
+    `);
+
+    return result;
+  } catch (error) {
+    throw new CustomError(error.sqlMessage, 500);
+  }
+};
