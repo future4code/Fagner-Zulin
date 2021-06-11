@@ -23,18 +23,19 @@ import { FeedData } from "../types/feed";
 export default class UserController {
   signup = async (req: Request, res: Response) => {
     try {
-      const { email, name, password } = validSignupData(req.body);
+      const { email, name, password, role } = validSignupData(req.body);
 
       const user: User = {
         id: idGenerator(),
         email,
         name,
         password: generateHash(password),
+        role,
       };
 
       await insertNewUser(user);
 
-      const token = tokenGenerator({ id: user.id });
+      const token = tokenGenerator({ id: user.id, role: user.role });
 
       res.status(201).json({ token });
     } catch ({ code, message }) {
@@ -50,13 +51,13 @@ export default class UserController {
 
       if (!user) throw new CustomError("Unregistered user");
 
-      const { id, password: hash }: User = user;
+      const { id, password: hash, role }: User = user;
 
       if (!compareHash(password, hash)) {
         throw new CustomError("Incorrect password, try again", 401);
       }
 
-      const token = tokenGenerator({ id });
+      const token = tokenGenerator({ id, role });
 
       res.status(200).send({ token });
     } catch ({ code, message }) {
