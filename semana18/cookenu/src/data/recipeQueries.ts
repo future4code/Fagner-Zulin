@@ -9,3 +9,15 @@ export const insertNewRecipe = async (data: Recipe): Promise<void> => {
     throw new CustomError(error.sqlMessage, 500);
   }
 };
+
+export const selectRecipeById = async (id: string): Promise<any> => {
+  try {
+    const [result] = await knexConnection("cookenu_recipes")
+      .select()
+      .where({ id });
+
+    return result;
+  } catch (error) {
+    throw new CustomError(error.sqlMessage, 500);
+  }
+};

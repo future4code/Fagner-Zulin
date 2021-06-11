@@ -16,5 +16,6 @@ routes.get("/user/profile", userController.getProfile);
 routes.get("/user/:id", userController.getProfileById);
 
 routes.post("/recipe", recipeController.createRecipe);
+routes.get("/recipe/:id", recipeController.getRecipe);
 
 export default routes;
