@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import { generateHash, compareHash } from "../services/hashService";
 import { idGenerator } from "../services/idService";
 import { validSignupData } from "../validations/validFieldsSignup";
-import { User } from "../types/user";
+import { User, UserFollow } from "../types/user";
 import {
+  insertFollow,
   insertNewUser,
   selectUserByEmail,
   selectUserById,
@@ -12,6 +13,7 @@ import { tokenGenerator, tokenValidator } from "../services/tokenService";
 import { hasLoginFields } from "../validations/validFieldsLogin";
 import CustomError from "../errors/customError";
 import { hasHeaderToken } from "../validations/validHeaderToken";
+import { validFollowField } from "../validations/validFieldFollow";
 
 export default class UserController {
   signup = async (req: Request, res: Response) => {
@@ -80,6 +82,25 @@ export default class UserController {
       const { id, name, email } = result;
 
       res.send({ id, name, email });
+    } catch ({ code, message }) {
+      res.status(code ? code : 400).send({ message });
+    }
+  };
+
+  follow = async (req: Request, res: Response) => {
+    try {
+      const token = hasHeaderToken(req.headers);
+      const { id: follower } = tokenValidator(token);
+      const followed = await validFollowField(req.body);
+
+      const data: UserFollow = {
+        followed_id: followed,
+        follower_id: follower,
+      };
+
+      await insertFollow(data);
+
+      res.send({ message: "Followed" });
     } catch ({ code, message }) {
       res.status(code ? code : 400).send({ message });
     }

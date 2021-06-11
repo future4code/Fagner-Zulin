@@ -13,6 +13,7 @@ routes.get("/ping", (_, res) => {
 routes.post("/signup", userController.signup);
 routes.post("/login", userController.login);
 routes.get("/user/profile", userController.getProfile);
+routes.post("/user/follow", userController.follow);
 routes.get("/user/:id", userController.getProfileById);
 
 routes.post("/recipe", recipeController.createRecipe);

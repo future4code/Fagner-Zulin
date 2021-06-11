@@ -1,4 +1,4 @@
-import { User } from "../types/user";
+import { User, UserFollow } from "../types/user";
 import knexConnection from "./connection";
 import CustomError from "../errors/customError";
 
@@ -29,6 +29,14 @@ export const selectUserById = async (id: string): Promise<any> => {
       .where({ id });
 
     return result;
+  } catch (error) {
+    throw new CustomError(error.sqlMessage, 500);
+  }
+};
+
+export const insertFollow = async (data: UserFollow): Promise<void> => {
+  try {
+    await knexConnection("cookenu_followers").insert(data);
   } catch (error) {
     throw new CustomError(error.sqlMessage, 500);
   }
