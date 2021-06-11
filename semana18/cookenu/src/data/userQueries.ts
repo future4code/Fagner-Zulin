@@ -21,3 +21,15 @@ export const selectUserByEmail = async (email: string): Promise<any> => {
     throw new CustomError(error.sqlMessage, 500);
   }
 };
+
+export const selectUserById = async (id: string): Promise<any> => {
+  try {
+    const [result] = await knexConnection("cookenu_user")
+      .select()
+      .where({ id });
+
+    return result;
+  } catch (error) {
+    throw new CustomError(error.sqlMessage, 500);
+  }
+};

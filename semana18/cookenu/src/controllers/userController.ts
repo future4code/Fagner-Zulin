@@ -3,8 +3,12 @@ import { generateHash, compareHash } from "../services/hashService";
 import { idGenerator } from "../services/idService";
 import { validSignupData } from "../validations/validFieldsSignup";
 import { User } from "../types/user";
-import { createUser, selectUserByEmail } from "../data/userQueries";
-import { tokenGenerator } from "../services/tokenService";
+import {
+  createUser,
+  selectUserByEmail,
+  selectUserById,
+} from "../data/userQueries";
+import { tokenGenerator, tokenValidator } from "../services/tokenService";
 import { hasLoginFields } from "../validations/validFieldsLogin";
 import CustomError from "../errors/customError";
 import { hasHeaderToken } from "../validations/validHeaderToken";
@@ -52,8 +56,13 @@ export default class UserController {
   getProfile = async (req: Request, res: Response) => {
     try {
       const token = hasHeaderToken(req.headers);
+      const { id: userId } = tokenValidator(token);
+
+      const { id, name, email } = await selectUserById(userId);
+
+      res.send({ id, name, email });
     } catch ({ code, message }) {
-      res.status(code).send({ message });
+      res.status(code ? code : 400).send({ message });
     }
   };
 }
