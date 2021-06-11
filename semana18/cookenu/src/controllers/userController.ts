@@ -65,4 +65,23 @@ export default class UserController {
       res.status(code ? code : 400).send({ message });
     }
   };
+
+  getProfileById = async (req: Request, res: Response) => {
+    try {
+      const profileId = req.params.id as string;
+
+      const token = hasHeaderToken(req.headers);
+      tokenValidator(token);
+
+      const result = await selectUserById(profileId);
+
+      if (!result) throw new CustomError("User not found", 404);
+
+      const { id, name, email } = result;
+
+      res.send({ id, name, email });
+    } catch ({ code, message }) {
+      res.status(code ? code : 400).send({ message });
+    }
+  };
 }
