@@ -96,3 +96,14 @@ export const dropUser = async (id: string): Promise<any> => {
     throw new CustomError(error.sqlMessage, 500);
   }
 };
+
+export const updatePassword = async (
+  email: string,
+  password: string
+): Promise<void> => {
+  try {
+    await knexConnection("cookenu_user").update({ password }).where({ email });
+  } catch (error) {
+    throw new CustomError(error.sqlMessage, 500);
+  }
+};

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, text } from "express";
 import { generateHash, compareHash } from "../services/hashService";
 import { idGenerator } from "../services/idService";
 import { validSignupData } from "../validations/validFieldsSignup";
@@ -11,6 +11,7 @@ import {
   insertNewUser,
   selectUserByEmail,
   selectUserById,
+  updatePassword,
 } from "../data/userQueries";
 import { tokenGenerator, tokenValidator } from "../services/tokenService";
 import { hasLoginFields } from "../validations/validFieldsLogin";
@@ -20,6 +21,9 @@ import { validFollowField } from "../validations/validFieldFollow";
 import { validUnfollowField } from "../validations/validFieldUnfollow";
 import { formatData } from "../util/transformData";
 import { FeedData } from "../types/feed";
+import { validResetData } from "../validations/validFieldResetPassword";
+import { generatePassword } from "../services/passwordService";
+import transport from "../services/emailService";
 
 export default class UserController {
   signup = async (req: Request, res: Response) => {
@@ -176,6 +180,26 @@ export default class UserController {
       await dropUser(userId);
 
       res.send();
+    } catch ({ code, message }) {
+      res.status(code ? code : 400).send({ message });
+    }
+  };
+
+  resetPassword = async (req: Request, res: Response) => {
+    try {
+      const email = await validResetData(req.body);
+      const password = generatePassword();
+      const hash = generateHash(password);
+      await updatePassword(email, hash);
+
+      transport.sendMail({
+        from: "contact@cookenu.com",
+        to: [email],
+        subject: "Reset Password",
+        text: `This is your new password: ${password}`,
+      });
+
+      res.send({ message: "Your new password will be sent to your email" });
     } catch ({ code, message }) {
       res.status(code ? code : 400).send({ message });
     }

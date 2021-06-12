@@ -23,7 +23,7 @@ const hasSignupFields = ({
   return { name, email, password, role };
 };
 
-const isValidEmail = (email: string): string => {
+export const isValidEmail = (email: string): string => {
   const emailRegex = /\S+@\S+\.\S+/;
 
   if (!emailRegex.test(email)) {
