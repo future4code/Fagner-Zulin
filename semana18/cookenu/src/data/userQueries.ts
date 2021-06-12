@@ -1,6 +1,7 @@
 import { User, UserFollow } from "../types/user";
 import knexConnection from "./connection";
 import CustomError from "../errors/customError";
+import { deleteRecipeByCreator } from "./recipeQueries";
 
 export const insertNewUser = async (user: User): Promise<void> => {
   try {
@@ -69,6 +70,28 @@ export const getFeed = async (id: string): Promise<any> => {
     `);
 
     return result;
+  } catch (error) {
+    throw new CustomError(error.sqlMessage, 500);
+  }
+};
+
+const deleteFollows = async (id: string): Promise<any> => {
+  try {
+    await knexConnection("cookenu_followers")
+      .delete()
+      .where({ follower_id: id })
+      .orWhere({ followed_id: id });
+  } catch (error) {
+    throw new CustomError(error.sqlMessage, 500);
+  }
+};
+
+export const dropUser = async (id: string): Promise<any> => {
+  try {
+    await deleteFollows(id);
+    await deleteRecipeByCreator(id);
+
+    await knexConnection("cookenu_user").delete().where({ id });
   } catch (error) {
     throw new CustomError(error.sqlMessage, 500);
   }

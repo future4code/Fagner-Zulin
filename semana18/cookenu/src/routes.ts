@@ -17,6 +17,7 @@ routes.post("/user/follow", userController.follow);
 routes.post("/user/unfollow", userController.unfollow);
 routes.get("/user/feed", userController.feed);
 routes.get("/user/:id", userController.getProfileById);
+routes.delete("/user/:id", userController.deleteUser);
 
 routes.post("/recipe", recipeController.createRecipe);
 routes.get("/recipe/:id", recipeController.getRecipe);

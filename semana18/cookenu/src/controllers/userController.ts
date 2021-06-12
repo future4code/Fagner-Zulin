@@ -5,6 +5,7 @@ import { validSignupData } from "../validations/validFieldsSignup";
 import { User, UserFollow } from "../types/user";
 import {
   deleteFollow,
+  dropUser,
   getFeed,
   insertFollow,
   insertNewUser,
@@ -154,6 +155,27 @@ export default class UserController {
       });
 
       res.send({ feed: response });
+    } catch ({ code, message }) {
+      res.status(code ? code : 400).send({ message });
+    }
+  };
+
+  deleteUser = async (req: Request, res: Response) => {
+    try {
+      const userId = req.params.id as string;
+      const token = hasHeaderToken(req.headers);
+      const { role } = tokenValidator(token);
+
+      if (role !== "ADMIN") {
+        throw new CustomError(
+          "You are not allowed to finish this operation.",
+          401
+        );
+      }
+
+      await dropUser(userId);
+
+      res.send();
     } catch ({ code, message }) {
       res.status(code ? code : 400).send({ message });
     }
