@@ -5,6 +5,7 @@ import { hasRecipeFields } from "../validations/validFieldsCreateRecipe";
 import { Recipe } from "../types/recipe";
 import { idGenerator } from "../services/idService";
 import {
+  dropRecipe,
   insertNewRecipe,
   selectRecipeById,
   updateRecipe,
@@ -76,6 +77,30 @@ export default class RecipeController {
       }
 
       await updateRecipe(recipeId, req.body);
+
+      res.end();
+    } catch ({ code, message }) {
+      res.status(code ? code : 400).send({ message });
+    }
+  };
+
+  deleteRecipe = async (req: Request, res: Response) => {
+    try {
+      const recipeId = req.params.id as string;
+
+      const token = hasHeaderToken(req.headers);
+      const { id, role } = tokenValidator(token);
+
+      const recipe = await selectRecipeById(recipeId);
+
+      if (role === "NORMAL" && recipe.creator_id !== id) {
+        throw new CustomError(
+          "You are not allowed to finish this operation.",
+          401
+        );
+      }
+
+      await dropRecipe(recipeId);
 
       res.end();
     } catch ({ code, message }) {

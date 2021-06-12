@@ -32,3 +32,11 @@ export const updateRecipe = async (
     throw new CustomError(error.sqlMessage, 500);
   }
 };
+
+export const dropRecipe = async (id: string): Promise<void> => {
+  try {
+    await knexConnection("cookenu_recipes").delete().where({ id });
+  } catch (error) {
+    throw new CustomError(error.sqlMessage, 500);
+  }
+};
