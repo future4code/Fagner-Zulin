@@ -4,3 +4,8 @@ export interface Recipe {
   description: string;
   creator_id: string;
 }
+
+export interface RecipeEdit {
+  title?: string;
+  description?: string;
+}
