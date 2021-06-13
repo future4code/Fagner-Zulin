@@ -13,7 +13,7 @@ import { hasLoginFields } from "../validations/validFieldsLogin";
 import CustomError from "../errors/customError";
 import { validResetData } from "../validations/validFieldResetPassword";
 import { generatePassword } from "../services/passwordService";
-import transport from "../services/emailService";
+import { sendEmailResetPassword } from "../services/emailService";
 
 export default class AuthenticationUserController {
   signup = async (req: Request, res: Response) => {
@@ -66,12 +66,7 @@ export default class AuthenticationUserController {
       const hash = generateHash(password);
       await updatePassword(email, hash);
 
-      transport.sendMail({
-        from: "contact@cookenu.com",
-        to: [email],
-        subject: "Reset Password",
-        text: `This is your new password: ${password}`,
-      });
+      sendEmailResetPassword([email], password);
 
       res.send({ message: "Your new password will be sent to your email" });
     } catch ({ code, message }) {

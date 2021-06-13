@@ -12,4 +12,14 @@ const transport = nodemailer.createTransport({
   },
 });
 
-export default transport;
+export const sendEmailResetPassword = async (
+  email: string[],
+  password: string
+): Promise<void> => {
+  await transport.sendMail({
+    from: "contact@cookenu.com",
+    to: email,
+    subject: "Reset Password",
+    text: `This is your new password: ${password}`,
+  });
+};
