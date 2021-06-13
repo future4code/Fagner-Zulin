@@ -6,12 +6,12 @@ import { Recipe } from "../types/recipe";
 import { idGenerator } from "../services/idService";
 import {
   dropRecipe,
+  hasRecipeAndGet,
   insertNewRecipe,
-  selectRecipeById,
   updateRecipe,
 } from "../data/recipeQueries";
-import CustomError from "../errors/customError";
 import { formatData } from "../util/transformData";
+import { validNormalAndCreator } from "../validations/validRulesRecipeChanges";
 
 export default class RecipeController {
   createRecipe = async (req: Request, res: Response) => {
@@ -43,9 +43,7 @@ export default class RecipeController {
       const token = hasHeaderToken(req.headers);
       tokenValidator(token);
 
-      const result = await selectRecipeById(recipeId);
-
-      if (!result) throw new CustomError("Recipe not found", 404);
+      const result = await hasRecipeAndGet(recipeId);
 
       const response = {
         id: result.id,
@@ -67,14 +65,9 @@ export default class RecipeController {
       const token = hasHeaderToken(req.headers);
       const { id, role } = tokenValidator(token);
 
-      const recipe = await selectRecipeById(recipeId);
+      const recipe = await hasRecipeAndGet(recipeId);
 
-      if (role === "NORMAL" && recipe.creator_id !== id) {
-        throw new CustomError(
-          "You are not allowed to finish this operation.",
-          401
-        );
-      }
+      validNormalAndCreator(role, recipe.creator_id, id);
 
       await updateRecipe(recipeId, req.body);
 
@@ -91,14 +84,9 @@ export default class RecipeController {
       const token = hasHeaderToken(req.headers);
       const { id, role } = tokenValidator(token);
 
-      const recipe = await selectRecipeById(recipeId);
+      const recipe = await hasRecipeAndGet(recipeId);
 
-      if (role === "NORMAL" && recipe.creator_id !== id) {
-        throw new CustomError(
-          "You are not allowed to finish this operation.",
-          401
-        );
-      }
+      validNormalAndCreator(role, recipe.creator_id, id);
 
       await dropRecipe(recipeId);
 

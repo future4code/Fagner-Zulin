@@ -50,3 +50,11 @@ export const deleteRecipeByCreator = async (
     throw new CustomError(error.sqlMessage, 500);
   }
 };
+
+export const hasRecipeAndGet = async (recipeId: string): Promise<any> => {
+  const result = await selectRecipeById(recipeId);
+
+  if (!result) throw new CustomError("Recipe not found", 404);
+
+  return result;
+};
