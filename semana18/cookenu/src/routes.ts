@@ -1,18 +1,21 @@
 import express, { Router } from "express";
 import UserController from "./controllers/userController";
 import RecipeController from "./controllers/recipeController";
+import AuthenticationUserController from "./controllers/authenticationUserController";
 
 const routes: Router = express.Router();
 const userController = new UserController();
 const recipeController = new RecipeController();
+const authenticationUserController = new AuthenticationUserController();
 
 routes.get("/ping", (_, res) => {
   res.send({ message: "pong" });
 });
 
-routes.post("/signup", userController.signup);
-routes.post("/login", userController.login);
-routes.put("/reset", userController.resetPassword);
+routes.post("/signup", authenticationUserController.signup);
+routes.post("/login", authenticationUserController.login);
+routes.put("/reset", authenticationUserController.resetPassword);
+
 routes.get("/user/profile", userController.getProfile);
 routes.post("/user/follow", userController.follow);
 routes.post("/user/unfollow", userController.unfollow);
