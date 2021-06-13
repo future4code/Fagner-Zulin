@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
-import { dropUser, getFeed, selectUserById } from "../data/userQueries";
+import { dropUser, selectUserById } from "../data/userQueries";
 import { tokenValidator } from "../services/tokenService";
 import CustomError from "../errors/customError";
 import { hasHeaderToken } from "../validations/validHeaderToken";
-import { formatData } from "../util/transformData";
-import { FeedData } from "../types/feed";
 
 export default class UserController {
   getProfile = async (req: Request, res: Response) => {
@@ -34,30 +32,6 @@ export default class UserController {
       const { id, name, email } = result;
 
       res.send({ id, name, email });
-    } catch ({ code, message }) {
-      res.status(code ? code : 400).send({ message });
-    }
-  };
-
-  feed = async (req: Request, res: Response) => {
-    try {
-      const token = hasHeaderToken(req.headers);
-      const { id } = tokenValidator(token);
-
-      const result = await getFeed(id);
-
-      const response = result.map((dataFeed: FeedData) => {
-        return {
-          id: dataFeed.id,
-          title: dataFeed.title,
-          description: dataFeed.description,
-          createdAt: formatData(dataFeed.creation_date),
-          userId: dataFeed.creator_id,
-          userName: dataFeed.name,
-        };
-      });
-
-      res.send({ feed: response });
     } catch ({ code, message }) {
       res.status(code ? code : 400).send({ message });
     }
