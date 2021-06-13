@@ -1,7 +1,7 @@
 import { USER_ROLES } from "../types/user";
 import CustomError from "../errors/customError";
 
-export const validNormalAndCreator = (
+export const validRoleAndCreator = (
   role: USER_ROLES,
   creatorId: string,
   id: string

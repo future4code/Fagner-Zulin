@@ -11,7 +11,7 @@ import {
   updateRecipe,
 } from "../data/recipeQueries";
 import { formatData } from "../util/transformData";
-import { validNormalAndCreator } from "../validations/validRulesRecipeChanges";
+import { validRoleAndCreator } from "../validations/validRulesRecipeChanges";
 
 export default class RecipeController {
   createRecipe = async (req: Request, res: Response) => {
@@ -67,7 +67,7 @@ export default class RecipeController {
 
       const recipe = await hasRecipeAndGet(recipeId);
 
-      validNormalAndCreator(role, recipe.creator_id, id);
+      validRoleAndCreator(role, recipe.creator_id, id);
 
       await updateRecipe(recipeId, req.body);
 
@@ -86,7 +86,7 @@ export default class RecipeController {
 
       const recipe = await hasRecipeAndGet(recipeId);
 
-      validNormalAndCreator(role, recipe.creator_id, id);
+      validRoleAndCreator(role, recipe.creator_id, id);
 
       await dropRecipe(recipeId);
 
