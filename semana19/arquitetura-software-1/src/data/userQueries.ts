@@ -18,3 +18,13 @@ export const selectUserByEmail = async (email: string): Promise<any> => {
     throw new Error(error.sqlMessage || error.message);
   }
 };
+
+export const selectAllUsers = async (): Promise<any> => {
+  try {
+    const result = await knexConnection("User_Arq");
+
+    return result;
+  } catch (error) {
+    throw new Error(error.sqlMessage || error.message);
+  }
+};

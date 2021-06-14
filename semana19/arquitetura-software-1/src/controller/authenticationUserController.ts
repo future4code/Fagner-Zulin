@@ -1,13 +1,17 @@
 import { Request, Response } from "express";
-import { signupBusiness } from "../business/signup";
-import { loginBusiness } from "../business/login";
+import * as authentication from "../business/authenticationBusiness";
 
 export default class AuthenticationUserController {
   signup = async (req: Request, res: Response) => {
     try {
       const { name, email, password, role } = req.body;
 
-      const token = await signupBusiness({ name, email, password, role });
+      const token = await authentication.signupBusiness({
+        name,
+        email,
+        password,
+        role,
+      });
 
       res.send({ token });
     } catch (error) {
@@ -19,7 +23,10 @@ export default class AuthenticationUserController {
     try {
       const { email, password } = req.body;
 
-      const token = await loginBusiness({ email, password });
+      const token = await authentication.loginBusiness({
+        email,
+        password,
+      });
 
       res.send({ token });
     } catch (error) {
