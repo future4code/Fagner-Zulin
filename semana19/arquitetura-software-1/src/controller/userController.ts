@@ -14,5 +14,16 @@ export default class UserController {
     }
   };
 
-  deleteUser = async (req: Request, res: Response) => {};
+  deleteUser = async (req: Request, res: Response) => {
+    try {
+      const { authorization } = req.headers;
+      const id = req.params.id as string;
+
+      await userBusiness.deleteUser(authorization, id);
+
+      res.send({ message: "User deleted successfully!" });
+    } catch (error) {
+      res.status(400).send({ message: error.message });
+    }
+  };
 }

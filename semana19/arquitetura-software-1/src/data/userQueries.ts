@@ -28,3 +28,11 @@ export const selectAllUsers = async (): Promise<any> => {
     throw new Error(error.sqlMessage || error.message);
   }
 };
+
+export const dropUser = async (id: string): Promise<void> => {
+  try {
+    await knexConnection("User_Arq").delete().where({ id });
+  } catch (error) {
+    throw new Error(error.sqlMessage || error.message);
+  }
+};
