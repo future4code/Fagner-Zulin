@@ -3,13 +3,16 @@ export enum USER_ROLES {
   NORMAL = "NORMAL",
 }
 
-export interface UserData {
-  name: string;
+export interface LoginData {
   email: string;
   password: string;
+}
+
+export interface SignupData extends LoginData {
+  name: string;
   role: USER_ROLES;
 }
 
-export interface User extends UserData {
+export interface User extends SignupData {
   id: string;
 }

@@ -1,11 +1,11 @@
-import { UserData, USER_ROLES } from "../../model/user";
+import { SignupData, USER_ROLES } from "../../model/user";
 
 const hasSignupFields = ({
   name,
   email,
   password,
   role,
-}: UserData): UserData => {
+}: SignupData): SignupData => {
   if (!name || !password || !email || !role) {
     throw new Error(
       "Some field is missing. Name, password, email and role is requied"
@@ -46,7 +46,7 @@ const isValidRole = (role: string): USER_ROLES => {
   return USER_ROLES[role as USER_ROLES];
 };
 
-export const validSignup = (data: UserData): UserData => {
+export const validSignup = (data: SignupData): SignupData => {
   const fields = hasSignupFields(data);
 
   const email = isValidEmail(fields.email);

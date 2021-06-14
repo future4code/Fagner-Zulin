@@ -8,3 +8,13 @@ export const insertUser = async (user: User): Promise<void> => {
     throw new Error(error.sqlMessage || error.message);
   }
 };
+
+export const selectUserByEmail = async (email: string): Promise<any> => {
+  try {
+    const [result] = await knexConnection("User_Arq").select().where({ email });
+
+    return result;
+  } catch (error) {
+    throw new Error(error.sqlMessage || error.message);
+  }
+};
