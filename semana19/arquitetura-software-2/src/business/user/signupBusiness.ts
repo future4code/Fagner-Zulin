@@ -1,37 +1,29 @@
 import { hash } from "../../services/hashManager";
 import { insertUser } from "../../data/user/insertUser";
-import { userData } from "../../model/user";
+import { signupInputDTO, user } from "../../model/user";
 import { generateToken } from "../../services/authenticator";
 import { generateId } from "../../services/idGenerator";
+import { inputValidation } from "./validations/signupValidations";
 
 export const signupBusiness = async (
-   userData: userData
-):Promise<string> => {
-   if (
-      !userData.name ||
-      !userData.nickname ||
-      !userData.email ||
-      !userData.password ||
-      !userData.role
-   ) {
-      throw new Error('Preencha os campos "name","nickname", "email" e "password"')
-   }
+  userData: signupInputDTO
+): Promise<string> => {
+  const user = inputValidation(userData);
 
-   const cypherPassword = await hash(userData.password);
+  const cypherPassword = await hash(user.password);
 
-   const newUser = {
-      ...userData,
-      password: cypherPassword,
-      id: generateId()
-   }
+  const newUser: user = {
+    ...user,
+    password: cypherPassword,
+    id: generateId(),
+  };
 
-   await insertUser(newUser)
+  await insertUser(newUser);
 
-   const token: string = generateToken({
-      id: newUser.id,
-      role: userData.role
-   })
+  const token: string = generateToken({
+    id: newUser.id,
+    role: user.role,
+  });
 
-   return token
-
-}
+  return token;
+};
