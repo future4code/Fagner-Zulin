@@ -4,15 +4,9 @@ import { signupInputDTO } from "../../model/user";
 
 export const signup = async (req: Request, res: Response) => {
   try {
-    const { name, nickname, email, password, role }: signupInputDTO = req.body;
+    const data: signupInputDTO = req.body;
 
-    const token: string = await signupBusiness({
-      name,
-      nickname,
-      email,
-      password,
-      role,
-    });
+    const token: string = await signupBusiness(data);
 
     res.status(201).send({
       message: "Usuário criado!",
