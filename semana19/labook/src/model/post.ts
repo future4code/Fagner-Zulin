@@ -8,6 +8,12 @@ export type post = {
   photo: string;
   description: string;
   type: POST_TYPES;
-  createdAt: Date;
-  authorId: string;
+  created_at?: Date;
+  author_id: string;
+};
+
+export type postData = {
+  photo: string;
+  description: string;
+  type: string;
 };

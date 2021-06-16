@@ -1,8 +1,8 @@
-import { insertUser } from "../../data/userQueries";
-import { generateToken } from "../../services/tokenService";
+import { UserDB } from "../../data/userQueries";
+import { TokenService } from "../../services/tokenService";
 import { user, userData } from "../../model/user";
 import { generateId } from "../../services/idService";
-import { hash } from "../../services/hashService";
+import { HashService } from "../../services/hashService";
 
 export const signupBusiness = async ({
   email,
@@ -15,7 +15,9 @@ export const signupBusiness = async ({
 
   const id: string = generateId();
 
-  const cypherPassword = await hash(password);
+  const hashService = new HashService();
+
+  const cypherPassword = hashService.hash(password);
 
   const user: user = {
     email,
@@ -24,7 +26,10 @@ export const signupBusiness = async ({
     password: cypherPassword,
   };
 
-  await insertUser(user);
+  const userDB = new UserDB();
+  await userDB.insertUser(user);
 
-  return generateToken({ id });
+  const tokenService = new TokenService();
+
+  return tokenService.generateToken({ id });
 };

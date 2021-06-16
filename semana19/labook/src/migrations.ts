@@ -1,6 +1,6 @@
-import knexConnection from "./data/connection";
+import { DBConnection } from "./data/DBConnection";
 
-knexConnection
+new DBConnection().connection
   .raw(
     `
       CREATE TABLE IF NOT EXISTS labook_users(

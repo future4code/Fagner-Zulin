@@ -1,10 +1,26 @@
 import { user } from "../model/user";
-import knexConnection from "./connection";
+import { DBConnection } from "./DBConnection";
 
-export const insertUser = async (user: user): Promise<void> => {
-  try {
-    await knexConnection("labook_users").insert(user);
-  } catch (error) {
-    throw new Error(error.sqlMessage || error.message);
+export class UserDB extends DBConnection {
+  private table: string = "labook_users";
+
+  public async insertUser(user: user): Promise<void> {
+    try {
+      await this.knexConnection(this.table).insert(user);
+    } catch (error) {
+      this.error(error);
+    }
   }
-};
+
+  public async selectUserByEmail(email: string): Promise<any> {
+    try {
+      const [result] = await this.knexConnection(this.table)
+        .select()
+        .where({ email });
+
+      return result;
+    } catch (error) {
+      this.error(error);
+    }
+  }
+}
