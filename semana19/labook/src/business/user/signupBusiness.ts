@@ -1,35 +1,63 @@
-import { UserDB } from "../../data/userQueries";
-import { TokenService } from "../../services/tokenService";
-import { user, userData } from "../../model/user";
-import { generateId } from "../../services/idService";
-import { HashService } from "../../services/hashService";
+import { UserInputDTO, userData, user } from "../../model/user";
+import { BaseUserBusiness } from "./BaseUserBusiness";
+import CustomError from "../errors/CustomError";
 
-export const signupBusiness = async ({
-  email,
-  name,
-  password,
-}: userData): Promise<string> => {
-  if (!name || !email || !password) {
-    throw new Error('"name", "email" and "password" must be provided');
+export class SignupBusiness extends BaseUserBusiness {
+  public async signup(data: UserInputDTO): Promise<string> {
+    const userData = this.validateInputData(data);
+    const id = this.idService();
+
+    const user: user = {
+      id,
+      password: this.hashService.hash(userData.password),
+      name: userData.name,
+      email: userData.email,
+    };
+
+    await this.userDB.insertUser(user);
+
+    return this.tokenService.generateToken({ id });
   }
 
-  const id: string = generateId();
+  private validateInputData(data: UserInputDTO): userData {
+    const fields = this.hasSignupFields(data);
+    const email = this.validateEmail(fields.email);
+    const password = this.validatePassword(fields.password);
 
-  const hashService = new HashService();
+    return { email, password, name: fields.name };
+  }
 
-  const cypherPassword = hashService.hash(password);
+  private hasSignupFields({ email, name, password }: UserInputDTO): userData {
+    if (!name || !email || !password) {
+      throw new CustomError('"name", "email" and "password" must be provided');
+    }
+    return {
+      email,
+      name,
+      password,
+    };
+  }
 
-  const user: user = {
-    email,
-    id,
-    name,
-    password: cypherPassword,
-  };
+  private validateEmail(email: string): string {
+    const emailRegex = /\S+@\S+\.\S+/;
 
-  const userDB = new UserDB();
-  await userDB.insertUser(user);
+    if (!emailRegex.test(email)) {
+      throw new CustomError("The email is not valid");
+    }
 
-  const tokenService = new TokenService();
+    return email;
+  }
 
-  return tokenService.generateToken({ id });
-};
+  private validatePassword(password: string): string {
+    const passwordRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
+
+    if (!passwordRegex.test(password)) {
+      throw new CustomError(
+        "The password must have at least six characters, at least one letter, one number and one special character"
+      );
+    }
+
+    return password;
+  }
+}

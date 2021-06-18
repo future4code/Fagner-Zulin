@@ -6,7 +6,7 @@ export class PostDB extends DBConnection {
 
   public async insertPost(post: post): Promise<void> {
     try {
-      await this.knexConnection(this.table).insert(post);
+      await DBConnection.knexConnection(this.table).insert(post);
     } catch (error) {
       this.error(error);
     }
@@ -14,7 +14,7 @@ export class PostDB extends DBConnection {
 
   public async selectPostById(id: string): Promise<any> {
     try {
-      const [result] = await this.knexConnection(this.table)
+      const [result] = await DBConnection.knexConnection(this.table)
         .select()
         .where({ id });
 

@@ -1,13 +1,15 @@
 import { Request, Response } from "express";
-import { signupBusiness } from "../business/user/signupBusiness";
 import { loginBusiness } from "../business/user/loginBusiness";
+import { SignupBusiness } from "../business/user/SignupBusiness";
 
 export default class UserController {
   signup = async (req: Request, res: Response) => {
     try {
       const { name, email, password } = req.body;
 
-      const token = await signupBusiness({ name, email, password });
+      const signupBusiness = new SignupBusiness();
+
+      const token = await signupBusiness.signup({ name, email, password });
 
       res.send({ token });
     } catch (error) {

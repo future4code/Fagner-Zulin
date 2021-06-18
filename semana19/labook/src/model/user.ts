@@ -9,3 +9,9 @@ export type userData = {
 };
 
 export type user = userData & { id: string };
+
+export interface UserInputDTO {
+  name: any;
+  email: any;
+  password: any;
+}

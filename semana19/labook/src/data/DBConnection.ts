@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export class DBConnection {
-  protected knexConnection: Knex = knex({
+  protected static knexConnection: Knex = knex({
     client: "mysql",
     connection: {
       host: process.env.DB_HOST,
@@ -19,9 +19,5 @@ export class DBConnection {
 
   protected error(error: any) {
     throw new Error(error.sqlMessage || error.message);
-  }
-
-  public get connection(): Knex {
-    return this.knexConnection;
   }
 }
