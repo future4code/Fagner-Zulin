@@ -1,4 +1,4 @@
-import { UserDB } from "../../data/userQueries";
+import { UserDB } from "../../data/UserDB";
 import { HashService } from "../../services/hashService";
 import { TokenService } from "../../services/tokenService";
 import { generateId } from "../../services/idService";

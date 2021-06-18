@@ -1,23 +1,29 @@
-import { post } from "../../model/post";
-import { PostDB } from "../../data/postQueries";
+import BasePostBusiness from "./BasePostBusiness";
+import CustomError from "../errors/CustomError";
+import { POST_TYPES, Post } from "../../model/post";
 
-export const getByIdBusiness = async (id: string): Promise<post> => {
-  const postDB = new PostDB();
+export class GetByIdBusiness extends BasePostBusiness {
+  public async getById(id: string): Promise<Post> {
+    const result = await this.postDB.selectPostById(id);
+    this.hasResult(result);
 
-  const queryResult = await postDB.selectPostById(id);
-
-  if (!queryResult) {
-    throw new Error("Post not found");
+    return this.parsePost(result);
   }
 
-  const post: post = {
-    id: queryResult.id,
-    photo: queryResult.photo,
-    description: queryResult.description,
-    type: queryResult.type,
-    created_at: queryResult.created_at,
-    author_id: queryResult.author_id,
-  };
+  private hasResult(result: any) {
+    if (!result) {
+      throw new CustomError("Post not found", 404);
+    }
+  }
 
-  return post;
-};
+  private parsePost(data: any): Post {
+    return {
+      createdAt: data.created_at,
+      authorId: data.author_id,
+      description: data.description,
+      id: data.id,
+      photo: data.photo,
+      type: POST_TYPES[data.type as POST_TYPES],
+    };
+  }
+}

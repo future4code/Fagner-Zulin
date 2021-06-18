@@ -1,6 +1,7 @@
 import Knex from "knex";
 import knex from "knex";
 import dotenv from "dotenv";
+import CustomError from "../business/errors/CustomError";
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ export class DBConnection {
     },
   });
 
-  protected error(error: any) {
-    throw new Error(error.sqlMessage || error.message);
+  protected error(error: any): void {
+    throw new CustomError(error.sqlMessage || error.message, 500);
   }
 }

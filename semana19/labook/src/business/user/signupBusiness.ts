@@ -1,4 +1,4 @@
-import { UserInputDTO, userData, user } from "../../model/user";
+import { UserInputDTO, UserData, User } from "../../model/user";
 import { BaseUserBusiness } from "./BaseUserBusiness";
 import CustomError from "../errors/CustomError";
 
@@ -7,7 +7,7 @@ export class SignupBusiness extends BaseUserBusiness {
     const userData = this.validateInputData(data);
     const id = this.idService();
 
-    const user: user = {
+    const user: User = {
       id,
       password: this.hashService.hash(userData.password),
       name: userData.name,
@@ -19,7 +19,7 @@ export class SignupBusiness extends BaseUserBusiness {
     return this.tokenService.generateToken({ id });
   }
 
-  private validateInputData(data: UserInputDTO): userData {
+  private validateInputData(data: UserInputDTO): UserData {
     const fields = this.hasSignupFields(data);
     const email = this.validateEmail(fields.email);
     const password = this.validatePassword(fields.password);
@@ -27,7 +27,7 @@ export class SignupBusiness extends BaseUserBusiness {
     return { email, password, name: fields.name };
   }
 
-  private hasSignupFields({ email, name, password }: UserInputDTO): userData {
+  private hasSignupFields({ email, name, password }: UserInputDTO): UserData {
     if (!name || !email || !password) {
       throw new CustomError('"name", "email" and "password" must be provided');
     }

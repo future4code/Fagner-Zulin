@@ -1,26 +1,47 @@
-import { authenticationData } from "../../model/user";
-import { generateId } from "../../services/idService";
-import { post, postData, POST_TYPES } from "../../model/post";
-import { PostDB } from "../../data/postQueries";
-import { TokenService } from "../../services/tokenService";
+import { Post, PostData, PostInputDTO, POST_TYPES } from "../../model/post";
+import BasePostBusiness from "./BasePostBusiness";
+import CustomError from "../errors/CustomError";
 
-export const createBusiness = async (
-  data: postData,
-  token: string
-): Promise<void> => {
-  const tokenService = new TokenService();
-  const tokenData: authenticationData = tokenService.getTokenData(token);
+export class CreateBusiness extends BasePostBusiness {
+  public async create(
+    data: PostInputDTO,
+    token: string | undefined
+  ): Promise<void> {
+    const { id } = this.tokenService.getTokenData(token);
+    const { description, photo, type } = this.validateCreateFields(data);
 
-  const id: string = generateId();
+    const post: Post = {
+      id: this.generateId(),
+      authorId: id,
+      description,
+      photo,
+      type,
+    };
 
-  const post: post = {
-    id,
-    photo: data.photo,
-    description: data.description,
-    type: data.type as POST_TYPES,
-    author_id: tokenData.id,
-  };
+    await this.postDB.insertPost(post);
+  }
 
-  const postDB = new PostDB();
-  await postDB.insertPost(post);
-};
+  private validateCreateFields(data: PostInputDTO): PostData {
+    const fields = this.hasFields(data);
+    const type = this.validateType(fields.type);
+
+    return { description: fields.description, photo: fields.photo, type };
+  }
+
+  private hasFields({ description, photo, type }: PostInputDTO) {
+    if (!description || !photo || !type) {
+      throw new CustomError(
+        "The description, photo and type fields are requiered"
+      );
+    }
+
+    return { description, photo, type };
+  }
+
+  private validateType(typeValue: string): POST_TYPES {
+    if (!(typeValue in POST_TYPES)) {
+      throw new CustomError("Type must be NORMAL or EVENT");
+    }
+    return POST_TYPES[typeValue as POST_TYPES];
+  }
+}

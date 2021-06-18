@@ -1,46 +1,39 @@
-import { UserDB } from "../../data/userQueries";
-import { user } from "../../model/user";
-import { HashService } from "../../services/hashService";
-import { TokenService } from "../../services/tokenService";
+import { UserData, UserInputDTO } from "../../model/user";
+import { BaseUserBusiness } from "./BaseUserBusiness";
+import CustomError from "../errors/CustomError";
 
-export const loginBusiness = async (
-  email: string,
-  password: string
-): Promise<string> => {
-  if (!email || !password) {
-    throw new Error('"email" and "password" must be provided');
+export class LoginBusiness extends BaseUserBusiness {
+  public async login(data: Omit<UserInputDTO, "name">): Promise<string> {
+    const { email, password } = this.hasLoginFields(data);
+
+    const result = await this.userDB.selectUserByEmail(email);
+
+    this.validateCredencials(result);
+
+    const passwordIsCorrect: boolean = this.hashService.compare(
+      password,
+      result.password
+    );
+
+    this.validateCredencials(passwordIsCorrect);
+
+    return this.tokenService.generateToken({ id: result.id });
   }
 
-  const userDB = new UserDB();
-
-  const queryResult = await userDB.selectUserByEmail(email);
-
-  if (!queryResult) {
-    throw new Error("Invalid credentials");
-  }
-
-  const user: user = {
-    id: queryResult.id,
-    name: queryResult.name,
-    email: queryResult.email,
-    password: queryResult.password,
-  };
-
-  const hashService = new HashService();
-
-  const passwordIsCorrect: boolean = hashService.compare(
+  private hasLoginFields({
+    email,
     password,
-    user.password
-  );
+  }: Omit<UserInputDTO, "name">): Omit<UserData, "name"> {
+    if (!email || !password) {
+      throw new CustomError('"email" and "password" must be provided');
+    }
 
-  if (!passwordIsCorrect) {
-    throw new Error("Invalid credentials");
+    return { email, password };
   }
 
-  const tokenService = new TokenService();
-  const token: string = tokenService.generateToken({
-    id: user.id,
-  });
-
-  return token;
-};
+  private validateCredencials(value: any): void {
+    if (!value) {
+      throw new CustomError("Invalid credentials", 401);
+    }
+  }
+}

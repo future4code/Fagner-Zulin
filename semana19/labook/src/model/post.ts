@@ -1,19 +1,25 @@
 export enum POST_TYPES {
-  NORMAL = "normal",
-  EVENT = "event",
+  NORMAL = "NORMAL",
+  EVENT = "EVENT",
 }
 
-export type post = {
+export interface Post {
   id: string;
   photo: string;
   description: string;
   type: POST_TYPES;
-  created_at?: Date;
-  author_id: string;
-};
+  createdAt?: Date;
+  authorId: string;
+}
 
-export type postData = {
+export interface PostData {
   photo: string;
   description: string;
-  type: string;
-};
+  type: POST_TYPES;
+}
+
+export interface PostInputDTO {
+  photo: any;
+  description: any;
+  type: any;
+}

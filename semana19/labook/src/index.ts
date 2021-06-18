@@ -5,6 +5,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const expressApp: App = new App();
+const expressApp: App = new App([handleUser, handlePost]);
 
-expressApp.init([handleUser, handlePost]).listen();
+expressApp.init().listen();

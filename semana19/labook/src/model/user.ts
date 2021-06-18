@@ -1,14 +1,16 @@
-export type authenticationData = {
+export interface AuthenticationData {
   id: string;
-};
+}
 
-export type userData = {
+export interface UserData {
   name: string;
   email: string;
   password: string;
-};
+}
 
-export type user = userData & { id: string };
+export interface User extends UserData {
+  id: string;
+}
 
 export interface UserInputDTO {
   name: any;

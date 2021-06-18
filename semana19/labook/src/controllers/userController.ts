@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
-import { loginBusiness } from "../business/user/loginBusiness";
+import CustomError from "../business/errors/CustomError";
+import { LoginBusiness } from "../business/user/LoginBusiness";
 import { SignupBusiness } from "../business/user/SignupBusiness";
+import { MakeFriendshipBusiness } from "../business/user/MakeFriendshipBusiness";
 
 export default class UserController {
   signup = async (req: Request, res: Response) => {
@@ -13,7 +15,8 @@ export default class UserController {
 
       res.send({ token });
     } catch (error) {
-      res.send({ message: error.message }).status(400);
+      const err = new CustomError(error.message, error.statusCode);
+      res.status(err.statusCode).send({ message: err.message });
     }
   };
 
@@ -21,11 +24,30 @@ export default class UserController {
     try {
       const { email, password } = req.body;
 
-      const token = await loginBusiness(email, password);
+      const loginBusiness = new LoginBusiness();
+
+      const token = await loginBusiness.login({ email, password });
 
       res.status(200).send({ token });
     } catch (error) {
-      res.send({ message: error.message }).status(400);
+      const err = new CustomError(error.message, error.statusCode);
+      res.status(err.statusCode).send({ message: err.message });
+    }
+  };
+
+  makeFriendship = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const token = req.headers.authorization;
+
+      const makeFriendshipBusiness = new MakeFriendshipBusiness();
+
+      await makeFriendshipBusiness.makeFriendship(id, token);
+
+      res.status(200).send({ message: "Friendship made successfully" });
+    } catch (error) {
+      const err = new CustomError(error.message, error.statusCode);
+      res.status(err.statusCode).send({ message: err.message });
     }
   };
 }

@@ -11,9 +11,11 @@ export default class App {
   private port: number = Number(process.env.PORT) || 3003;
   private express: Express = express();
 
-  public init(routes: AppRoutes[]): App {
+  constructor(private routes: AppRoutes[]) {}
+
+  public init(): App {
     this.middlewares();
-    this.routes(routes);
+    this.router();
     this.ping();
 
     return this;
@@ -24,8 +26,8 @@ export default class App {
     this.express.use(cors());
   }
 
-  private routes(routes: AppRoutes[]): void {
-    routes.map((route) => {
+  private router(): void {
+    this.routes.map((route) => {
       this.express.use(route.path, route.handle);
     });
   }
