@@ -2,9 +2,11 @@ import { Request, Response } from "express";
 import CustomError from "../business/errors/CustomError";
 import { LoginBusiness } from "../business/user/LoginBusiness";
 import { SignupBusiness } from "../business/user/SignupBusiness";
-import { MakeFriendshipBusiness } from "../business/user/MakeFriendshipBusiness";
+import { FriendshipBusiness } from "../business/user/FriendshipBusiness";
 
 export default class UserController {
+  private friendshipBusiness = new FriendshipBusiness();
+
   signup = async (req: Request, res: Response) => {
     try {
       const { name, email, password } = req.body;
@@ -40,11 +42,23 @@ export default class UserController {
       const { id } = req.params;
       const token = req.headers.authorization;
 
-      const makeFriendshipBusiness = new MakeFriendshipBusiness();
-
-      await makeFriendshipBusiness.makeFriendship(id, token);
+      await this.friendshipBusiness.makeFriendship(id, token);
 
       res.status(200).send({ message: "Friendship made successfully" });
+    } catch (error) {
+      const err = new CustomError(error.message, error.statusCode);
+      res.status(err.statusCode).send({ message: err.message });
+    }
+  };
+
+  undoFriendship = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const token = req.headers.authorization;
+
+      await this.friendshipBusiness.undoFriendship(id, token);
+
+      res.status(200).send({ message: "Friendship undo successfully" });
     } catch (error) {
       const err = new CustomError(error.message, error.statusCode);
       res.status(err.statusCode).send({ message: err.message });

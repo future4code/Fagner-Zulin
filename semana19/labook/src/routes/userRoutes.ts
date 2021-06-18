@@ -8,6 +8,7 @@ const userController = new UserController();
 userRoute.post("/signup", userController.signup);
 userRoute.post("/login", userController.login);
 userRoute.post("/:id", userController.makeFriendship);
+userRoute.delete("/:id", userController.undoFriendship);
 
 const handleUser: AppRoutes = {
   path: "/users",

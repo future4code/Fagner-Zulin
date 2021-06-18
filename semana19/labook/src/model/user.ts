@@ -17,3 +17,8 @@ export interface UserInputDTO {
   email: any;
   password: any;
 }
+
+export interface Friendship {
+  userId: string;
+  friendId: string;
+}

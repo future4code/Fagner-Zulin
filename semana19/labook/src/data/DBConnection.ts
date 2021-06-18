@@ -17,6 +17,9 @@ export class DBConnection {
       multipleStatements: true,
     },
   });
+  protected postTable: string = "labook_posts";
+  protected userTable: string = "labook_users";
+  protected friendTable: string = "labook_friends";
 
   protected error(error: any): void {
     throw new CustomError(error.sqlMessage || error.message, 500);
