@@ -6,6 +6,8 @@
 
 O LaBook é um projeto, proposto pela equipe da Labenu, de uma rede social com o objetivo de aprofundar os conhecimentos em desenvolvimento de aplicações usando arquitetura em camadas e orientação a objetos. Os usuários podem fazer suas contas, criar posts de dois tipos ("evento" ou "normal"), comentá-los e curti-los também.
 
+---
+
 ## 🎮 Tecnologias utilizadas
 
 ---
