@@ -28,7 +28,7 @@ export class PostDB extends DBConnection {
     }
   }
 
-  public async getFeed(userId: string) {
+  public async getFeed(userId: string, page: number) {
     try {
       const result = await DBConnection.knexConnection(this.postTable)
         .select(
@@ -41,7 +41,9 @@ export class PostDB extends DBConnection {
         )
         .join(this.friendTable, "friend_id", "author_id")
         .where("user_id", userId)
-        .orderBy("created_at", "desc");
+        .orderBy("created_at", "desc")
+        .limit(5)
+        .offset(5 * (page - 1));
 
       return result;
     } catch (error) {
