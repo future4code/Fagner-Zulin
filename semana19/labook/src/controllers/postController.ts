@@ -3,9 +3,11 @@ import { CreateBusiness } from "../business/post/CreateBusiness";
 import { GetByIdBusiness } from "../business/post/GetByIdBusiness";
 import CustomError from "../business/errors/CustomError";
 import { FeedBusiness } from "../business/post/FeedBusiness";
+import { LikesBusiness } from "../business/post/LikesBusiness";
 
 export default class PostController {
   private feedBusiness = new FeedBusiness();
+  private likesBusiness = new LikesBusiness();
 
   create = async (req: Request, res: Response) => {
     try {
@@ -63,6 +65,20 @@ export default class PostController {
       const feed = await this.feedBusiness.feedByType(query, token);
 
       res.status(200).send({ feed });
+    } catch (error) {
+      const err = new CustomError(error.message, error.statusCode);
+      res.status(err.statusCode).send({ message: err.message });
+    }
+  };
+
+  like = async (req: Request, res: Response) => {
+    try {
+      const postId = req.params.id;
+      const token = req.headers.authorization;
+
+      await this.likesBusiness.like(postId, token);
+
+      res.status(200).send({ message: "Liked" });
     } catch (error) {
       const err = new CustomError(error.message, error.statusCode);
       res.status(err.statusCode).send({ message: err.message });

@@ -61,4 +61,30 @@ export class PostDB extends DBConnection {
       this.error(error);
     }
   }
+
+  public async insertLike(userId: string, postId: string): Promise<void> {
+    try {
+      await DBConnection.knexConnection(this.likesTable).insert({
+        user_id: userId,
+        post_id: postId,
+      });
+    } catch (error) {
+      this.error(error);
+    }
+  }
+
+  public async selectLike(userId: string, postId: string): Promise<any> {
+    try {
+      const [result] = await DBConnection.knexConnection(this.likesTable)
+        .select()
+        .where({
+          user_id: userId,
+          post_id: postId,
+        });
+
+      return result;
+    } catch (error) {
+      this.error(error);
+    }
+  }
 }
