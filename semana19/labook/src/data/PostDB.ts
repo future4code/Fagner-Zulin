@@ -1,4 +1,4 @@
-import { Post } from "../model/post";
+import { Post, POST_TYPES } from "../model/post";
 import { DBConnection } from "./DBConnection";
 
 export class PostDB extends DBConnection {
@@ -41,6 +41,19 @@ export class PostDB extends DBConnection {
         )
         .join(this.friendTable, "friend_id", "author_id")
         .where("user_id", userId)
+        .orderBy("created_at", "desc");
+
+      return result;
+    } catch (error) {
+      this.error(error);
+    }
+  }
+
+  public async getFeedByType(type: POST_TYPES): Promise<any> {
+    try {
+      const result = await DBConnection.knexConnection(this.postTable)
+        .select()
+        .where({ type })
         .orderBy("created_at", "desc");
 
       return result;

@@ -39,7 +39,7 @@ export default class App {
   }
 
   private ping(): void {
-    this.express.get("/ping", (req, res) => {
+    this.express.get("/ping", (_req, res) => {
       res.send({ message: "Pong" });
     });
   }

@@ -6,7 +6,7 @@ const postRoute: Router = Router();
 const postController = new PostController();
 
 postRoute.post("/create", postController.create);
-postRoute.get("/feed", postController.feed);
+postRoute.get("/feed", postController.feed, postController.feedByType);
 postRoute.get("/:id", postController.getById);
 
 const handlePost: AppRoutes = {
