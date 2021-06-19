@@ -84,4 +84,18 @@ export default class PostController {
       res.status(err.statusCode).send({ message: err.message });
     }
   };
+
+  unlike = async (req: Request, res: Response) => {
+    try {
+      const postId = req.params.id;
+      const token = req.headers.authorization;
+
+      await this.likesBusiness.unlike(postId, token);
+
+      res.status(200).send({ message: "Unliked" });
+    } catch (error) {
+      const err = new CustomError(error.message, error.statusCode);
+      res.status(err.statusCode).send({ message: err.message });
+    }
+  };
 }

@@ -87,4 +87,15 @@ export class PostDB extends DBConnection {
       this.error(error);
     }
   }
+
+  public async unlike(userId: string, postId: string): Promise<void> {
+    try {
+      await DBConnection.knexConnection(this.likesTable).delete().where({
+        user_id: userId,
+        post_id: postId,
+      });
+    } catch (error) {
+      this.error(error);
+    }
+  }
 }

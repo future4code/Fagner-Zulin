@@ -9,6 +9,7 @@ postRoute.post("/create", postController.create);
 postRoute.get("/feed", postController.feed, postController.feedByType);
 postRoute.get("/:id", postController.getById);
 postRoute.post("/:id", postController.like);
+postRoute.delete("/:id", postController.unlike);
 
 const handlePost: AppRoutes = {
   path: "/posts",
