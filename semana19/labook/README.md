@@ -1,6 +1,32 @@
 # LABOOK
 
-## Primeiros Passos
+## 💾 Sobre
+
+---
+
+O LaBook é um projeto, proposto pela equipe da Labenu, de uma rede social com o objetivo de aprofundar os conhecimentos em desenvolvimento de aplicações usando arquitetura em camadas e orientação a objetos. Os usuários podem fazer suas contas, criar posts de dois tipos ("evento" ou "normal"), comentá-los e curti-los também.
+
+## 🎮 Tecnologias utilizadas
+
+---
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- **[NodeJS](https://nodejs.org/en/)**
+- **[Express](https://expressjs.com/pt-br/)**
+- **[Typescript](https://www.typescriptlang.org/)**
+- **[bcryptjs](https://github.com/dcodeIO/bcrypt.js#readme)**
+- **[cors](https://github.com/expressjs/cors#readme)**
+- **[dotenv](https://github.com/motdotla/dotenv#readme)**
+- **[jsonwebtoken](https://github.com/auth0/node-jsonwebtoken#readme)**
+- **[knex](http://knexjs.org/)**
+- **[uuid](https://github.com/uuidjs/uuid#readme)**
+
+> Veja o arquivo [package.json](https://github.com/future4code/Fagner-Zulin/blob/semana19-projeto/semana19/labook/package.json)
+
+---
+
+## 🎯 Primeiros Passos
 
 ---
 
@@ -25,11 +51,11 @@
 
 ---
 
-## Endpoints
+## 🚩 Endpoints
 
 ---
 
-### Endpoints Abertos
+### 🔓 Endpoints Abertos
 
 Endpoints que não requerem autenticação.
 
@@ -38,7 +64,7 @@ Endpoints que não requerem autenticação.
 
 ---
 
-### Endpoints com Autenticação
+### 🔒 Endpoints com Autenticação
 
 Endpoints que requerem autenticação por meio do token.
 
