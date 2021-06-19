@@ -4,16 +4,9 @@ import { POST_TYPES, Post } from "../../model/post";
 
 export class GetByIdBusiness extends BasePostBusiness {
   public async getById(id: string): Promise<Post> {
-    const result = await this.postDB.selectPostById(id);
-    this.hasResult(result);
+    const result = await this.hasPost(id);
 
     return this.parsePost(result);
-  }
-
-  private hasResult(result: any) {
-    if (!result) {
-      throw new CustomError("Post not found", 404);
-    }
   }
 
   private parsePost(data: any): Post {

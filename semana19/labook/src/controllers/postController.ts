@@ -4,6 +4,7 @@ import { GetByIdBusiness } from "../business/post/GetByIdBusiness";
 import CustomError from "../business/errors/CustomError";
 import { FeedBusiness } from "../business/post/FeedBusiness";
 import { LikesBusiness } from "../business/post/LikesBusiness";
+import { CommentBusiness } from "../business/post/CommentBusiness";
 
 export default class PostController {
   private feedBusiness = new FeedBusiness();
@@ -93,6 +94,22 @@ export default class PostController {
       await this.likesBusiness.unlike(postId, token);
 
       res.status(200).send({ message: "Unliked" });
+    } catch (error) {
+      const err = new CustomError(error.message, error.statusCode);
+      res.status(err.statusCode).send({ message: err.message });
+    }
+  };
+
+  comment = async (req: Request, res: Response) => {
+    try {
+      const postId = req.params.id;
+      const token = req.headers.authorization;
+      const body = req.body;
+
+      const commentBusiness = new CommentBusiness();
+      await commentBusiness.comment(postId, body, token);
+
+      res.status(200).send({ message: "Commented" });
     } catch (error) {
       const err = new CustomError(error.message, error.statusCode);
       res.status(err.statusCode).send({ message: err.message });

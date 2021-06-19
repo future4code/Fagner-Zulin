@@ -21,6 +21,7 @@ export class DBConnection {
   protected userTable: string = "labook_users";
   protected friendTable: string = "labook_friends";
   protected likesTable: string = "labook_likes";
+  protected commentsTable: string = "labook_comments";
 
   protected error(error: any): void {
     throw new CustomError(error.sqlMessage || error.message, 500);

@@ -23,13 +23,6 @@ export class LikesBusiness extends BasePostBusiness {
     }
   }
 
-  private async hasPost(postId: string): Promise<void> {
-    const result = await this.postDB.selectPostById(postId);
-    if (!result) {
-      throw new CustomError("Post not Found", 404);
-    }
-  }
-
   private async hasLike(userId: string, postId: string): Promise<void> {
     const result = await this.postDB.selectLike(userId, postId);
     if (result) {

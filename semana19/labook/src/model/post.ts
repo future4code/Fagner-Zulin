@@ -23,3 +23,10 @@ export interface PostInputDTO {
   description: any;
   type: any;
 }
+
+export interface PostComment {
+  id: string;
+  postId: string;
+  creatorId: string;
+  comment: string;
+}

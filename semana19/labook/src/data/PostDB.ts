@@ -1,4 +1,4 @@
-import { Post, POST_TYPES } from "../model/post";
+import { Post, PostComment, POST_TYPES } from "../model/post";
 import { DBConnection } from "./DBConnection";
 
 export class PostDB extends DBConnection {
@@ -93,6 +93,24 @@ export class PostDB extends DBConnection {
       await DBConnection.knexConnection(this.likesTable).delete().where({
         user_id: userId,
         post_id: postId,
+      });
+    } catch (error) {
+      this.error(error);
+    }
+  }
+
+  public async insertComment({
+    id,
+    comment,
+    postId: post_id,
+    creatorId: creator_id,
+  }: PostComment): Promise<void> {
+    try {
+      await DBConnection.knexConnection(this.commentsTable).insert({
+        id,
+        comment,
+        post_id,
+        creator_id,
       });
     } catch (error) {
       this.error(error);
