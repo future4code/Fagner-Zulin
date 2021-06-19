@@ -29,7 +29,7 @@ export class SignupBusiness extends BaseUserBusiness {
 
   private hasSignupFields({ email, name, password }: UserInputDTO): UserData {
     if (!name || !email || !password) {
-      throw new CustomError('"name", "email" and "password" must be provided');
+      throw new CustomError("name, email and password must be provided");
     }
     return {
       email,

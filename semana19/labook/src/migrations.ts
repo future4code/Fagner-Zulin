@@ -20,7 +20,7 @@ class Migrates extends DBConnection {
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             author_id VARCHAR(255),
             FOREIGN KEY (author_id) REFERENCES labook_users (id)
-          )
+          );
 
         CREATE TABLE IF NOT EXISTS labook_friends (
           user_id VARCHAR(255) NOT NULL,
@@ -38,7 +38,7 @@ class Migrates extends DBConnection {
             FOREIGN KEY (user_id) REFERENCES labook_users(id)
         );
 
-        CREATE TABLE labook_comments (
+        CREATE TABLE IF NOT EXISTS labook_comments (
           id VARCHAR(255) PRIMARY KEY,
             post_id VARCHAR(255) NOT NULL,
             creator_id VARCHAR(255) NOT NULL,
@@ -48,8 +48,14 @@ class Migrates extends DBConnection {
         );
     `
       )
-      .then(console.log)
-      .catch(console.log);
+      .then((value) => {
+        console.log(value);
+        process.exit(0);
+      })
+      .catch((err) => {
+        console.log(err);
+        process.exit(1);
+      });
   };
 }
 
