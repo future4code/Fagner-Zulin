@@ -1,0 +1,25 @@
+{
+  "name": "testes-automatizados",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tests": "jest",
+    "dev": "tsnd --transpile-only --ignore-watch node_modules ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/knex": "^0.16.1",
+    "@types/node": "^15.12.4",
+    "dotenv": "^10.0.0",
+    "jest": "^27.0.4",
+    "knex": "^0.95.6",
+    "mysql": "^2.18.1",
+    "ts-jest": "^27.0.3",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.3.4"
+  }
+}
