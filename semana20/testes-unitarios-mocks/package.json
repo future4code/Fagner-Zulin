@@ -1,0 +1,23 @@
+{
+  "name": "testes-unitarios-mocks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tests": "jest",
+    "dev": "tsnd --transpile-only --ignore-watch node_modules ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^27.0.5",
+    "typescript": "^4.3.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.4",
+    "ts-jest": "^27.0.3",
+    "ts-node-dev": "^1.1.6"
+  }
+}
